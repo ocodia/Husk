@@ -1,0 +1,72 @@
+/* Inputs */
+
+
+
+button, input[type=button], input[type=submit] {
+    color: var(--color-light);
+    background-color: var(--color-dark);
+    border-color: #6c757d;
+    border: 0;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+
+button:hover, input[type=button]:hover, input[type=submit]:hover {
+    color: var(--color-light);
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+button:active, input[type=button]:active, input[type=submit]:active {
+    color: var(--color-light);
+    background-color: var(--color-dark);
+    border-color: #4e555b;
+}
+
+button:focus, input[type=button]:focus, input[type=submit]:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+input[type=submit] {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+input[type=submit]:hover {
+    color: var(--color-light);
+    background-color: #1d2124;
+    border-color: #1d2124;
+}
+
+input[type=submit]:active {
+    color: var(--color-light);
+    background-color: #1d2124;
+    border-color: #1d2124;
+}
+
+input[type=text], input[type=number], input[type=date], select, textarea {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #9ca5ae;
+    border-radius: 0.25rem;
+    line-height: 1.5;
+}
+
+input[type=file] {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+}
+
+input[readonly], input[disabled], button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+input[type=range] {
+    width: 100%;
+}
+

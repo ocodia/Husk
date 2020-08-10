@@ -1,0 +1,31 @@
+/* Media */
+
+img {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+figure {
+    margin-bottom: 1rem;
+}
+
+figure img {
+    margin: 0;
+}
+
+figure figcaption {
+    margin: 0;
+    padding: 0.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+video {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+audio {
+    margin-bottom: 1rem;
+    width: 100%;
+}

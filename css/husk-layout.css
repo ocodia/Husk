@@ -1,0 +1,43 @@
+/* Layout */
+
+header {
+    margin: 0 auto;
+}
+
+main {
+    margin: 0 auto;
+}
+
+footer {
+    margin: 0 auto;
+}
+
+div {
+    margin: 0.5rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+fieldset {
+    border: 1px solid var(--color-medium);
+    border-radius: 0.3rem;
+}
+
+fieldset legend {
+    padding: 0.25rem 0.5rem;
+}
+
+fieldset div {
+    margin-bottom: 0;
+}
+
+textarea {
+    resize: vertical;
+}
