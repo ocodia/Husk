@@ -9,12 +9,13 @@ Usage:
 ```
 
 Example: https://ocodia.github.io/husk/
+
 Form example: https://ocodia.github.io/husk/form.html
 
 
 ## To do
 
-- [x] Base HTML element styles 
+- [x] HTML element styles 
 - [ ] Dark mode
  
 ---
@@ -23,34 +24,35 @@ Form example: https://ocodia.github.io/husk/form.html
 
 The following HTML elements are styled by Husk. 
 
-1. Text
-    1. Headings
-    2. Paragraphs
-    3. Blockquotes
-    4. Lists
-    5. Tables
-    6. Code
-    7. Inline elements
-    8. Address
-    9. Details
-2. Embedded content
-    1. Images
-    2. Audio
-    3. Video
-    4. Canvas
-    5. Meter
-    6. Progress
-    7. Inline SVG
-    8. IFrames
-3. Forms
-    1. Input fields
-    2. Select menus
-    3. Checkboxes
-    4. Radio buttons
-    5. Textareas
-    6. HTML5 inputs
-    7. Buttons
+- Text
+    - Headings
+    - Paragraphs
+    - Blockquotes
+    - Lists
+    - Tables
+    - Code
+    - Inline elements
+    - Address
+    - Details
+- Embedded content
+    - Images
+    - Audio
+    - Video
+    - Canvas
+    - Meter
+    - Progress
+    - Inline SVG
+    - IFrames
+- Forms
+    - Input fields
+    - Select menus
+    - Checkboxes
+    - Radio buttons
+    - Textareas
+    - HTML5 inputs
+    - Buttons
 
+---
 
 ### Text
 #### Headings
