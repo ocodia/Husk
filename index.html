@@ -8,9 +8,6 @@
   </head>
 
   <body>
-    <nav id="skipLinks" aria-label="Skip link navigation">
-      <a href="#content">Skip to content</a>
-    </nav>
     <header>
       <h1>Husk</h1>
       <p>Just enough CSS to get by</p>
@@ -27,6 +24,8 @@
           <li><a href="#text-tables">Tables</a></li>
           <li><a href="#text-code">Code</a></li>
           <li><a href="#text-inline">Inline elements</a></li>
+          <li><a href="#text-address">Address</a></li>
+          <li><a href="#text-details">Details</a></li>
         </ol>
         <li><a href="#embedded">Embedded content</a></li>
         <ol>
@@ -68,12 +67,9 @@
         <article id="text-paragraphs">
           <header><h1>Paragraphs</h1></header>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ex orci, a
-            rhoncus arcu bibendum at. Proin euismod ligula eget accumsan. Sed egestas libero leo,
-            non blandit nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo CSS, porta
-            leo in, dignissim purus. Etiam justo risus, congue vel mauris id, accumsan imperdiet
-            quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-            Curae; Ut ac porta erat, vel sem.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ex orci, a rhoncus arcu bibendum at. Proin euismod ligula eget accumsan. Sed egestas libero leo, non blandit
+            nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo CSS, porta leo in, dignissim purus. Etiam justo risus, congue vel mauris id, accumsan imperdiet quam. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut ac porta erat, vel sem.
           </p>
         </article>
         <hr />
@@ -81,10 +77,7 @@
           <header><h1>Blockquotes</h1></header>
 
           <blockquote>
-            <p>
-              Words can be like X-rays, if you use them properly—they’ll go through anything. You
-              read and you’re pierced.
-            </p>
+            <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
             <footer>—Aldous Huxley, <cite>Brave New World</cite></footer>
           </blockquote>
         </article>
@@ -199,15 +192,9 @@ p q r s t u v w x y z { | } ~
           <p><a href="#!">This is a text link</a></p>
           <p><strong>Strong is used to indicate strong importance</strong></p>
           <p><em>This text has added emphasis</em></p>
-          <p>
-            The <b>b element</b> is stylistically different text from normal text, without any
-            special importance
-          </p>
+          <p>The <b>b element</b> is stylistically different text from normal text, without any special importance</p>
           <p>The <i>i element</i> is text that is offset from the normal text</p>
-          <p>
-            The <u>u element</u> is text with an unarticulated, though explicitly rendered,
-            non-textual annotation
-          </p>
+          <p>The <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation</p>
           <p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
           <p><s>This text has a strikethrough</s></p>
           <p>Superscript <sup>®</sup></p>
@@ -215,9 +202,7 @@ p q r s t u v w x y z { | } ~
           <p><small>This small text is small for for fine print, etc</small></p>
           <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
           <p>
-            <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q"
-              >This text is a short inline quotation</q
-            >
+            <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation</q>
           </p>
           <p><cite>This is a citation</cite></p>
           <p>The <dfn>dfn element</dfn> indicates a definition</p>
@@ -232,8 +217,8 @@ p q r s t u v w x y z { | } ~
         <article id="text-address">
           <header><h1>Address</h1></header>
           <address>
-            <a href="mailto:jim@rock.com">jim@rock.com</a><br />
-            <a href="tel:+13115552368">(311) 555-2368</a>
+            <a href="mailto:name@domain.com">name@domain.com</a><br />
+            <a href="tel:+441324502030">(+44) 1324 502030</a>
           </address>
         </article>
         <hr />
@@ -256,20 +241,20 @@ p q r s t u v w x y z { | } ~
           <header><h1>Images</h1></header>
           <h2><code>&lt;img&gt;</code> element</h2>
 
-          <img src="img/elephant-660-480.jpg" alt="Elephant at sunset" />
+          <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
           <h2>
             <code>&lt;img&gt;</code> inside <code>&lt;figure&gt;</code> element with
             <code>&lt;figcaption&gt;</code>
           </h2>
           <figure>
-            <img src="img/elephant-660-480.jpg" alt="Elephant at sunset" />
-            <figcaption>An elephant at sunset</figcaption>
+            <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
+            <figcaption>Glencoe Valley, Scotland</figcaption>
           </figure>
         </article>
         <hr />
         <article id="embedded-audio">
           <h2>Audio</h2>
-          <audio controls src="audio/t-rex-roar.mp3">
+          <audio controls src="audio/audio.mp3">
             Your browser does not support the
             <code>audio</code> element.
           </audio>
@@ -278,7 +263,7 @@ p q r s t u v w x y z { | } ~
         <article id="embedded-video">
           <h2>Video</h2>
           <video controls>
-            <source src="video/bunny.mp4" type="video/mp4" />
+            <source src="video/video.mp4" type="video/mp4" />
             Sorry, your browser doesn't support embedded videos.
           </video>
         </article>
@@ -320,27 +305,27 @@ p q r s t u v w x y z { | } ~
             <fieldset>
               <legend>Input fields</legend>
               <p>
-                <label for="input-text">Text Input</label>
+                <label for="input-text">Text input</label>
                 <input id="input-text" type="text" placeholder="Text Input" />
               </p>
               <p>
-                <label for="input-password">Password</label>
+                <label for="input-password">Password input</label>
                 <input id="input-password" type="password" placeholder="Type your Password" />
               </p>
               <p>
-                <label for="input-url">Web Address</label>
+                <label for="input-url">URL input</label>
                 <input id="input-url" type="url" placeholder="http://yoursite.com" />
               </p>
               <p>
-                <label for="input-email">Email Address</label>
+                <label for="input-email">Email input</label>
                 <input id="input-email" type="email" placeholder="name@email.com" />
               </p>
               <p>
-                <label for="input-phone">Phone Number</label>
-                <input id="input-phone" type="tel" placeholder="(999) 999-9999" />
+                <label for="input-tel">Telephone input</label>
+                <input id="input-tel" type="tel" placeholder="(999) 999-9999" />
               </p>
               <p>
-                <label for="input-search">Search</label>
+                <label for="input-search">Search input</label>
                 <input id="input-search" type="search" placeholder="Enter Search Term" />
               </p>
               <p>
@@ -356,7 +341,7 @@ p q r s t u v w x y z { | } ~
             <fieldset>
               <legend>Select menus</legend>
               <p>
-                <label for="select">Select</label>
+                <label for="pet-select">Select</label>
                 <select name="pets" id="pet-select">
                   <option value="">Please choose an option</option>
                   <option value="dog">Dog</option>
@@ -380,12 +365,8 @@ p q r s t u v w x y z { | } ~
                 <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" />
                 Choice A
               </label>
-              <label for="checkbox2"
-                ><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label
-              >
-              <label for="checkbox3"
-                ><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label
-              >
+              <label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label>
+              <label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label>
             </fieldset>
           </form>
         </article>
@@ -418,12 +399,7 @@ p q r s t u v w x y z { | } ~
               <legend>Textareas</legend>
               <p>
                 <label for="textarea">Textarea</label>
-                <textarea
-                  id="textarea"
-                  rows="8"
-                  cols="48"
-                  placeholder="Enter your message here"
-                ></textarea>
+                <textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
               </p>
             </fieldset>
           </form>
@@ -468,12 +444,7 @@ p q r s t u v w x y z { | } ~
               </p>
               <p>
                 <label for="input-file">Choose a profile picture:</label>
-                <input
-                  type="file"
-                  id="input-file"
-                  name="input-file"
-                  accept="image/png, image/jpeg"
-                />
+                <input type="file" id="input-file" name="input-file" accept="image/png, image/jpeg" />
               </p>
             </fieldset>
           </form>
@@ -485,16 +456,16 @@ p q r s t u v w x y z { | } ~
             <fieldset>
               <legend>Action buttons</legend>
               <p>
-                <input type="submit" value="<input type=submit>" />
-                <input type="button" value="<input type=button>" />
-                <input type="reset" value="<input type=reset>" />
-                <input type="submit" value="<input disabled>" disabled />
+                <input type="button" value="Input button" />
+                <input type="submit" value="Input submit" />
+                <input type="reset" value="Input reset" />
+                <input type="submit" value="Input submit disabled" disabled />
               </p>
               <p>
-                <button type="submit">&lt;button type=submit&gt;</button>
-                <button type="button">&lt;button type=button&gt;</button>
-                <button type="reset">&lt;button type=reset&gt;</button>
-                <button type="button" disabled>&lt;button disabled&gt;</button>
+                <button type="button">Button</button>
+                <button type="submit">Button submit</button>
+                <button type="reset">Button reset</button>
+                <button type="button" disabled>Button disabled</button>
               </p>
             </fieldset>
           </form>
@@ -502,7 +473,7 @@ p q r s t u v w x y z { | } ~
       </section>
     </main>
     <footer>
-      <p>WebFidget 2020</p>
+      <p>Husk - <a href="https://github.com/ocodia/Husk/">Github</a></p>
     </footer>
   </body>
 </html>
