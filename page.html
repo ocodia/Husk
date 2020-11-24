@@ -9,39 +9,143 @@
 </head>
 
 <body>
-    <header>
-        <h1>Paul Livingstone</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            </ul>
-        </nav>
+    <nav id="skipLinks" aria-label="Skip link navigation">
+        <a href="#content">Skip to content</a>
+    </nav>
+    <header id="siteHeader">
+        <div id="siteName">
+            <h1>WebFidget</h1>
+        </div>
+        <div id="siteSearch">
+            <div>
+                <input type="text" id="siteSearchField" autocomplete="off" title="Search" spellcheck="false" placeholder="Search...">
+            </div>
+            <div>
+                <input type="submit" id="siteSearchButton" name="Search" value="Search">
+            </div>
+        </div>
     </header>
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form.html">Topic One</a></li>
+            <li><a href="page.html" aria-current="page">Page One</a></li>
+        </ol>
+    </nav>
     <main>
-        <article>
-            <h1>Building a better calendar system</h1>
+        <section id="content" aria-label="Site content area">
+            <header>
+                <h1>Page One</h1>
+                <small>Last updated: <strong>7 August 2020</strong></small>
+            </header>
+            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
+            <nav aria-label="Table of contents">
+                <ol>
+                    <li>
+                        <a href="#bandcharges">Sub-topic 1</a>
+                    </li>
+                    <li>
+                        <a href="#reductions">Sub-topic 2</a>
+                    </li>
+                </ol>
+            </nav>
             <p>
                 Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Praesent ullamcorper ex orci, a rhoncus arcu bibendum at. Proin <kbd>Ctrl-F4</kbd> euismod <a href="#">ligula eget accumsan</a>. Sed egestas libero leo, non blandit
                 nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo <abbr title="Cascading Style Sheets">CSS</abbr>, porta leo in, dignissim purus. Etiam justo risus, congue vel
                 <mark>mauris id</mark>, accumsan imperdiet quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut ac porta erat, vel <abbr title="HyperText Markup Language">HTML</abbr> sem.
             </p>
-            <p><small>The content is licensed under a Creative Commons Attribution-ShareAlike 2.5 Generic License.</small></p>
 
-            <p>Almost every developer's favorite molecule is C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub>, also known as "caffeine."
+            <hr/>
+            <h2 id="bandcharges">Sub-topic 1</h2>
+            <p>Council tax helps pay for services that we provide such as schools and refuse collection.</p>
+            <table>
+                <caption>Council tax, water and waste charges 2020/21</caption>
+                <tbody>
+                    <tr>
+                        <th scope="col">Band</th>
+                        <th scope="col">Value of the property<br> at 01 April 1991
+                        </th>
+                        <th scope="col">Council tax</th>
+                        <th scope="col">Water &amp; waste</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>Up to £27,000</td>
+                        <td>£817.05</td>
+                        <td>£298.74</td>
+                        <td>£1,115.79</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>£27,001 - £35,000</td>
+                        <td>£953.23</td>
+                        <td>£348.53</td>
+                        <td>£1,301.76</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>£35,001 - £45,000</td>
+                        <td>£1,089.40</td>
+                        <td>£398.32</td>
+                        <td>£1,487.72</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>£45,001 - £58,000</td>
+                        <td>£1,225.58</td>
+                        <td>£448.11</td>
+                        <td>£1,673.69</td>
+                    </tr>
+                    <tr>
+                        <td>E</td>
+                        <td>£58,001 - £80,000</td>
+                        <td>£1,610.28</td>
+                        <td>£547.69</td>
+                        <td>£2,157.97</td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td>£80,001 - £106,000</td>
+                        <td>£1,991.57</td>
+                        <td>£647.27</td>
+                        <td>£2,638.84</td>
+                    </tr>
+                    <tr>
+                        <td>G</td>
+                        <td>£106,001 - £212,000</td>
+                        <td>£2,400.09</td>
+                        <td>£746.85</td>
+                        <td>£3,146.94</td>
+                    </tr>
+                    <tr>
+                        <td>H</td>
+                        <td>Over £212,000</td>
+                        <td>£3,002.67</td>
+                        <td>£896.22</td>
+                        <td>£3,898.89</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr/>
+            <h2 id="reductions">Sub-topic 2</h2>
+            <p>
+                You may pay less council tax if someone living in your property has a permanent and substantial disability. To qualify for disabled band reduction, the property must have at least one of the following:
             </p>
-
-            <p>The <b>Pythagorean theorem</b> is often expressed as the following equation:</p>
-            <p><var>a<sup>2</sup></var> + <var>b<sup>2</sup></var> = <var>c<sup>2</sup></var></p>
-
-            <p>The concert starts at
-                <time datetime="20:00">20:00</time> and you'll be able to enjoy the band for at least
-                <time datetime="PT2H30M">2h 30m</time>.</p>
-        </article>
+            <ul>
+                <li>been adapted to allow wheelchair use indoors</li>
+                <li>a second bathroom, shower room or kitchen used to meet the needs of the person with the disability</li>
+                <li>a room used solely to meet the needs of the person with the disability</li>
+            </ul>
+        </section>
+        <aside>
+            <h2>About</h2>
+            <p>Sed egestas libero leo, non blandit nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo CSS, porta leo in, dignissim purus. </p>
+        </aside>
     </main>
     <footer>
-        <p>This is my footer</p>
+        <p>WebFidget 2020</p>
     </footer>
 </body>
 

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/husk.css" media="screen" />
+    <title>Basic</title>
+</head>
+
+<body>
+    <nav id="skipLinks" aria-label="Skip link navigation">
+        <a href="#content">Skip to content</a>
+    </nav>
+    <header id="siteHeader">
+        <div id="siteName">
+            <h1>WebFidget</h1>
+        </div>
+        <div id="siteSearch">
+            <div>
+                <input type="text" id="siteSearchField" autocomplete="off" title="Search" spellcheck="false" placeholder="Search...">
+            </div>
+            <div>
+                <input type="submit" id="siteSearchButton" name="Search" value="Search">
+            </div>
+        </div>
+    </header>
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form.html">Topic One</a></li>
+            <li><a href="page.html" aria-current="page">Page One</a></li>
+        </ol>
+    </nav>
+    <main>
+        <section id="content" aria-label="Site content area">
+            <header>
+                <h1>Form example</h1>
+            </header>
+            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <form>
+
+                <p>
+                    <label for="name">Name (4 to 8 characters):</label>
+                    <br/>
+                    <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="20" value="Hello!">
+                    <br/>
+                    <small>Help text for this input</small>
+                </p>
+
+                <p>
+                    <label for="address">Address:</label>
+                    <br/>
+                    <textarea id="address" cols="100" rows="10"></textarea>
+                    <br/>
+                    <small>Help text for this input</small>
+                </p>
+
+
+
+
+                <p>
+                    <input type="checkbox" id="happy" name="happy">
+                    <label for="happy">Happy?</label>
+                </p>
+
+                <fieldset>
+                    <legend>Choose your favourite monster</legend>
+
+                    <p>
+                        <input type="radio" id="kraken" name="monster" value="Kraken">
+                        <label for="kraken">Kraken</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="sasquatch" name="monster" value="Sasquatch">
+                        <label for="sasquatch">Sasquatch</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="mothman" name="monster" value="Mothman">
+                        <label for="mothman">Mothman</label>
+                    </p>
+                    <hr/>
+
+                    <input type="radio" id="good" name="gbu" value="Good">
+                    <label for="good">Good</label>
+                    <input type="radio" id="bad" name="gbu" value="Bad">
+                    <label for="bad">Bad</label>
+                    <input type="radio" id="ugly" name="gbu" value="MoUglythman">
+                    <label for="ugly">Ugly</label>
+
+                </fieldset>
+
+                <p>
+                    <input type="radio" id="apple" name="fruit" value="apple">
+                    <label for="apple">Apple</label>
+
+                    <input type="radio" id="banana" name="fruit" value="banana">
+                    <label for="banana">Banana</label>
+
+                    <input type="radio" id="pear" name="fruit" value="pear">
+                    <label for="pear">Pear</label>
+                </p>
+
+                <p>
+                    <label for="customRange">Example range:</label>
+                    <input type="range" class="custom-range" min="0" max="5" id="customRange">
+                </p>
+                <p>
+                    <label for="pet-select">Choose a pet:</label>
+
+                    <select name="pets" id="pet-select">
+                <option value="">Please choose an option</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+            </select>
+                </p>
+
+                <p>
+                    <label for="tentacles">Number of tentacles (10-100):</label>
+                    <input type="number" id="tentacles" name="tentacles" min="10" max="100">
+                </p>
+
+                <p>
+                    <label for="start">Start date:</label>
+                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                </p>
+
+                <p>
+                    <label for="avatar">Choose a profile picture:</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                </p>
+
+                <input type="submit" value="Add to favourites" /> <input type="button" value="Cancel" />
+
+            </form>
+
+        </section>
+        <aside>
+
+        </aside>
+    </main>
+    <footer>
+        <p>WebFidget 2020</p>
+    </footer>
+</body>
+
+</html>
