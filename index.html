@@ -1,329 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/husk.css" media="screen" />
-    <title>Basic</title>
-</head>
+    <title>Husk</title>
+  </head>
 
-<body>
+  <body>
     <nav id="skipLinks" aria-label="Skip link navigation">
-        <a href="#content">Skip to content</a>
+      <a href="#content">Skip to content</a>
     </nav>
-    <header id="siteHeader">
-        <div id="siteName">
-            <h1>WebFidget</h1>
-        </div>
-        <div id="siteSearch">
-            <div>
-                <input type="text" id="siteSearchField" autocomplete="off" title="Search" spellcheck="false" placeholder="Search...">
-            </div>
-            <div>
-                <input type="submit" id="siteSearchButton" name="Search" value="Search">
-            </div>
-        </div>
+    <header>
+      <h1>Husk</h1>
+      <p>Just enough CSS to get by</p>
     </header>
-    <nav id="breadcrumb" aria-label="Breadcrumb">
+    <h2>Elements</h2>
+    <nav role="navigation">
+      <ol>
+        <li><a href="#text">Text</a></li>
         <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="form.html">Topic One</a></li>
-            <li><a href="page.html" aria-current="page">Page One</a></li>
+          <li><a href="#text-headings">Headings</a></li>
+          <li><a href="#text-paragraphs">Paragraphs</a></li>
+          <li><a href="#text-blockquotes">Blockquotes</a></li>
+          <li><a href="#text-lists">Lists</a></li>
+          <li><a href="#text-tables">Tables</a></li>
+          <li><a href="#text-code">Code</a></li>
+          <li><a href="#text-inline">Inline elements</a></li>
         </ol>
+        <li><a href="#embedded">Embedded content</a></li>
+        <ol>
+          <li><a href="#embedded-images">Images</a></li>
+          <li><a href="#embedded-audio">Audio</a></li>
+          <li><a href="#embedded-video">Video</a></li>
+          <li><a href="#embedded-canvas">Canvas</a></li>
+          <li><a href="#embedded-meter">Meter</a></li>
+          <li><a href="#embedded-progress">Progress</a></li>
+          <li><a href="#embedded-svg">Inline SVG</a></li>
+          <li><a href="#embedded-iframes">IFrames</a></li>
+        </ol>
+        <li><a href="#forms">Forms</a></li>
+        <ol>
+          <li><a href="#forms-inputs">Input fields</a></li>
+          <li><a href="#forms-selects">Select menus</a></li>
+          <li><a href="#forms-checkboxes">Checkboxes</a></li>
+          <li><a href="#forms-radio">Radio buttons</a></li>
+          <li><a href="#forms-textareas">Textareas</a></li>
+          <li><a href="#forms-html5">HTML5 inputs</a></li>
+          <li><a href="#forms-buttons">Buttons</a></li>
+        </ol>
+      </ol>
     </nav>
     <main>
-        <section id="content" aria-label="Site content area">
-            <h1>Heading 1</h1>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <h2>Heading 2</h2>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <h3>Heading 3</h3>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <h4>Heading 4</h4>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <h5>Heading 5</h5>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <h6>Heading 6</h6>
-            <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <section id="text">
+        <h1>Text</h1>
 
+        <article id="text-headings">
+          <header><h1>Headings</h1></header>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+        </article>
+        <hr />
+        <article id="text-paragraphs">
+          <header><h1>Paragraphs</h1></header>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ex orci, a
+            rhoncus arcu bibendum at. Proin euismod ligula eget accumsan. Sed egestas libero leo,
+            non blandit nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo CSS, porta
+            leo in, dignissim purus. Etiam justo risus, congue vel mauris id, accumsan imperdiet
+            quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+            Curae; Ut ac porta erat, vel sem.
+          </p>
+        </article>
+        <hr />
+        <article id="text-blockquotes">
+          <header><h1>Blockquotes</h1></header>
+
+          <blockquote>
             <p>
-                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Praesent ullamcorper ex orci, a rhoncus arcu bibendum at. Proin <kbd>Ctrl-F4</kbd> euismod <a href="#">ligula eget accumsan</a>. Sed egestas libero leo, non blandit
-                nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo <abbr title="Cascading Style Sheets">CSS</abbr>, porta leo in, dignissim purus. Etiam justo risus, congue vel
-                <mark>mauris id</mark>, accumsan imperdiet quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut ac porta erat, vel <abbr title="HyperText Markup Language">HTML</abbr> sem.
+              Words can be like X-rays, if you use them properly—they’ll go through anything. You
+              read and you’re pierced.
             </p>
+            <footer>—Aldous Huxley, <cite>Brave New World</cite></footer>
+          </blockquote>
+        </article>
+        <hr />
+        <article id="text-lists">
+          <header><h1>Lists</h1></header>
+          <h2>Ordered list</h2>
+          <ol>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ol>
+          <h2>Unordered list</h2>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+          <h2>Definition list</h2>
+          <dl>
+            <dt>Beast of Bodmin</dt>
+            <dd>A large feline inhabiting Bodmin Moor.</dd>
+            <dt>Morgawr</dt>
+            <dd>A sea serpent.</dd>
 
-            <p><samp>Keyboard not found Press F1 to continue</samp></p>
+            <dt>Owlman</dt>
+            <dd>A giant owl-like creature.</dd>
+          </dl>
+        </article>
+        <hr />
+        <article id="text-tables">
+          <header><h1>Tables</h1></header>
 
-            <p><small>The content is licensed under a Creative Commons Attribution-ShareAlike 2.5 Generic License.</small></p>
+          <table>
+            <caption>
+              Table Caption
+            </caption>
+            <thead>
+              <tr>
+                <th>Heading 1</th>
+                <th>Heading 2</th>
+                <th>Heading 3</th>
+                <th>Heading 4</th>
+                <th>Heading 5</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Footer 1</th>
+                <th>Footer 2</th>
+                <th>Footer 3</th>
+                <th>Footer 4</th>
+                <th>Footer 5</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+                <td>Cell 5</td>
+              </tr>
+              <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+                <td>Cell 5</td>
+              </tr>
+              <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+                <td>Cell 5</td>
+              </tr>
+              <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+                <td>Cell 4</td>
+                <td>Cell 5</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <hr />
+        <article id="text-code">
+          <header><h1>Code</h1></header>
+          <p>Keyboard input: <kbd>Ctrl-F4</kbd></p>
+          <p>
+            Sample output:
+            <samp>This is sample output from a computer program</samp>
+          </p>
+          <p>Inline code: <code>&lt;div&gt;code&lt;/div&gt;</code></p>
 
-            <p>Almost every developer's favorite molecule is C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub>, also known as "caffeine."
-            </p>
+          <pre>
+P R E F O R M A T T E D T E X T
+! " # $ % &amp; ' ( ) * + , - . /
+0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
+@ A B C D E F G H I J K L M N O
+P Q R S T U V W X Y Z [ \ ] ^ _
+` a b c d e f g h i j k l m n o
+p q r s t u v w x y z { | } ~ 
+</pre
+          >
+        </article>
+        <hr />
+        <article id="text-inline">
+          <header><h1>Inline elements</h1></header>
+          <p><a href="#!">This is a text link</a></p>
+          <p><strong>Strong is used to indicate strong importance</strong></p>
+          <p><em>This text has added emphasis</em></p>
+          <p>
+            The <b>b element</b> is stylistically different text from normal text, without any
+            special importance
+          </p>
+          <p>The <i>i element</i> is text that is offset from the normal text</p>
+          <p>
+            The <u>u element</u> is text with an unarticulated, though explicitly rendered,
+            non-textual annotation
+          </p>
+          <p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
+          <p><s>This text has a strikethrough</s></p>
+          <p>Superscript <sup>®</sup></p>
+          <p>Subscript C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub></p>
+          <p><small>This small text is small for for fine print, etc</small></p>
+          <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+          <p>
+            <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q"
+              >This text is a short inline quotation</q
+            >
+          </p>
+          <p><cite>This is a citation</cite></p>
+          <p>The <dfn>dfn element</dfn> indicates a definition</p>
+          <p>The <mark>mark element</mark> indicates a highlight</p>
+          <p>The <var>variable element</var>, such as <var>x</var> = <var>y</var></p>
+          <p>
+            The time element:
+            <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time>
+          </p>
+        </article>
+        <hr />
+        <article id="text-address">
+          <header><h1>Address</h1></header>
+          <address>
+            <a href="mailto:jim@rock.com">jim@rock.com</a><br />
+            <a href="tel:+13115552368">(311) 555-2368</a>
+          </address>
+        </article>
+        <hr />
+        <article id="text-details">
+          <header><h1>Details</h1></header>
+          <details>
+            <summary>Some details</summary>
+            <p>More info about the details.</p>
+          </details>
+          <details open>
+            <summary>Even more details</summary>
+            <p>Here are even more details about the details.</p>
+          </details>
+        </article>
+      </section>
+      <hr />
+      <section id="embedded">
+        <h1>Embedded content</h1>
+        <article id="embedded-images">
+          <header><h1>Images</h1></header>
+          <h2><code>&lt;img&gt;</code> element</h2>
 
-            <p>The <b>Pythagorean theorem</b> is often expressed as the following equation:</p>
-            <p><var>a<sup>2</sup></var> + <var>b<sup>2</sup></var> = <var>c<sup>2</sup></var></p>
-
-            <p>The concert starts at
-                <time datetime="20:00">20:00</time> and you'll be able to enjoy the band for at least
-                <time datetime="PT2H30M">2h 30m</time>.</p>
-
-
-            <hr/>
-
-            <table>
-                <caption>Table caption</caption>
-                <thead>
-                    <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                    </tr>
-                    <tr>
-                        <td>Jane</td>
-                        <td>Doe</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>Table with thead, tfoot, and tbody</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Header content 1</th>
-                        <th>Header content 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Body content 1</td>
-                        <td>Body content 2</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Footer content 1</td>
-                        <td>Footer content 2</td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <p>Table with colgroup</p>
-            <table>
-                <colgroup span="4"></colgroup>
-                <tr>
-                    <th>Countries</th>
-                    <th>Capitals</th>
-                    <th>Population</th>
-                    <th>Language</th>
-                </tr>
-                <tr>
-                    <td>USA</td>
-                    <td>Washington, D.C.</td>
-                    <td>309 million</td>
-                    <td>English</td>
-                </tr>
-                <tr>
-                    <td>Sweden</td>
-                    <td>Stockholm</td>
-                    <td>9 million</td>
-                    <td>Swedish</td>
-                </tr>
-            </table>
-
-            <hr/>
-
-            <video controls>
-            <source src="video/bunny.mp4" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
-            </video>
-
-            <audio controls src="audio/t-rex-roar.mp3">
+          <img src="img/elephant-660-480.jpg" alt="Elephant at sunset" />
+          <h2>
+            <code>&lt;img&gt;</code> inside <code>&lt;figure&gt;</code> element with
+            <code>&lt;figcaption&gt;</code>
+          </h2>
+          <figure>
+            <img src="img/elephant-660-480.jpg" alt="Elephant at sunset" />
+            <figcaption>An elephant at sunset</figcaption>
+          </figure>
+        </article>
+        <hr />
+        <article id="embedded-audio">
+          <h2>Audio</h2>
+          <audio controls src="audio/t-rex-roar.mp3">
             Your browser does not support the
             <code>audio</code> element.
-            </audio>
+          </audio>
+        </article>
+        <hr />
+        <article id="embedded-video">
+          <h2>Video</h2>
+          <video controls>
+            <source src="video/bunny.mp4" type="video/mp4" />
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        </article>
+        <hr />
+        <article id="embedded-canvas">
+          <h2>Canvas</h2>
+          <canvas height="50px">canvas</canvas>
+        </article>
+        <hr />
+        <article id="embedded-meter">
+          <h2>Meter</h2>
+          <meter value="2" min="0" max="10">2 out of 10</meter>
+        </article>
+        <hr />
+        <article id="embedded-progress">
+          <h2>Progress</h2>
+          <progress id="file" max="100" value="70">70%</progress>
+        </article>
+        <hr />
+        <article id="embedded-svg">
+          <h2>Inline SVG</h2>
+          <svg width="100px" height="100px">
+            <circle cx="100" cy="100" r="100" fill="#1fa3ec"></circle>
+          </svg>
+        </article>
+        <hr />
+        <article id="embedded-iframes">
+          <h2>IFrame</h2>
+          <iframe src="index.html" height="300px"></iframe>
+        </article>
+        <hr />
+      </section>
 
-            <h2>Test</h2>
-            <ol>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ol>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
-            <dl>
-                <dt>Beast of Bodmin</dt>
-                <dd>A large feline inhabiting Bodmin Moor.</dd>
-                <dt>Morgawr</dt>
-                <dd>A sea serpent.</dd>
-
-                <dt>Owlman</dt>
-                <dd>A giant owl-like creature.</dd>
-            </dl>
-            <hr/>
-            <address>
-            <a href="mailto:jim@rock.com">jim@rock.com</a><br>
-            <a href="tel:+13115552368">(311) 555-2368</a>
-            </address>
-            <hr/>
-            <blockquote cite="https://www.huxley.net/bnw/four.html">
-                <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
-                <footer>—Aldous Huxley, <cite>Brave New World</cite></footer>
-            </blockquote>
-            <hr/>
-
-            <figure>
-                <img src="img/elephant-660-480.jpg" alt="Elephant at sunset">
-                <figcaption>An elephant at sunset</figcaption>
-            </figure>
-
-            <h2>Detail</h2>
-            <p>
-                <label for="file">File progress:</label>
-                <br/>
-                <progress id="file" max="100" value="70"> 70% </progress>
-            </p>
-            <form>
-
-                <p>
-                    <label for="name">Name (4 to 8 characters):</label>
-
-                    <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" value="Hello!" readonly>
-                    <br/>
-                    <small>Help text for this input</small>
-                </p>
-
-                <p>
-                    <label for="address">Address:</label>
-                    <br/>
-                    <textarea id="address" cols="100" rows="10"></textarea>
-                    <br/>
-                    <small>Help text for this input</small>
-                </p>
-
-
-
-
-                <p>
-                    <input type="checkbox" id="happy" name="happy">
-                    <label for="happy">Happy?</label>
-                </p>
-
-                <fieldset>
-                    <legend>Choose your favourite monster</legend>
-
-                    <p>
-                        <input type="radio" id="kraken" name="monster" value="Kraken">
-                        <label for="kraken">Kraken</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="sasquatch" name="monster" value="Sasquatch">
-                        <label for="sasquatch">Sasquatch</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="mothman" name="monster" value="Mothman">
-                        <label for="mothman">Mothman</label>
-                    </p>
-                    <hr/>
-
-                    <input type="radio" id="good" name="gbu" value="Good">
-                    <label for="good">Good</label>
-                    <input type="radio" id="bad" name="gbu" value="Bad">
-                    <label for="bad">Bad</label>
-                    <input type="radio" id="ugly" name="gbu" value="MoUglythman">
-                    <label for="ugly">Ugly</label>
-
-                </fieldset>
-
-                <p>
-                    <input type="radio" id="apple" name="fruit" value="apple">
-                    <label for="apple">Apple</label>
-
-                    <input type="radio" id="banana" name="fruit" value="banana">
-                    <label for="banana">Banana</label>
-
-                    <input type="radio" id="pear" name="fruit" value="pear">
-                    <label for="pear">Pear</label>
-                </p>
-
-                <p>
-                    <label for="customRange">Example range:</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="customRange">
-                </p>
-                <p>
-                    <label for="pet-select">Choose a pet:</label>
-
-                    <select name="pets" id="pet-select">
-                <option value="">Please choose an option</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="hamster">Hamster</option>
-                <option value="parrot">Parrot</option>
-                <option value="spider">Spider</option>
-                <option value="goldfish">Goldfish</option>
-            </select>
-                </p>
-
-                <p>
-                    <label for="tentacles">Number of tentacles (10-100):</label>
-                    <input type="number" id="tentacles" name="tentacles" min="10" max="100">
-                </p>
-
-                <p>
-                    <label for="start">Start date:</label>
-                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-                </p>
-
-                <p>
-                    <label for="avatar">Choose a profile picture:</label>
-                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-                </p>
-
-                <input type="submit" value="Add to favourites" /> <input type="button" value="Cancel" />
-
-            </form>
-            <details>
-                <summary>Some details</summary>
-                <p>More info about the details.</p>
-            </details>
-            <details open>
-                <summary>Even more details</summary>
-                <p>Here are even more details about the details.</p>
-            </details>
-            <h2>Blah</h2>
-            <p>
-                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Praesent ullamcorper ex orci, a rhoncus arcu bibendum at. Proin <kbd>Ctrl-F4</kbd> euismod <a href="#">ligula eget accumsan</a>. Sed egestas libero leo, non blandit
-                nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo <abbr title="Cascading Style Sheets">CSS</abbr>, porta leo in, dignissim purus. Etiam justo risus, congue vel
-                <mark>mauris id</mark>, accumsan imperdiet quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut ac porta erat, vel <abbr title="HyperText Markup Language">HTML</abbr> sem.
-            </p>
-
-            <hr/>
-
-            <article>
-                <header>
-                    <h1>Salamanders</h1>
-                </header>
-                <p>Salamanders are a group of amphibians with a lizard-like appearance, including short legs and a tail in both larval and adult forms.</p>
-
-                <p>The Rough-skinned Newt defends itself with a deadly neurotoxin.</p>
-
-                <p>Several species of salamander inhabit the temperate rainforest of the Pacific Northwest, including the Ensatina, the Northwestern Salamander and the Rough-skinned Newt. Most salamanders are nocturnal, and hunt for insects, worms and other
-                    small creatures.</p>
-                <p><small>The content is licensed under a Creative Commons Attribution-ShareAlike 2.5 Generic License.</small></p>
-
-            </article>
-
+      <section id="forms">
+        <h1>Form elements</h1>
+        <article id="forms-inputs">
+          <header><h1>Input fields</h1></header>
+          <form>
+            <fieldset>
+              <legend>Input fields</legend>
+              <p>
+                <label for="input-text">Text Input</label>
+                <input id="input-text" type="text" placeholder="Text Input" />
+              </p>
+              <p>
+                <label for="input-password">Password</label>
+                <input id="input-password" type="password" placeholder="Type your Password" />
+              </p>
+              <p>
+                <label for="input-url">Web Address</label>
+                <input id="input-url" type="url" placeholder="http://yoursite.com" />
+              </p>
+              <p>
+                <label for="input-email">Email Address</label>
+                <input id="input-email" type="email" placeholder="name@email.com" />
+              </p>
+              <p>
+                <label for="input-phone">Phone Number</label>
+                <input id="input-phone" type="tel" placeholder="(999) 999-9999" />
+              </p>
+              <p>
+                <label for="input-search">Search</label>
+                <input id="input-search" type="search" placeholder="Enter Search Term" />
+              </p>
+              <p>
+                <label for="input-number">Number Input</label>
+                <input id="input-number" type="number" placeholder="Enter a Number" />
+              </p>
+            </fieldset>
+          </form>
+        </article>
+        <article id="forms-selects">
+          <header><h1>Select menus</h1></header>
+          <form>
+            <fieldset>
+              <legend>Select menus</legend>
+              <p>
+                <label for="select">Select</label>
+                <select name="pets" id="pet-select">
+                  <option value="">Please choose an option</option>
+                  <option value="dog">Dog</option>
+                  <option value="cat">Cat</option>
+                  <option value="hamster">Hamster</option>
+                  <option value="parrot">Parrot</option>
+                  <option value="spider">Spider</option>
+                  <option value="goldfish">Goldfish</option>
+                </select>
+              </p>
+            </fieldset>
+          </form>
+        </article>
+        <hr />
+        <article id="forms-checkboxes">
+          <header><h1>Checkboxes</h1></header>
+          <form>
+            <fieldset>
+              <legend>Checkboxes</legend>
+              <label for="checkbox1">
+                <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" />
+                Choice A
+              </label>
+              <label for="checkbox2"
+                ><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label
+              >
+              <label for="checkbox3"
+                ><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label
+              >
+            </fieldset>
+          </form>
+        </article>
+        <hr />
+        <article id="forms-radio">
+          <header><h1>Radio buttons</h1></header>
+          <form>
+            <fieldset>
+              <legend>Radio buttons</legend>
+              <label for="radio1">
+                <input id="radio1" name="radio" type="radio" class="radio" checked="checked" />
+                Option 1
+              </label>
+              <label for="radio2">
+                <input id="radio2" name="radio" type="radio" class="radio" />
+                Option 2
+              </label>
+              <label for="radio3">
+                <input id="radio3" name="radio" type="radio" class="radio" />
+                Option 3
+              </label>
+            </fieldset>
+          </form>
+        </article>
+        <hr />
+        <article id="forms-textareas">
+          <header><h1>Textareas</h1></header>
+          <form>
+            <fieldset>
+              <legend>Textareas</legend>
+              <p>
+                <label for="textarea">Textarea</label>
+                <textarea
+                  id="textarea"
+                  rows="8"
+                  cols="48"
+                  placeholder="Enter your message here"
+                ></textarea>
+              </p>
+            </fieldset>
+          </form>
+        </article>
+        <hr />
+        <article id="forms-html5">
+          <header><h1>HTML5 inputs</h1></header>
+          <form>
+            <fieldset>
+              <legend>HTML5 inputs</legend>
+              <p>
+                <label for="input-colour">Color input</label>
+                <input type="color" id="input-colour" value="#000000" />
+              </p>
+              <p>
+                <label for="input-number">Number input</label>
+                <input type="number" id="input-number" min="0" max="10" value="5" />
+              </p>
+              <p>
+                <label for="input-range">Range input</label>
+                <input type="range" id="input-range" value="10" />
+              </p>
+              <p>
+                <label for="input-date">Date input</label>
+                <input type="date" id="input-date" value="1970-01-01" />
+              </p>
+              <p>
+                <label for="input-datetime-month">Month input</label>
+                <input type="month" id="input-datetime-month" value="1970-01" />
+              </p>
+              <p>
+                <label for="input-datetime-week">Week input</label>
+                <input type="week" id="input-datetime-week" value="1970-W01" />
+              </p>
+              <p>
+                <label for="input-datetime">Datetime input</label>
+                <input type="datetime" id="input-datetime" value="1970-01-01T00:00:00Z" />
+              </p>
+              <p>
+                <label for="input-datetime-local">Datetime-local input</label>
+                <input type="datetime-local" id="input-datetime-local" value="1970-01-01T00:00" />
+              </p>
+              <p>
+                <label for="input-file">Choose a profile picture:</label>
+                <input
+                  type="file"
+                  id="input-file"
+                  name="input-file"
+                  accept="image/png, image/jpeg"
+                />
+              </p>
+            </fieldset>
+          </form>
+        </article>
+        <hr />
+        <article id="forms-buttons">
+          <header><h1>Buttons</h1></header>
+          <form>
+            <fieldset>
+              <legend>Action buttons</legend>
+              <p>
+                <input type="submit" value="<input type=submit>" />
+                <input type="button" value="<input type=button>" />
+                <input type="reset" value="<input type=reset>" />
+                <input type="submit" value="<input disabled>" disabled />
+              </p>
+              <p>
+                <button type="submit">&lt;button type=submit&gt;</button>
+                <button type="button">&lt;button type=button&gt;</button>
+                <button type="reset">&lt;button type=reset&gt;</button>
+                <button type="button" disabled>&lt;button disabled&gt;</button>
+              </p>
+            </fieldset>
+          </form>
+        </article>
+      </section>
     </main>
     <footer>
-        <p>WebFidget 2020</p>
+      <p>WebFidget 2020</p>
     </footer>
-</body>
-
+  </body>
 </html>

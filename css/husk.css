@@ -29,7 +29,7 @@
     --dark-highlight-text: #FFFFFF;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
      :root {
         --headings: var(--dark-headings);
         --text: var(--dark-text);
@@ -44,7 +44,7 @@
         --highlight-bg: var(--dark-highlight-bg);
         --highlight-text: var(--dark-highlight-text);
     }
-}
+} */
 
 * {
     margin: 0;
@@ -125,7 +125,7 @@ h6 {
     line-height: 1;
     color: var(--headings);
     padding-top: .875rem;
-    margin-bottom: .3rem;
+    margin-bottom: 1rem;
 }
 
 h1 {
@@ -240,7 +240,6 @@ pre {
     border: 1px solid var(--borders);
     border-radius: 4px;
     padding: 3px 6px;
-    font-size: 0.9rem;
 }
 
 kbd {
@@ -442,64 +441,27 @@ audio {
 
 /* Header */
 
-#siteHeader {
+body > header {
     background: var(--header-bg);
     border-bottom: 4px solid var(--header-border);
     padding: 1rem 1.5rem;
     margin-top: -2rem;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     margin-left: calc(0px - (50vw - 50%));
     margin-right: calc(0px - (50vw - 50%));
     padding-left: calc(50vw - 50%);
     padding-right: calc(50vw - 50%);
-}
+    color: #FFFFFF;
+} 
 
-#siteHeader h1 {
+body > header h1 {
     padding-bottom: 0;
     border-bottom: 0;
-    max-width: 20rem;
     color: #FFFFFF;
-}
-
-
-/* Breadcrumb */
-
-#breadcrumb {
-    background: var(--details);
-}
-
-#breadcrumb ol {
-    padding: 0.5rem;
-}
-
-#breadcrumb li {
-    display: inline-block;
-}
-
-#breadcrumb li::after {
-    content: ' / ';
-    color: var(--borders);
 }
 
 section header {
     margin-bottom: 1rem;
-}
-
-#skipLinks {
-    position: absolute;
-    z-index: -1;
-}
-
-#siteSearch {
-    margin: 1rem 0 0 0;
-    display: grid;
-    grid-auto-columns: minmax(15rem, auto);
-    grid-template-columns: 3fr 0.5fr;
-    grid-gap: 1rem;
-}
-
-#siteSearchField {
-    width: 100%;
 }
 
 aside li {
@@ -518,40 +480,20 @@ li small {
     body {
         font-size: 1.19rem;
         line-height: 1.5;
-    }
-    main {
-        display: grid;
-        grid-auto-columns: minmax(15rem, auto);
-        grid-template-columns: 2.5fr 1fr;
-        grid-gap: 2rem;
-    }
-    main aside {
-        margin-top: 5rem;
-    }
-    #siteName {
-        margin: 1rem 0;
-    }
-    #siteSearch {
-        margin: 1.5rem 0 0 0;
-    }
-    #siteHeader {
-        display: grid;
-        grid-auto-columns: minmax(15rem, auto);
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2rem;
-    }
+    }   
 }
 
 @media (max-width: 991px) {
-    #breadcrumb {
-        margin: 0 -2rem;
-        padding: 0 1.5rem;
-    }
-    #siteHeader h1 {
+    body > header h1 {
         max-width: 15rem;
     }
 }
 
-input[type="radio"]>label {
-    background: pink;
+label{
+    display: block;
+}
+
+#skipLinks {
+    position: absolute;
+    z-index: -1;
 }
