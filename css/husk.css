@@ -29,7 +29,7 @@
     --dark-highlight-text: #FFFFFF;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
      :root {
         --headings: var(--dark-headings);
         --text: var(--dark-text);
@@ -44,7 +44,7 @@
         --highlight-bg: var(--dark-highlight-bg);
         --highlight-text: var(--dark-highlight-text);
     }
-} */
+}
 
 * {
     margin: 0;
@@ -206,7 +206,6 @@ input[type="reset"][disabled],
 input[type="button"][disabled] {
     cursor: default;
     opacity: .5;
-    /* Set the [X] cursor while hovering a disabled link */
     cursor: not-allowed;
 }
 
@@ -227,7 +226,6 @@ code,
 pre,
 kbd,
 samp {
-    /* Set the font family for monospaced elements */
     font-family: var(--font-mono);
 }
 
@@ -235,7 +233,6 @@ code,
 samp,
 kbd,
 pre {
-    /* The main preformatted style. This is changed slightly across different cases. */
     background: var(--details);
     border: 1px solid var(--borders);
     border-radius: 4px;
@@ -243,7 +240,6 @@ pre {
 }
 
 kbd {
-    /* Makes the kbd element look like a keyboard key */
     border-bottom: 3px solid var(--borders);
 }
 
@@ -254,7 +250,6 @@ pre {
 }
 
 pre code {
-    /* When <code> is in a <pre>, reset it's formatting to blend in */
     background: inherit;
     font-size: inherit;
     color: inherit;
@@ -264,7 +259,6 @@ pre code {
 }
 
 code pre {
-    /* When <pre> is in a <code>, reset it's formatting to blend in */
     display: inline;
     background: inherit;
     font-size: inherit;
@@ -275,7 +269,6 @@ code pre {
 }
 
 details {
-    /* Make the <details> look more "clickable" */
     padding: .6rem 1rem;
     background: var(--details);
     border: 1px solid var(--borders);
@@ -283,33 +276,27 @@ details {
 }
 
 summary {
-    /* Makes the <summary> look more like a "clickable" link with the pointer cursor */
     cursor: pointer;
     font-weight: bold;
 }
 
 details[open] {
-    /* Adjust the <details> padding while open */
     padding-bottom: .75rem;
 }
 
 details[open] summary {
-    /* Adjust the <details> padding while open */
     margin-bottom: 6px;
 }
 
 details[open]>*:last-child {
-    /* Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings. */
     margin-bottom: 0;
 }
 
 dd::before {
-    /* Add an arrow to data table definitions */
     content: '↳ ';
 }
 
 hr {
-    /* Reset the border of the <hr> separator, then set a better line */
     border: 0;
     border-bottom: 1px solid var(--borders);
     margin: 1rem auto;
@@ -327,7 +314,6 @@ legend {
 }
 
 table {
-    /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes". */
     border-collapse: collapse;
     width: 100%
 }
@@ -344,7 +330,7 @@ th {
 }
 
 tr:nth-child(even) {
-    /* Set every other cell slightly darker. Improves readability. */
+    /* Alternate row colour */
     background: var(--details);
 }
 
@@ -354,13 +340,11 @@ table caption {
 }
 
 textarea {
-    /* Don't let the <textarea> extend off the screen naturally or when dragged by the user */
     max-width: 100%;
 }
 
 ol,
 ul {
-    /* Replace the browser default padding */
     padding-left: 2rem;
 }
 
@@ -407,6 +391,11 @@ input {
     box-sizing: border-box;
     max-width: 100%;
 }
+
+label{
+    display: block;
+}
+
 
 img {
     max-width: 100%;
@@ -464,14 +453,6 @@ section header {
     margin-bottom: 1rem;
 }
 
-aside li {
-    list-style-type: none;
-}
-
-aside ul {
-    padding: 0;
-}
-
 li small {
     font-size: 80%;
 }
@@ -489,11 +470,3 @@ li small {
     }
 }
 
-label{
-    display: block;
-}
-
-#skipLinks {
-    position: absolute;
-    z-index: -1;
-}

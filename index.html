@@ -10,7 +10,7 @@
   <body>
     <header>
       <h1>Husk</h1>
-      <p>Just enough CSS to get by</p>
+      <p>Just enough CSS</p>
     </header>
     <h2>Elements</h2>
     <nav role="navigation">
@@ -190,11 +190,11 @@ p q r s t u v w x y z { | } ~
         <article id="text-inline">
           <header><h1>Inline elements</h1></header>
           <p><a href="#!">This is a text link</a></p>
-          <p><strong>Strong is used to indicate strong importance</strong></p>
-          <p><em>This text has added emphasis</em></p>
-          <p>The <b>b element</b> is stylistically different text from normal text, without any special importance</p>
-          <p>The <i>i element</i> is text that is offset from the normal text</p>
-          <p>The <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation</p>
+          <p><strong>Strong is used to indicate strong importance!</strong></p>
+          <p><em>This text has added emphasis.</em></p>
+          <p>The <b>Bring Attention To element (b)</b> is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance.</p>
+          <p>The <i>Idiomatic Text element (i) </i> represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others.</p>
+          <p>The <u>Unarticulated Annotation element (u)</u> represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation.</p>
           <p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
           <p><s>This text has a strikethrough</s></p>
           <p>Superscript <sup>®</sup></p>
@@ -217,6 +217,11 @@ p q r s t u v w x y z { | } ~
         <article id="text-address">
           <header><h1>Address</h1></header>
           <address>
+            <strong>Business Name</strong><br />
+            Street Address<br />
+            Town Name, <br />
+            CODE<br />
+            Country<br />
             <a href="mailto:name@domain.com">name@domain.com</a><br />
             <a href="tel:+441324502030">(+44) 1324 502030</a>
           </address>
@@ -239,12 +244,12 @@ p q r s t u v w x y z { | } ~
         <h1>Embedded content</h1>
         <article id="embedded-images">
           <header><h1>Images</h1></header>
-          <h2><code>&lt;img&gt;</code> element</h2>
-
+          <h2>
+            img
+          </h2>
           <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
           <h2>
-            <code>&lt;img&gt;</code> inside <code>&lt;figure&gt;</code> element with
-            <code>&lt;figcaption&gt;</code>
+            Figure
           </h2>
           <figure>
             <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
@@ -299,175 +304,152 @@ p q r s t u v w x y z { | } ~
 
       <section id="forms">
         <h1>Form elements</h1>
+        <p><a href="form.html">Form example</a></p>
         <article id="forms-inputs">
           <header><h1>Input fields</h1></header>
           <form>
-            <fieldset>
-              <legend>Input fields</legend>
-              <p>
-                <label for="input-text">Text input</label>
-                <input id="input-text" type="text" placeholder="Text Input" />
-              </p>
-              <p>
-                <label for="input-password">Password input</label>
-                <input id="input-password" type="password" placeholder="Type your Password" />
-              </p>
-              <p>
-                <label for="input-url">URL input</label>
-                <input id="input-url" type="url" placeholder="http://yoursite.com" />
-              </p>
-              <p>
-                <label for="input-email">Email input</label>
-                <input id="input-email" type="email" placeholder="name@email.com" />
-              </p>
-              <p>
-                <label for="input-tel">Telephone input</label>
-                <input id="input-tel" type="tel" placeholder="(999) 999-9999" />
-              </p>
-              <p>
-                <label for="input-search">Search input</label>
-                <input id="input-search" type="search" placeholder="Enter Search Term" />
-              </p>
-              <p>
-                <label for="input-number">Number Input</label>
-                <input id="input-number" type="number" placeholder="Enter a Number" />
-              </p>
-            </fieldset>
+            <p>
+              <label for="input-text">Text input</label>
+              <input id="input-text" type="text" placeholder="Text Input" />
+            </p>
+            <p>
+              <label for="input-password">Password input</label>
+              <input id="input-password" type="password" placeholder="Type your Password" />
+            </p>
+            <p>
+              <label for="input-url">URL input</label>
+              <input id="input-url" type="url" placeholder="http://yoursite.com" />
+            </p>
+            <p>
+              <label for="input-email">Email input</label>
+              <input id="input-email" type="email" placeholder="name@email.com" />
+            </p>
+            <p>
+              <label for="input-tel">Telephone input</label>
+              <input id="input-tel" type="tel" placeholder="(999) 999-9999" />
+            </p>
+            <p>
+              <label for="input-search">Search input</label>
+              <input id="input-search" type="search" placeholder="Enter Search Term" />
+            </p>
+            <p>
+              <label for="input-number">Number Input</label>
+              <input id="input-number" type="number" placeholder="Enter a Number" />
+            </p>
           </form>
         </article>
+        <hr />
         <article id="forms-selects">
           <header><h1>Select menus</h1></header>
           <form>
-            <fieldset>
-              <legend>Select menus</legend>
-              <p>
-                <label for="pet-select">Select</label>
-                <select name="pets" id="pet-select">
-                  <option value="">Please choose an option</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="hamster">Hamster</option>
-                  <option value="parrot">Parrot</option>
-                  <option value="spider">Spider</option>
-                  <option value="goldfish">Goldfish</option>
-                </select>
-              </p>
-            </fieldset>
+            <label for="pet-select">Select</label>
+            <select name="pets" id="pet-select">
+              <option value="">Please choose an option</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="hamster">Hamster</option>
+              <option value="parrot">Parrot</option>
+              <option value="spider">Spider</option>
+              <option value="goldfish">Goldfish</option>
+            </select>
           </form>
         </article>
         <hr />
         <article id="forms-checkboxes">
           <header><h1>Checkboxes</h1></header>
           <form>
-            <fieldset>
-              <legend>Checkboxes</legend>
-              <label for="checkbox1">
-                <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" />
-                Choice A
-              </label>
-              <label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label>
-              <label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label>
-            </fieldset>
+            <label for="checkbox1">
+              <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" />
+              Choice A
+            </label>
+            <label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label>
+            <label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label>
           </form>
         </article>
         <hr />
         <article id="forms-radio">
           <header><h1>Radio buttons</h1></header>
           <form>
-            <fieldset>
-              <legend>Radio buttons</legend>
-              <label for="radio1">
-                <input id="radio1" name="radio" type="radio" class="radio" checked="checked" />
-                Option 1
-              </label>
-              <label for="radio2">
-                <input id="radio2" name="radio" type="radio" class="radio" />
-                Option 2
-              </label>
-              <label for="radio3">
-                <input id="radio3" name="radio" type="radio" class="radio" />
-                Option 3
-              </label>
-            </fieldset>
+            <label for="radio1">
+              <input id="radio1" name="radio" type="radio" checked="checked" />
+              Option 1
+            </label>
+            <label for="radio2">
+              <input id="radio2" name="radio" type="radio" />
+              Option 2
+            </label>
+            <label for="radio3">
+              <input id="radio3" name="radio" type="radio" />
+              Option 3
+            </label>
           </form>
         </article>
         <hr />
         <article id="forms-textareas">
           <header><h1>Textareas</h1></header>
           <form>
-            <fieldset>
-              <legend>Textareas</legend>
-              <p>
-                <label for="textarea">Textarea</label>
-                <textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
-              </p>
-            </fieldset>
+            <label for="textarea">Textarea</label>
+            <textarea id="textarea" rows="8" cols="100" placeholder="Enter your message here"></textarea>
           </form>
         </article>
         <hr />
         <article id="forms-html5">
           <header><h1>HTML5 inputs</h1></header>
           <form>
-            <fieldset>
-              <legend>HTML5 inputs</legend>
-              <p>
-                <label for="input-colour">Color input</label>
-                <input type="color" id="input-colour" value="#000000" />
-              </p>
-              <p>
-                <label for="input-number">Number input</label>
-                <input type="number" id="input-number" min="0" max="10" value="5" />
-              </p>
-              <p>
-                <label for="input-range">Range input</label>
-                <input type="range" id="input-range" value="10" />
-              </p>
-              <p>
-                <label for="input-date">Date input</label>
-                <input type="date" id="input-date" value="1970-01-01" />
-              </p>
-              <p>
-                <label for="input-datetime-month">Month input</label>
-                <input type="month" id="input-datetime-month" value="1970-01" />
-              </p>
-              <p>
-                <label for="input-datetime-week">Week input</label>
-                <input type="week" id="input-datetime-week" value="1970-W01" />
-              </p>
-              <p>
-                <label for="input-datetime">Datetime input</label>
-                <input type="datetime" id="input-datetime" value="1970-01-01T00:00:00Z" />
-              </p>
-              <p>
-                <label for="input-datetime-local">Datetime-local input</label>
-                <input type="datetime-local" id="input-datetime-local" value="1970-01-01T00:00" />
-              </p>
-              <p>
-                <label for="input-file">Choose a profile picture:</label>
-                <input type="file" id="input-file" name="input-file" accept="image/png, image/jpeg" />
-              </p>
-            </fieldset>
+            <p>
+              <label for="input-colour">Color input</label>
+              <input type="color" id="input-colour" value="#000000" />
+            </p>
+            <p>
+              <label for="input-number">Number input</label>
+              <input type="number" id="input-number" min="0" max="10" value="5" />
+            </p>
+            <p>
+              <label for="input-range">Range input</label>
+              <input type="range" id="input-range" value="10" />
+            </p>
+            <p>
+              <label for="input-date">Date input</label>
+              <input type="date" id="input-date" value="1970-01-01" />
+            </p>
+            <p>
+              <label for="input-datetime-month">Month input</label>
+              <input type="month" id="input-datetime-month" value="1970-01" />
+            </p>
+            <p>
+              <label for="input-datetime-week">Week input</label>
+              <input type="week" id="input-datetime-week" value="1970-W01" />
+            </p>
+            <p>
+              <label for="input-datetime">Datetime input</label>
+              <input type="datetime" id="input-datetime" value="1970-01-01T00:00:00Z" />
+            </p>
+            <p>
+              <label for="input-datetime-local">Datetime-local input</label>
+              <input type="datetime-local" id="input-datetime-local" value="1970-01-01T00:00" />
+            </p>
+            <p>
+              <label for="input-file">Choose a profile picture:</label>
+              <input type="file" id="input-file" name="input-file" accept="image/png, image/jpeg" />
+            </p>
           </form>
         </article>
         <hr />
         <article id="forms-buttons">
           <header><h1>Buttons</h1></header>
           <form>
-            <fieldset>
-              <legend>Action buttons</legend>
-              <p>
-                <input type="button" value="Input button" />
-                <input type="submit" value="Input submit" />
-                <input type="reset" value="Input reset" />
-                <input type="submit" value="Input submit disabled" disabled />
-              </p>
-              <p>
-                <button type="button">Button</button>
-                <button type="submit">Button submit</button>
-                <button type="reset">Button reset</button>
-                <button type="button" disabled>Button disabled</button>
-              </p>
-            </fieldset>
+            <p>
+              <input type="button" value="Input button" />
+              <input type="submit" value="Input submit" />
+              <input type="reset" value="Input reset" />
+              <input type="submit" value="Input submit disabled" disabled />
+            </p>
+            <p>
+              <button type="button">Button</button>
+              <button type="submit">Button submit</button>
+              <button type="reset">Button reset</button>
+              <button type="button" disabled>Button disabled</button>
+            </p>
           </form>
         </article>
       </section>
