@@ -8,9 +8,9 @@ Usage:
 <link rel="stylesheet" href="/css/husk.css">
 ```
 
-Example: https://ocodia.github.io/husk/
+Example: https://ocodia.github.io/Husk/
 
-Form example: https://ocodia.github.io/husk/form.html
+Form example: https://ocodia.github.io/Husk/form.html
 
 
 ## To do
