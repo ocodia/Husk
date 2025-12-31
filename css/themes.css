@@ -1,0 +1,9 @@
+    @media (prefers-color-scheme: dark) {
+        :where(html:not([data-theme="light"])) {
+            --color-neutral-lightness-inc: + 6.5%;
+            --color-neutral-lightness-1: 7%;
+            --shadow-color: 220 40% 2%;
+            --shadow-strength: 25%;
+            --inner-shadow-highlight: inset 0 -.5px 0 0 #fff1, inset 0 .5px 0 0 #0007;
+        }
+    }
