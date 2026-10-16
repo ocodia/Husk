@@ -1,0 +1,21 @@
+/* Documentation application styles; these are not library component APIs. */
+:root { --husk-content-width: 82rem; }
+body > header { padding-block: 1.5rem; }
+body > header h1 { margin-block: .25rem .5rem; }
+body > header p { margin-block: .25rem; }
+body > nav { padding-block: .5rem; }
+#example-cards { --husk-grid-min: 19rem; --husk-grid-gap: 1.5rem; }
+#example-cards h2 { margin-block-start: 0; font-size: 1.4rem; }
+h-panel > :is(article, section) > :first-child { margin-block-start: 0; }
+#recipe-layout { --husk-sidebar-gap: 2rem; }
+#recipe-layout > nav ul { display: block; }
+#recipe-layout > nav li + li { margin-block-start: .75rem; }
+#recipes { --husk-stack-gap: 2rem; }
+#theme-controls { --husk-grid-min: 14rem; }
+#theme-preview { --husk-stack-gap: 1.5rem; }
+#catalog-filter { padding: 1rem; border: 1px solid var(--husk-border); border-radius: var(--husk-radius); }
+[data-component] > summary { font-weight: 600; }
+[data-component] pre { font-size: .875rem; }
+#recipe-output, #theme-result { display: block; }
+#recipe-output:empty, #theme-result:empty { display: none; }
+@media print { #catalog-filter, #theme-controls { display: none; } }

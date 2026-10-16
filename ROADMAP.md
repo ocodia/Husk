@@ -1,147 +1,151 @@
-# Husk roadmap
+# Husk UI system roadmap
 
-Husk is becoming an HTML-first UI system. Keep the CSS foundation useful on its own. Add optional elements and behavior as real interfaces need them.
+Husk will cover complete application interfaces while keeping native HTML, minimal classes, light DOM and optional behavior. Comparable breadth to Web Awesome is the scope reference; Husk's vocabulary and implementation remain its own.
 
-This document records the agreed direction. Unchecked items are planned, not shipped. Element names and APIs below are proposals.
+Reviewed on **16 October 2026**: [Web Awesome component catalogue](https://webawesome.com/docs/components). The [component inventory](docs/components.md) maps **90 reference entries**, including child items and the shared chart adapter, to a Husk route, implementation status, phase, contract and acceptance work. It also records Husk's 11 existing primitives. No reference entry is silently excluded because it is advanced, experimental or commercial in the reference system.
 
-## Accessibility foundation
+The [JSON catalogue](docs/components.json) is the source of truth for coverage. This roadmap defines order and dependencies. Phase numbers are sequencing, not delivery dates. Planned names and APIs are proposals. Native/foundation status describes a starting point, not equivalent features or completed accessibility verification.
 
-Use [ACCESSIBILITY.md](ACCESSIBILITY.md) as the component contract. Learn from GOV.UK while retaining native controls, light DOM, and the `h-` vocabulary.
+## Confirmed product direction
 
-- [x] Add CSS-only `h-field`, `h-hint`, and `h-error` wrappers.
-- [x] Add optional `h-error-summary` focus and error-link behavior.
-- [x] Add `h-skip-link` to the examples and strengthen focus/control contrast.
-- [x] Demonstrate linked errors and preserved hints in the workspace form.
-- [x] Add repeatable browser component checks and optional automated audits.
-- [ ] Record a browser and assistive-technology test matrix with dated results.
-- [ ] Supply verified transcripts/captions and visual descriptions for the legacy media examples.
-- [ ] Complete zoom, text spacing, forced-colors, RTL, and screen-reader checks.
-- [ ] Test tasks with disabled users before treating components as release-ready.
-
-## Principles
-
-- Use native HTML for content, controls, and platform behavior.
-- Keep ordinary pages and forms class-free.
-- Use custom elements for recurring arrangements or compound behavior that HTML does not supply.
-- Prefer useful defaults over required configuration. Add attributes only for meaningful alternatives.
-- Keep application content in light DOM by default so Husk and application CSS can style it.
-- Reserve shadow DOM for components with a demonstrated need for isolated internals.
-- Keep native buttons, links, inputs, and selects inside compound components where practical.
-- Use native state attributes and appropriate ARIA states as the source of truth. Do not duplicate them with styling classes.
-- Make the basic content usable before an optional behavior module loads.
-- Use the WAI-ARIA Authoring Practices Guide (APG) as the interaction baseline. Validate implementations in actual browsers and assistive technology.
+- Current major desktop/mobile browsers, progressively enhanced.
+- Plain CSS and JavaScript first; optional packages and individual modules later.
+- Light DOM throughout; native controls retain semantics and form value ownership.
+- `h-` elements for useful composition/compound behavior; no wrapper required for every native control.
+- Accessible defaults and meaningful content conventions; WCAG 2.2 AA is the release target.
+- Semantic theme variables, coherent light/dark brands, local component geometry and low-specificity CSS.
+- First-class human and agent documentation with a machine-readable component inventory.
 
 ## Delivered foundation
 
-- [x] Named cascade layer with low-specificity defaults.
-- [x] CSS variables for theme, spacing, fonts, radius, and content width.
-- [x] System light/dark themes and an optional root theme override.
-- [x] Separate link and action colors, visible keyboard focus, and native validation styling.
-- [x] Responsive content widths, logical properties, intrinsic image sizing, and print styles.
-- [x] Optional `stack`, `cluster`, `grid`, and `table-scroll` classes.
-- [x] Native disclosure, popover, and dialog styles.
-- [x] Expanded element examples and optional demonstration JavaScript.
-- [x] Select padding, arrow clearance, and a native forced-colors fallback.
+- [x] Native content/control styles in a named cascade layer, light/dark themes and optional root theme choice.
+- [x] Responsive widths, logical layout, print defaults, visible focus and select padding/arrow clearance.
+- [x] `h-stack`, `h-cluster`, `h-grid`, `h-sidebar`, `h-panel` plus compatible class helpers.
+- [x] `h-field`, `h-hint`, `h-error`, `h-skip-link` markup patterns.
+- [x] `h-form` and `h-error-summary`: error links, hints, title/focus, native submitters/reset, custom/server error APIs, reconnect and dynamic fields.
+- [x] Native element gallery, complete form and Fieldwork workspace.
+- [x] Repeatable browser checks and optional axe audits with partial dated evidence.
+- [x] Rewritten README, architecture/convention/theme guides, agent guide and component specification template.
+- [x] Full reference coverage inventory with generated documentation and browser explorer.
+- [x] Example hub, native/composed recipes and a live theme workbench with an optional forest brand.
 
-These checks describe shipped features, not completion of a full accessibility audit.
+These ticks record implementation/documentation, not an accessibility certification or a stable v1 release.
 
-## Layout elements
+## Phase 0 — foundation contracts and evidence
 
-- [x] Add CSS-only `h-stack`, `h-cluster`, and `h-grid` elements with the same defaults as the existing layout classes.
-- [x] Keep the class forms as compatible alternatives; neither form should require JavaScript.
-- [ ] Establish one documented element prefix. Use `h-` provisionally; confirm it before publishing the component API.
-- [x] Create a real application example combining a sidebar, toolbar, main content, form, and detail panel.
-- [x] Document wrapping, content sizing, overflow, and reading-order behavior.
+This phase begins now and runs ahead of higher-level widgets.
 
-```html
-<h-stack>
-  <header><h1>Projects</h1></header>
-  <h-grid>
-    <section><h2>Current</h2><p>Project details.</p></section>
-    <section><h2>Archived</h2><p>Previous work.</p></section>
-  </h-grid>
-</h-stack>
-```
+- [ ] Complete browser/assistive-technology matrix and manual foundation testing. Resolve legacy media captions/transcripts before presenting them as complete examples.
+- [x] Adopt initial server-rendered field errors without losing messages, answers or focus; clear their state after correction/reset with browser assertions and a real response example.
+- [x] Preserve explicit custom-validity messages when native constraints also fail; keep valid native submissions usable with an incomplete summary.
+- [ ] Finish the form audit for external/dynamic control ownership, field grouping, localization and async application integration; document limits and fix failures with browser assertions.
+- [ ] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and component aliases while preserving current variable fallbacks.
+- [ ] Define shared action/feedback variants, control sizes and comfortable/compact density; verify target sizes, zoom and contrast before shipping selectors.
+- [ ] Make focus tokens consistent across links, summaries and skip links without weakening existing indicators.
+- [ ] Specify reusable lifecycle, event, focus, locale and overlay ownership rules. Extract helpers only as actual implementations need them.
+- [ ] Measure CSS/JS payload and choose regression budgets; retain the earlier 5 KB gzip CSS-foundation goal as a proposal, not a claimed current measurement. Optional features get separate budgets.
+- [ ] Establish per-component maturity (proposal/experimental/stable), dated evidence and migration notes before v1.
 
-The first application example is [Fieldwork](workspace.html). Its layout works without JavaScript; optional application behavior saves project details and tasks on the device. The layout contract is in [the README](README.md#layout-elements).
+Exit: one coherent foundation contract, honest test coverage, token compatibility and repeatable checks.
 
-Do not infer cards from `article`, sidebars from every `aside`, or grids from every `section`. Structure supplies meaning; a layout element supplies arrangement.
+## Phase 1 — native component completeness
 
-## General interface conventions
+Finish recipes and verification for existing platform building blocks. These already have native/foundation routes; this phase does not imply replacing them with custom controls.
 
-### Navigation and commands
+| Family | Coverage |
+| --- | --- |
+| Actions | Button, Button Group |
+| Forms | Checkbox, Checkbox Group, Date Input, File Input, Input, Number Input, Radio Group, Radio, Select, Option, Slider, Textarea, Time Input |
+| Layout | Card through `h-panel`, Details, Dialog, Divider, Page composition, Scroller baseline |
+| Navigation | Breadcrumb and Breadcrumb Item |
+| Feedback / helpers | Progress Bar and native Popover |
 
-Use links for destinations and buttons for actions. A row of links remains navigation even when it looks like tabs. Mark the current destination with `aria-current="page"`.
+- [ ] Document each family with default, long-label, disabled/read-only, invalid, busy and fallback cases as relevant.
+- [ ] Complete native dialog opening/closing/focus-return recipes and support failure behavior; do not add a duplicate modal implementation.
+- [ ] Complete grouped hint/error contracts and date/time/file/range examples, including serialized form values and server responsibilities.
+- [ ] Verify panel composition, named scroll regions, native multiple-select behavior, nested layouts, RTL and forced colors.
 
-Ordinary sidebars should start as labelled `nav` elements with nested lists of links. Add disclosure controls when sections need collapsing. Do not assign menu or tree roles simply because navigation has nested items. [Disclosure navigation guidance](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/).
+Exit: native primitives have reusable recipes and evidence, rather than merely matching visual screenshots.
 
-Reserve command menus for actions such as Rename, Duplicate, Export, and Delete. Opening a menu moves focus into its items. Arrows navigate; Enter activates; Escape closes and returns focus. Supply keyboard and visible-button access to context actions. [Menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+## Phase 2 — common application interfaces
 
-### Tabs
+Depends on Phase 0 state/focus contracts and Phase 1 recipes. Build one compound family at a time.
 
-Test whether headings and links are enough before introducing tabs. Use tabs for alternate panels within one context. Start with `h-tabs` as an optional enhancement over linked, readable sections, including a readable narrow-screen fallback. Do not hide sequential instructions or information users need to compare. [GOV.UK tabs guidance](https://design-system.service.gov.uk/components/tabs/).
+1. Shared positioning/dismissal utility (**Popup**), using platform features with a documented fallback strategy.
+2. **Accordion / Accordion Item**, **Tab Group / Tab / Tab Panel**, **Pagination**, **Stepper / Step**.
+3. **Dropdown / Dropdown Item** command menus, **Drawer**, **Tooltip**, **Copy Button**, **Switch**.
+4. **Badge**, **Callout**, **Progress Ring**, **Skeleton**, **Spinner**, **Tag**, **Toast / Toast Item**.
+5. **Avatar** and **Icon** conventions, including SVG source/licensing policy and meaningful/decorative naming.
 
-Tab enters at the active tab; horizontal arrows move between tabs. Include Home/End. Use automatic activation only when panels appear immediately; otherwise require Enter/Space. Keep `aria-selected`, panel visibility, and label/control relationships synchronized. Inactive panels must not leave hidden controls in the keyboard sequence. [Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+- [ ] Specify each family before code using [the component template](docs/component-template.md).
+- [ ] Keep tabs' linked sections and navigation URLs useful before enhancement. Keep native disclosures as the accordion baseline.
+- [ ] Implement menu arrows/typeahead/Escape and focus restoration without applying menu semantics to ordinary site navigation.
+- [ ] Give feedback one announcement owner and persistent alternatives for important/actionable messages.
+- [ ] Add realistic app examples with error/loading/empty states and nested widget removal.
 
-### Trees
+Exit: common settings, navigation, commands and feedback compose reliably with forms and themes.
 
-Use a true tree for explorer-style interaction with files, layers, or document nodes. Start with a single-selection `h-tree`; defer multi-selection and virtualization.
+## Phase 3 — rich choices and hierarchical interfaces
 
-Up/Down move among visible nodes. Right expands or enters children. Left collapses or returns to the parent. Include Home/End and type-ahead. Expansion, selection, and activation are separate operations. A branch chevron expands without navigating. Only branches expose `aria-expanded`. Keep focused and selected nodes visually distinct. [Tree pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/).
+Depends on reusable keyboard, focus, locale and form contracts.
 
-### Disclosures, choices, and toolbars
+- [ ] **Tree / Tree Item**: single selection, visible-node navigation, expansion versus activation, typeahead and dynamic children. Multi-select and virtualization require separate specifications.
+- [ ] **Combobox**: single selection first, filtering and async race policy, IME, native form submission and reset; then multi-selection only when separately proven.
+- [ ] **Color Picker**, **Date Picker**, **Known Date**, **OTP Input**, **Rating**, **Tag Input**.
+- [ ] Richer Date Input and Time Input editing only when the native baseline cannot meet defined needs; keep normalized native form values.
+- [ ] Verify every input enhancement with autofill, FormData, required/custom validity, cancelled reset, server errors and screen readers.
 
-Keep `details`/`summary` for simple disclosures. Use native select for choosing an option; add a combobox only when search or richer suggestions justify it. Radio buttons express one choice from a visible set. Checkboxes express independent choices.
+Exit: rich input/explorer behavior remains compatible with the form system and keyboard/touch access.
 
-A toolbar groups related controls. Adopt its arrow-key interaction only when the component implements the complete toolbar pattern. Keep a plain group of buttons when that is sufficient. [Toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/), [combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
+## Phase 4 — specialist layout and media
 
-### Dialogs and feedback
+Keep optional payload separate. Dependencies and media assets require explicit review.
 
-Use a modal dialog when a task must interrupt the current context. Prefer inline editing or a non-modal panel for routine work. Give dialogs a visible accessible title, deliberate initial focus, a close control, and a focus-return destination. Closing nested overlays should affect the topmost relevant overlay. [Dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+- [ ] **Split Panel**: keyboard separator resizing, bounds, RTL, touch and readable static fallback.
+- [ ] **Animated Image**, **Carousel / Carousel Item**, **Comparison**, **QR Code**, **Video**, **Video Playlist**, **Zoomable Frame**.
+- [ ] Video starts with native controls plus verified captions, transcript and required descriptions. Add custom controls only for defined missing functionality.
+- [ ] Motion defaults respect reduced motion; no autoplay in initial carousel/video recipes.
+- [ ] Preserve originals, direct destinations and keyboard alternatives for visual comparison, scanning and zooming.
 
-Show errors next to the affected control and associate the message with it. Use polite status announcements for background completion. Reserve urgent announcements for urgent information. Never require a disappearing toast to understand or repair a failed operation.
+Exit: media tasks work beyond visual/pointer interaction and fail usefully when an optional dependency is unavailable.
 
-### Keyboard and focus
+## Phase 5 — data, helpers and distribution
 
-Follow DOM reading order; do not use positive `tabindex`. Tab moves between controls or compound widgets; arrows move within widgets that define that behavior. Use a single Tab entry point for tabs, trees, and command menus. Moving focus must not accidentally trigger navigation or destructive actions. After removing a focused item, move focus to a logical surviving control. [Keyboard guidance](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/).
+These remain optional extensions, not mandatory dependencies of the foundation.
 
-### Visual language
+| Family | Coverage |
+| --- | --- |
+| Data | Data Grid; Bar, Bubble, Doughnut, Line, Pie, Polar Area, Radar and Scatter charts; Sparkline; shared Chart / Advanced Usage adapter |
+| Formatting | Format Bytes, Format Date, Format Number, Relative Time |
+| Helpers | Animation, Include, Intersection Observer, Mutation Observer, Random Content, Resize Observer; Popup is delivered earlier |
+| Content | Markdown |
 
-Adopt these as Husk design decisions, then test them in the application example:
+- [ ] Start data work with semantic table sorting/filtering and accessible summaries. Define cell-navigation/editing before any ARIA grid. Treat virtualization as its own high-risk accessibility milestone.
+- [ ] Prototype one table-backed bar chart before committing to a renderer; verify theme changes, resize, data parity and non-color encodings, then expand chart types.
+- [ ] Use Intl and readable server fallback text for formatting. Define timezone, locale and hydration policy.
+- [ ] Prefer native CSS/JS APIs for observers and animation. Keep helper elements optional; specify timer/observer teardown and loop protection.
+- [ ] Markdown and Include need explicit sanitization, trusted-origin, failure and script policies. Do not add remote content execution as a default.
+- [ ] Ship per-component modules and an optional all-components entry while preserving copyable CSS/JS.
+- [ ] Add versioned npm distribution, generated custom-element metadata, token metadata, SSR/framework integration recipes and release automation after the actual public entry points exist.
+- [ ] Produce stable v1 documentation, migration guidance, complete release evidence and a public accessibility statement with known limitations.
 
-- Distinguish focus, hover, pressed, selected, current, expanded, disabled, invalid, and busy states. Give each a consistent treatment across components.
-- Use an outline for keyboard focus. Use fill plus a persistent marker for selection or current location. Do not rely on color alone.
-- Keep surface, text, border, accent, danger, and focus variables separate. Add state variables only when multiple components need them.
-- Use a small spacing scale based on 4px increments. Start with 4, 8, 12, 16, 24, and 32px expressed in rem. Review current spacing before introducing new tokens.
-- Keep comfortable controls as the default. Add compact density only for interfaces that need it; preserve usable pointer targets and text zoom.
-- Prefer one clear primary action per task group. Use labelled actions such as “Save changes” and “Delete project”. Offer undo where practical.
-- Give icon-only controls accessible names. Keep destructive or unfamiliar actions visibly labelled. Do not make hover the only way to discover actions.
-- Use a consistent icon family and stroke weight. Keep icons secondary to meaning and labels.
-- Design empty, loading, error, and success states alongside the populated state. Preserve context while work is in progress.
-- Keep data as semantic tables until spreadsheet-style cell navigation is needed. CSS `h-grid` layout must not acquire the unrelated ARIA `grid` role.
+Exit: specialist packages are independently useful and the core remains small and understandable.
 
-## Component delivery order
+## Release gate for every component
 
-| Phase | Deliverables | Reason |
-| --- | --- | --- |
-| 1 | Layout elements and a realistic application example | Test composition before expanding the API |
-| 2 | Disclosure navigation and tabs | Cover common navigation and panel patterns |
-| 3 | Command menus and toolbars | Establish focus, dismissal, and command conventions |
-| 4 | Single-selection tree | Build on established focus and state behavior |
-| 5 | Searchable choices, multi-selection, richer data widgets | Add complexity only when the application requires it |
+A component becomes stable only with all applicable evidence:
 
-- [ ] Write each component's markup, keyboard, focus, state, and fallback contract before implementation.
-- [ ] Keep component behavior modules optional and independent of `js/examples.js`.
-- [ ] Initialize ARIA roles and hidden states only when the corresponding behavior is ready.
-- [ ] Preserve content and native actions if enhancement fails.
-- [ ] Establish lifecycle cleanup, repeated-initialization behavior, and nested-widget event ownership.
-- [ ] Specify public events and attributes per component. Reuse native `input`/`change` semantics only when they describe the actual operation.
-- [ ] Add real examples for loading, failure, long labels, nested widgets, and dynamic removal.
+- [ ] Purpose, minimal valid markup, native baseline, API, events, tokens and supported modes are documented.
+- [ ] Keyboard, focus, pointer/touch, names/states, error/loading/empty and dismissal behavior work as specified.
+- [ ] Form controls preserve values, validation eligibility, submission, reset, autofill and labels; async behavior handles cancellation and stale work.
+- [ ] Late children, nested ownership, dynamic removal, disconnect/reconnect and missing APIs have defined outcomes.
+- [ ] Light/dark brands, forced colors, RTL, reduced motion, 320px reflow, text resize/spacing and zoom pass applicable checks.
+- [ ] Chrome, Edge, Firefox, Safari and relevant mobile/screen-reader combinations are recorded with versions and dates. Include VoiceOver/Safari and NVDA/Firefox or Chrome; choose additional combinations from audience needs.
+- [ ] Automated checks have no unexplained failures; incomplete audit findings are reviewed manually. Representative task testing with disabled users informs release readiness.
+- [ ] Current reference, catalogue, examples, agent entry points and migration notes agree with the runtime.
 
-## Acceptance criteria
+The target is [WCAG 2.2 AA](https://www.w3.org/WAI/WCAG22/quickref/). [APG](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/) guides widget interaction, but it explicitly requires browser/assistive-technology testing. GOV.UK informs content, validation and recovery conventions. No roadmap item or automated score establishes conformance alone.
 
-For each behavior component, verify keyboard operation, accessible names and states, focus movement, pointer/touch access, and behavior with JavaScript unavailable. Check light/dark themes, forced colors, right-to-left text, narrow screens, and zoom. Test in Chromium, Firefox, and Safari, with representative screen-reader checks.
+## Next implementation slice
 
-Keep a proposed 5 KB gzip budget for the CSS foundation. Measure optional component CSS and JavaScript separately. Add dependencies only when they remove more complexity than they introduce.
-
-APG examples are implementation guidance. They do not replace testing or establish conformance by themselves. [Pattern index](https://www.w3.org/WAI/ARIA/apg/patterns/).
+Complete Phase 0 form/server-error and token gaps, then specify and implement the tabs family against readable linked sections. This gives the system its first general compound widget while exercising focus, state, themes, progressive enhancement and lifecycle rules together. Command menus and overlay primitives follow; the explorer tree comes after those interaction foundations.

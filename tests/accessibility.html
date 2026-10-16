@@ -6,7 +6,10 @@
   <title>Husk accessibility checks</title>
   <link rel="stylesheet" href="../css/husk.css" />
   <script src="../js/components.js" defer></script>
+  <script src="forms.js" defer></script>
+  <script src="server-errors.js" defer></script>
   <script src="accessibility.js" defer></script>
+  <script src="examples.js" defer></script>
 </head>
 <body>
   <h-skip-link><a href="#main">Skip to checks</a></h-skip-link>
@@ -15,6 +18,7 @@
     <p>Serve this repository over HTTP, then run these checks in each supported browser. Automated checks do not replace keyboard or screen-reader testing.</p>
     <h-cluster>
       <button id="run-components" type="button">Run component checks</button>
+      <button id="run-examples" type="button">Run example checks</button>
       <button id="run-nojs" type="button">Check without JavaScript</button>
       <button id="run-audit" type="button">Audit examples with axe-core</button>
     </h-cluster>

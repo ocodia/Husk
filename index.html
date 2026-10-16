@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/husk.css" />
-    <meta name="description" content="A small CSS foundation for conventional HTML. Explore native elements, accessible forms, themes, and optional layouts." />
+    <meta name="description" content="Husk's HTML-first UI foundation. Explore native elements, accessible forms, light-DOM composition and themeable defaults." />
+    <script src="js/components.js" defer></script>
     <script src="js/examples.js" defer></script>
     <title>Husk — HTML first</title>
   </head>
@@ -13,10 +14,12 @@
     <h-skip-link><a href="#main">Skip to main content</a></h-skip-link>
     <header>
       <h1>Husk</h1>
-      <p>Just enough CSS. Write HTML. Get useful defaults.</p>
+      <p>An HTML-first UI system. Native meaning, useful composition, accessible interaction.</p>
     </header>
     <nav aria-label="Examples">
       <ul>
+        <li><a href="examples/index.html">Example hub</a></li>
+        <li><a href="examples/components.html">Components</a></li>
         <li><a href="#getting-started">Start</a></li>
         <li><a href="#text">Text</a></li>
         <li><a href="#embedded">Media</a></li>
@@ -35,6 +38,7 @@
         <p>Readable documents, native controls, and responsive defaults from one stylesheet. No classes or JavaScript required for the basics.</p>
         <pre><code>&lt;link rel="stylesheet" href="css/husk.css"&gt;</code></pre>
         <p>These element examples use plain HTML. The layout section adds optional elements where HTML leaves the arrangement up to you.</p>
+        <p>Husk is growing into a complete light-DOM UI system. <a href="examples/components.html">Explore the component scope</a>, <a href="examples/themes.html">try themeable interfaces</a>, or <a href="docs/README.md">read the documentation</a>. Planned widgets are clearly labelled in the catalogue.</p>
         <p><a href="form.html">Try a complete form</a> · <a href="https://github.com/ocodia/Husk">View the source</a></p>
       </section>
       <section id="text">
@@ -175,7 +179,7 @@ p q r s t u v w x y z { | } ~
         <hr />
         <article id="text-inline">
           <header><h3>Inline elements</h3></header>
-          <p><a href="#!">This is a text link</a></p>
+          <p><a href="#getting-started">This is a text link</a></p>
           <p><strong>Strong is used to indicate strong importance!</strong></p>
           <p><em>This text has added emphasis.</em></p>
           <p>The <b>Bring Attention To element (b)</b> is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance.</p>
@@ -470,16 +474,34 @@ p q r s t u v w x y z { | } ~
       <section id="accessible-forms">
         <h2>Accessible form conventions</h2>
         <p>Native labels and controls stay in the HTML. Husk elements group the question, hint, and error. Keyboard focus stays visible across themes.</p>
-        <h-field>
-          <label for="accessible-name">Project name</label>
-          <h-hint id="accessible-name-hint">Use a short name that helps you recognise the project.</h-hint>
-          <input id="accessible-name" name="accessible-name" aria-describedby="accessible-name-hint" />
-        </h-field>
+        <h-form id="form-example">
+          <form id="accessible-example">
+            <h-error-summary hidden role="region" aria-labelledby="example-errors-title" tabindex="-1">
+              <h2 id="example-errors-title">There is a problem</h2>
+              <ul></ul>
+            </h-error-summary>
+            <h-field>
+              <label for="accessible-name">Project name</label>
+              <h-hint id="accessible-name-hint">Use a short name that helps you recognise the project.</h-hint>
+              <h-error id="accessible-name-error" hidden>Error: Enter a project name</h-error>
+              <input id="accessible-name" name="project" aria-describedby="accessible-name-hint" required />
+            </h-field>
+            <button type="submit">Check project name</button>
+            <output id="accessible-result" role="status"></output>
+          </form>
+        </h-form>
         <pre><code>&lt;h-field&gt;
   &lt;label for="name"&gt;Project name&lt;/label&gt;
   &lt;h-hint id="name-hint"&gt;Use a short name.&lt;/h-hint&gt;
   &lt;input id="name" aria-describedby="name-hint"&gt;
 &lt;/h-field&gt;</code></pre>
+        <p><code>h-form</code> coordinates validation, hints, inline errors, and focus. The native form still owns its controls and submission.</p>
+        <pre><code>&lt;h-form&gt;
+  &lt;form action="/projects" method="post"&gt;
+    &lt;h-field&gt;…native label and input…&lt;/h-field&gt;
+    &lt;button&gt;Save project&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/h-form&gt;</code></pre>
         <p><a href="workspace.html#project-settings">Try submitting the workspace with an empty project name</a> to see linked errors and focus movement.</p>
         <p><a href="ACCESSIBILITY.md">Read the accessibility contract</a> · <a href="tests/accessibility.html">Run browser checks</a></p>
       </section>
@@ -539,6 +561,32 @@ p q r s t u v w x y z { | } ~
           <section><h4>Small surface</h4><p>Add a class only when you need a layout choice.</p></section>
         </h-grid>
         <pre><code>&lt;h-grid&gt;…&lt;/h-grid&gt;</code></pre>
+        <h3>Sidebar and panel</h3>
+        <p>A sidebar sits beside its content when there is enough room, then stacks in reading order. A panel supplies a surface without changing the meaning of its contents.</p>
+        <h-sidebar>
+          <nav aria-label="Sidebar example">
+            <ul>
+              <li><a href="#forms">Form elements</a></li>
+              <li><a href="#accessible-forms">Accessible forms</a></li>
+            </ul>
+          </nav>
+          <h-panel>
+            <section>
+              <h4>Room to work</h4>
+              <p>Native HTML stays in the page. The layout responds to the available space.</p>
+            </section>
+          </h-panel>
+        </h-sidebar>
+        <pre><code>&lt;h-sidebar&gt;
+  &lt;nav aria-label="Project"&gt;…links…&lt;/nav&gt;
+  &lt;h-panel&gt;…content…&lt;/h-panel&gt;
+&lt;/h-sidebar&gt;</code></pre>
+        <p>Adjust layout geometry in your own CSS. Defaults work without any configuration.</p>
+        <pre><code>#project-cards {
+  --husk-grid-min: 20rem;
+  --husk-grid-gap: 1.5rem;
+}
+#project-actions { --husk-cluster-gap: .5rem; }</code></pre>
         <h3>Wide tables</h3>
         <p>One optional wrapper contains wide data. Focus it with Tab, then scroll with the arrow keys.</p>
         <div class="table-scroll" tabindex="0" role="region" aria-labelledby="wide-table-caption">

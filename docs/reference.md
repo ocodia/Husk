@@ -1,0 +1,237 @@
+# Current Husk API
+
+This reference describes the implementation that exists today. For the complete system direction, see [the roadmap](../ROADMAP.md). Proposed catalogue entries are not public APIs.
+
+The current HTML-first foundation and optional form behavior. No classes required for documents, forms, and native elements.
+
+```html
+<link rel="stylesheet" href="css/husk.css">
+```
+
+Open [the examples](https://ocodia.github.io/Husk/) or [the complete form](https://ocodia.github.io/Husk/form.html). To preview locally, run `python3 -m http.server 8765` from this directory and visit `http://localhost:8765`.
+
+Husk ships as plain CSS. There is no required build step, JavaScript, or dependency.
+
+See the [roadmap](../ROADMAP.md) for planned custom elements and interface conventions.
+
+## HTML conventions
+
+Use elements for their meaning: links navigate, buttons perform actions, and labels identify controls. Husk styles headings, text, lists, tables, code, media, forms, `details`, `dialog`, and `[popover]`.
+
+```html
+<form>
+  <p>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+  </p>
+  <button type="submit">Subscribe</button>
+</form>
+```
+
+Controls use native checked, disabled, read-only, and validation states. `:user-invalid` marks invalid controls after interaction. Applications can set `aria-invalid="true"` and associate an error message with `aria-describedby`. Color alone does not explain an error.
+
+Husk supplies keyboard focus outlines and preserves native controls. It does not turn arbitrary elements into interactive widgets.
+
+## Layout
+
+The body provides a full-width canvas. Its direct children share a content width and gutters; the direct header has a full-width background. Pages without a `main` still receive content widths. Images shrink to fit without stretching.
+
+Most pages need no classes. Four optional helpers cover explicit arrangements:
+
+- `stack`: consistent vertical spacing between children.
+- `cluster`: a horizontal group that wraps.
+- `grid`: columns that adapt to available width.
+- `table-scroll`: local horizontal scrolling for wide tables.
+
+```html
+<div class="grid">
+  <section><h2>First</h2><p>First item.</p></section>
+  <section><h2>Second</h2><p>Second item.</p></section>
+</div>
+```
+
+For a keyboard-scrollable table wrapper, add `tabindex="0"`, `role="region"`, and an accessible name through `aria-labelledby`. Articles and sections receive no automatic card treatment.
+
+## Layout elements
+
+`h-stack`, `h-cluster`, and `h-grid` provide the same layouts as their class alternatives. `h-sidebar` and `h-panel` add composition primitives. They are CSS-only, use light DOM, and require no registration or JavaScript. The `h-` prefix identifies Husk elements.
+
+```html
+<h-stack>
+  <h2>Project details</h2>
+  <h-grid>
+    <p>First item.</p>
+    <p>Second item.</p>
+  </h-grid>
+  <h-cluster>
+    <button type="submit">Save changes</button>
+    <a href="/projects">Cancel</a>
+  </h-cluster>
+</h-stack>
+```
+
+- **Stack:** block layout with `--husk-stack-gap` between direct children. Their block margins reset so element defaults do not double the spacing.
+- **Cluster:** a wrapping flex row, centered on its cross axis, with `--husk-cluster-gap` gaps. Long labels wrap within the available width.
+- **Grid:** equal flexible columns with a preferred minimum of 16rem. Columns collapse as space decreases; a single column can shrink below that minimum to fit its container.
+
+Use native elements inside the layouts for headings, lists, forms, and landmarks. Layout elements add no ARIA roles or keyboard behavior. Visual order follows DOM order in both left-to-right and right-to-left documents. Keep that reading order when customizing the CSS.
+
+Each layout has a trailing `--husk-space` margin; a parent layout resets child margins to prevent duplicate gaps. `--husk-space` remains the global spacing default. Component variables let one layout change without altering the spacing of its nested layouts.
+
+| Element | CSS variables and defaults |
+| --- | --- |
+| `h-stack` | `--husk-stack-gap: var(--husk-space)` |
+| `h-cluster` | `--husk-cluster-gap: var(--husk-space)`, `--husk-cluster-align: center` |
+| `h-grid` | `--husk-grid-min: 16rem`, `--husk-grid-gap: var(--husk-space)` |
+| `h-sidebar` | `--husk-sidebar-width: 13rem`, `--husk-sidebar-content-min: 36rem`, `--husk-sidebar-gap: var(--husk-space)` |
+| `h-panel` | `--husk-panel-padding: var(--husk-space)` |
+
+Set overrides on the element using application CSS or its style attribute. Defaults reset on each nested component. Invalid CSS values follow normal browser behavior.
+
+`h-sidebar` expects two direct children: sidebar first, content second. It wraps based on available container space, not viewport breakpoint classes. Its content can shrink to the container width on small screens. Use native `nav`, `aside`, `main`, or `section` as appropriate. `h-panel` supplies presentation and adds no ARIA role.
+
+Grid and cluster children can shrink within their tracks. Preformatted code and wide tables still need their own scrolling regions. A layout never hides page overflow to conceal content.
+
+The class alternatives remain supported: `<div class="stack">`, `<div class="cluster">`, and `<div class="grid">`. Both forms share the same CSS rules. No new configuration attributes are required. Application CSS can override the arrangement for a specific context.
+
+### Application example
+
+[Fieldwork](../workspace.html) combines a sidebar, action group, project content, form, and detail panel without layout classes. Its sidebar is ordinary disclosure navigation, not a tree widget. Its action group is a wrapping cluster, not an ARIA toolbar.
+
+The example has a separate application stylesheet and an optional script. Project changes and task progress save to local browser storage; export downloads the saved data as JSON. Revert restores the saved project details. It has no backend. If storage is unavailable, edits remain usable for the current visit and the page reports the limitation.
+
+The layouts, content, disclosure navigation, and native form controls work without JavaScript. Save and export controls appear only after the optional script initializes. Husk supplies the layout primitives; application shell choices stay in `css/workspace.css`.
+
+## Reusable forms
+
+Load `js/components.js` and wrap exactly one native form in `h-form`. An optional summary can sit anywhere inside that wrapper, including above the page heading. Without a supplied summary, Husk creates one with the English heading “There is a problem”. Supply an authored summary to choose another heading or language.
+
+```html
+<h-form>
+  <form action="/projects" method="post">
+    <h-field>
+      <label for="project">Project name</label>
+      <h-hint id="project-hint">Use a short name.</h-hint>
+      <h-error hidden>Error: Enter a project name</h-error>
+      <input id="project" name="project" aria-describedby="project-hint" required>
+    </h-field>
+    <button type="submit">Save project</button>
+  </form>
+</h-form>
+```
+
+The element validates on submission and leaves valid native `submit` events intact. Invalid submissions stop before ordinary application submit handlers. It manages inline errors, descriptions, summary focus, the error title, and native reset cleanup. Your application still owns persistence and server validation. Explicit hints and native labels remain usable without JavaScript; missing hint/control/error IDs can be generated during enhancement.
+
+Use one control per `h-field`, or a native fieldset for a radio group. Missing error elements are generated. Existing hint descriptions are preserved. Required messages use initially hidden authored `h-error` text when available; visible server messages are not reused as required-field defaults. Other constraints use native messages or label-based length messages. Explicit `setCustomValidity()` messages take precedence when more than one constraint fails. Applications can supply translated messages with custom validity or a synchronous validator; generated inline/title prefixes and fallback messages currently use English.
+
+```js
+const editor = document.querySelector('h-form');
+editor.validator = (form) => {
+  const input = form.elements.project;
+  return input.value === 'Reserved'
+    ? [{ control: input, message: 'Choose a different project name' }]
+    : [];
+};
+```
+
+| API | Behavior |
+| --- | --- |
+| `editor.form` | The owned native form, or `null` when markup is incomplete/ambiguous |
+| `editor.validate({ focus: false })` | Validate and render errors; return a boolean; focus defaults to true |
+| `editor.showErrors([{ control, message }], { focus: false })` | Display application/server errors without replacing answers |
+| `editor.clear()` | Clear managed errors and restore the title; preserve values |
+| `editor.refresh()` | Rediscover markup and hints; child insertion/removal also triggers this automatically |
+| `editor.validator` | Optional synchronous callback returning additional error objects; no network validation is implied |
+
+Use `form.requestSubmit()` for programmatic submissions. Native `form.submit()` bypasses submission events and therefore this enhancement. `formnovalidate` is respected. For asynchronous checks, prevent native submission in the application and later use `showErrors()` or continue the application workflow.
+
+A cancelled reset keeps its errors. If your application cancels reset to implement a custom revert action, call `editor.clear()` after restoring the values. Disconnect restores the form's original `noValidate` value and removes listeners. Dynamic controls and reconnects are supported. Multiple forms coordinate the document error title.
+
+`h-error-summary.show(errors, { focus: false })` also supports rendering without moving focus. Its `refresh()` method updates heading associations when its children arrive later.
+
+### Server-rendered errors
+
+Render the user's answer, a visible `h-error`, `aria-invalid="true"` on the native control, and explicit hint/error descriptions. A visible summary uses real fragment links. Prefix the server response title with `Error: `. This markup works before JavaScript loads:
+
+```html
+<h-form>
+  <h-error-summary role="region" aria-labelledby="errors-title" tabindex="-1">
+    <h2 id="errors-title">There is a problem</h2>
+    <ul><li><a href="#project-name">This name is already in use</a></li></ul>
+  </h-error-summary>
+  <form action="/projects" method="post">
+    <h-field>
+      <label for="project-name">Project name</label>
+      <h-hint id="project-hint">Choose a recognisable name.</h-hint>
+      <h-error id="project-error">Error: This name is already in use</h-error>
+      <input id="project-name" name="project" value="Field guide" required
+             aria-invalid="true" aria-describedby="project-hint project-error">
+    </h-field>
+    <button type="submit">Save project</button>
+  </form>
+</h-form>
+```
+
+Enhancement adopts visible errors for validation-eligible controls without replacing an authored visible summary or moving focus. It creates a missing summary if needed. `clear()`, successful client validation and uncancelled native reset clear adopted field states and error descriptions while retaining other hints. The last managed form restores the title without the initial `Error: ` prefix. Only explicit server error states are adopted; a visible decorative message alone does not make a control invalid.
+
+For radios, use a shared fieldset error and mark the affected radio control(s) invalid; the summary contains one error per same-name group. Error nodes must belong to one question. General form-wide/server failures without a control remain application-owned; `showErrors()` is for field errors.
+
+Adopted messages are presentation state, not persistent native validity rules. Successful client validation permits another submission; it does not prove a server rule now passes. Recheck on the server, or retain an applicable application validator/custom-validity rule. The [response example](../examples/server-errors.html) demonstrates this using an explicitly local rule.
+
+Controls associated through `form="…"` can use explicitly described `h-error` nodes outside the wrapper. The observer watches markup inside `h-form`; call `refresh()` after changes outside it or after changing associations via attributes. Dynamic external ownership and richer grouped-field behavior remain under audit. Server text must be escaped by the application before writing HTML.
+
+## Themes and customization
+
+Husk follows the system light or dark theme. Set `data-theme="light"` or `data-theme="dark"` on `html` to force a theme. Remove the attribute to return to the system preference. Theme persistence is the application's choice.
+
+All defaults live inside the `husk` cascade layer. Normal unlayered application CSS can override them with simple selectors. Most defaults use `:where()` to keep specificity low.
+
+```css
+:root {
+  --husk-content-width: 72rem;
+  --husk-reading-width: 68ch;
+  --husk-gutter: clamp(1rem, 3vw, 2rem);
+  --husk-space: 1rem;
+  --husk-radius: .375rem;
+  --husk-action-bg: #005cc5;
+  --husk-action-hover: #004799;
+  --husk-action-text: #fff;
+}
+```
+
+Color variables include `--husk-text`, `--husk-heading`, `--husk-canvas`, `--husk-surface`, `--husk-muted`, `--husk-border`, `--husk-link`, `--husk-link-hover`, `--husk-focus`, and `--husk-invalid`. Fonts use `--husk-font-sans` and `--husk-font-mono`. Set readable foreground/background pairs for each theme, including hover states.
+
+The original `--text`, `--headings`, `--body-bg`, `--details`, `--borders`, font, header, highlight, and dark-theme variables remain supported as fallback values. `--interactive` and `--interactive-alt` now control links only. Use the separate `--husk-action-*` variables for buttons. This prevents bright dark-mode links from also setting an unsuitable button background.
+
+## Native interactions
+
+`details` and `summary` provide disclosures. Popover controls use normal HTML:
+
+```html
+<button type="button" popovertarget="help">Help</button>
+<div id="help" popover>Helpful content.</div>
+```
+
+A modal dialog can be opened with the browser's `showModal()` API. Close it with a `form method="dialog"` button. Supply an accessible title through `aria-labelledby`. Popovers are not modal dialogs.
+
+`js/examples.js` powers only the index page's theme selector, dialog opener, and validation demonstration. Do not include it in an application. The CSS does not depend on it. Native popover support varies in older browsers; provide an application fallback if needed.
+
+## Migration
+
+This upgrade changes layout, spacing, and the cascade. Review pages that depend on the old constrained body, full-width images, per-element bottom margins, or button colors shared with links. The obsolete `.button` selector and invalid nested `a button` pattern are no longer styled as an API.
+
+The stylesheet includes print styles and adds no decorative animation. Use current browsers with cascade layers and `:where()` support; `:has()`, `:user-invalid`, and popovers enhance supported browsers. Older browsers without cascade layers do not receive these layered styles.
+
+## Accessibility
+
+Husk learns from GOV.UK’s form, error-recovery, focus, and progressive-enhancement patterns. `h-field`, `h-hint`, and `h-error` wrap native form markup. Optional `h-error-summary` behavior links errors to their fields. `h-skip-link` preserves a native skip anchor.
+
+Read the [accessibility contract](../ACCESSIBILITY.md) for markup, APIs, sources, and release checks. The target is WCAG 2.2 AA; a complete audit and assistive-technology testing remain outstanding. Run the [browser checks](../tests/accessibility.html) through the local server.
+
+## Checks
+
+When changing Husk, check both HTML examples, light and dark themes, keyboard focus, native validation, dialog focus return, popover dismissal, narrow screens, zoom, print, and right-to-left content. Keep ordinary element examples class-free and reserve layout classes for explicit arrangements.
+
+## License
+
+[MIT](../LICENSE).

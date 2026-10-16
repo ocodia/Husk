@@ -16,7 +16,7 @@ function reportResults(message) {
 
 function assert(condition, message) { if (!condition) throw new Error(message); }
 
-componentButton.addEventListener('click', () => {
+componentButton.addEventListener('click', async () => {
   const passed = [];
   try {
     fixture.innerHTML = '<h-error-summary hidden><h2>There is a problem</h2><ul></ul></h-error-summary><details><summary>Answer</summary><h-field><label for="check-name">Name</label><h-hint id="check-hint">Use your full name.</h-hint><input id="check-name" aria-describedby="check-hint"></h-field></details>';
@@ -48,6 +48,8 @@ componentButton.addEventListener('click', () => {
     summary.show([]);
     assert(summary.hidden, 'Empty summaries must stay hidden');
     passed.push('Empty error lists stay hidden.');
+    passed.push(...await runFormChecks(fixture));
+    passed.push(...await runServerErrorChecks(fixture));
     reportResults(`PASS: ${passed.length} checks\n\n${passed.join('\n')}`);
   } catch (error) {
     reportResults(`FAIL after ${passed.length} checks: ${error.message}`);
@@ -91,6 +93,7 @@ nojsButton.addEventListener('click', async () => {
   auditButton.disabled = true;
   componentButton.disabled = true;
   nojsButton.disabled = true;
+  document.querySelector("#run-examples").disabled = true;
   frame.hidden = false;
   frame.style.inlineSize = '320px';
   frame.setAttribute('sandbox', 'allow-same-origin');
@@ -117,6 +120,7 @@ nojsButton.addEventListener('click', async () => {
     auditButton.disabled = false;
     componentButton.disabled = false;
     nojsButton.disabled = false;
+    document.querySelector("#run-examples").disabled = false;
     document.querySelector('#result-title').focus();
   }
 });
@@ -125,29 +129,34 @@ auditButton.addEventListener('click', async () => {
   auditButton.disabled = true;
   componentButton.disabled = true;
   nojsButton.disabled = true;
+  document.querySelector("#run-examples").disabled = true;
   const frame = document.querySelector('#audit-frame');
   frame.removeAttribute('sandbox');
   frame.style.removeProperty('inline-size');
   const report = [];
   frame.hidden = false;
   try {
-    for (const route of ['../index.html', '../form.html', '../workspace.html']) {
+    for (const route of ['../index.html', '../form.html', '../workspace.html', '../examples/index.html', '../examples/components.html', '../examples/patterns.html', '../examples/themes.html', '../examples/server-errors.html']) {
       const win = await loadExample(frame, route);
-      for (const theme of ['light', 'dark']) {
-        win.document.documentElement.dataset.theme = theme;
-        const audit = await win.axe.run(win.document, {
-          runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
-        });
-        report.push(`${route} (${theme}): ${audit.violations.length} violations; ${audit.incomplete.length} need manual review`);
-        for (const violation of audit.violations) {
-          report.push(`  ${violation.id}: ${violation.help}`);
-          for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+      for (const brand of route.endsWith('/themes.html') ? ['default', 'forest'] : ['default']) {
+        if (brand === 'default') delete win.document.documentElement.dataset.brand;
+        else win.document.documentElement.dataset.brand = brand;
+        for (const theme of ['light', 'dark']) {
+          win.document.documentElement.dataset.theme = theme;
+          const audit = await win.axe.run(win.document, {
+            runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
+          });
+          report.push(`${route} (${brand}, ${theme}): ${audit.violations.length} violations; ${audit.incomplete.length} need manual review`);
+          for (const violation of audit.violations) {
+            report.push(`  ${violation.id}: ${violation.help}`);
+            for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+          }
+          for (const review of audit.incomplete) {
+            report.push(`  REVIEW ${review.id}: ${review.help}`);
+            for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+          }
+          reportResults(report.join('\n'));
         }
-        for (const review of audit.incomplete) {
-          report.push(`  REVIEW ${review.id}: ${review.help}`);
-          for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
-        }
-        reportResults(report.join('\n'));
       }
       if (route.endsWith('workspace.html')) {
         win.document.querySelector('#project-name').value = '';
@@ -178,6 +187,7 @@ auditButton.addEventListener('click', async () => {
     auditButton.disabled = false;
     componentButton.disabled = false;
     nojsButton.disabled = false;
+    document.querySelector("#run-examples").disabled = false;
     document.querySelector('#result-title').focus();
   }
 });

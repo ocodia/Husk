@@ -29,3 +29,12 @@ if (validationForm) {
     validationForm.querySelector('output').textContent = '';
   });
 }
+
+const accessibleForm = document.querySelector('#accessible-example');
+if (accessibleForm) {
+  accessibleForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    accessibleForm.querySelector('output').textContent = 'The project name is complete. Nothing was sent.';
+  });
+  accessibleForm.addEventListener('input', () => { accessibleForm.querySelector('output').textContent = ''; });
+}

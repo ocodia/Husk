@@ -1,0 +1,33 @@
+/* Optional brand. Load after husk.css and set data-brand="forest" on html. */
+:root[data-brand="forest"] {
+  --husk-link: #146b45;
+  --husk-link-hover: #0d5032;
+  --husk-action-bg: #146b45;
+  --husk-action-hover: #0d5032;
+  --husk-action-text: #ffffff;
+  --husk-header-bg: #123d2d;
+  --husk-header-border: #438c68;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="forest"]:not([data-theme="light"]) {
+    --husk-link: #8cdbb3;
+    --husk-link-hover: #bbefd2;
+    --husk-action-bg: #176b47;
+    --husk-action-hover: #125337;
+    --husk-action-text: #ffffff;
+    --husk-header-bg: #0b281d;
+    --husk-header-border: #438c68;
+  }
+}
+:root[data-brand="forest"][data-theme="dark"] {
+  --husk-link: #8cdbb3;
+  --husk-link-hover: #bbefd2;
+  --husk-action-bg: #176b47;
+  --husk-action-hover: #125337;
+  --husk-action-text: #ffffff;
+  --husk-header-bg: #0b281d;
+  --husk-header-border: #438c68;
+}
+@media print {
+  :root[data-brand="forest"] { --husk-link: #000; --husk-action-bg: #fff; --husk-action-hover: #fff; --husk-action-text: #000; --husk-header-bg: #fff; --husk-header-border: #000; }
+}

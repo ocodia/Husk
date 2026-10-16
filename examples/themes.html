@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="One set of native controls. Coordinated brands and modes.">
+  <title>Theme workbench — Husk</title>
+  <link rel="stylesheet" href="../css/husk.css"><link rel="stylesheet" href="../themes/forest.css"><link rel="stylesheet" href="examples.css">
+  <script src="../js/components.js" defer></script><script src="themes.js" defer></script>
+</head>
+<body>
+  <h-skip-link><a href="#main">Skip to main content</a></h-skip-link>
+  <header><p><a href="../index.html">Husk / HTML first</a></p><h1>Theme workbench</h1><p>One set of native controls. Coordinated brands and modes.</p></header>
+  <nav aria-label="Examples"><ul><li><a href="index.html">Overview</a></li><li><a href="components.html">Components</a></li><li><a href="patterns.html">Recipes</a></li><li><a href="themes.html" aria-current="page">Themes</a></li><li><a href="../workspace.html">Workspace</a></li></ul></nav>
+  <main id="main" tabindex="-1">
+    <h-stack>
+      <section aria-labelledby="theme-title"><h2 id="theme-title">Change the system, keep the HTML</h2><p>The selectors change root theme attributes. Both brands use the same semantic tokens, markup and interaction behavior. Changes are local to this page and are not stored.</p>
+        <h-grid id="theme-controls" hidden>
+          <h-field><label for="brand">Brand</label><select id="brand"><option value="default">Husk default</option><option value="forest">Forest</option></select></h-field>
+          <h-field><label for="mode">Mode</label><select id="mode"><option value="system">System preference</option><option value="light">Light</option><option value="dark">Dark</option></select></h-field>
+        </h-grid>
+        <p id="theme-selection" role="status">Husk default · system preference.</p>
+        <noscript><p>The default brand follows the system theme. Enable JavaScript to compare brands and modes.</p></noscript>
+      </section>
+      <h-grid>
+        <h-panel><section aria-labelledby="preview-title"><h2 id="preview-title">A familiar task</h2><p>Links, actions, errors and surfaces retain their roles in each theme.</p>
+          <h-form id="theme-editor"><form id="theme-form"><h-stack id="theme-preview">
+            <h-field><label for="theme-name">Project name</label><h-hint id="theme-name-hint">Required. Use a short, recognisable name.</h-hint><h-error hidden>Error: Enter a project name</h-error><input id="theme-name" name="project" aria-describedby="theme-name-hint" required></h-field>
+            <h-field><label for="theme-stage">Stage</label><select id="theme-stage" name="stage"><option>Planning</option><option>In progress</option></select></h-field>
+            <h-field><label for="theme-notes">Notes (optional)</label><textarea id="theme-notes" name="notes" rows="3"></textarea></h-field>
+            <label><input type="checkbox" name="updates" value="yes"> Send project updates</label>
+            <h-cluster><button id="theme-submit" type="submit" hidden>Check project</button><a href="../workspace.html">Open workspace</a></h-cluster>
+            <output id="theme-result" role="status"></output>
+          </h-stack></form></h-form>
+        </section></h-panel>
+        <section aria-labelledby="tokens-title"><h2 id="tokens-title">Semantic choices</h2><p>The forest brand overrides action, link and header colors for both light and dark modes. Shared surfaces, readable text and focus styles remain coordinated.</p><pre><code>&lt;html data-brand="forest" data-theme="dark"&gt;
+
+&lt;link rel="stylesheet" href="css/husk.css"&gt;
+&lt;link rel="stylesheet" href="themes/forest.css"&gt;</code></pre><p><a href="../docs/theming.md">Read the theme contract</a> for token names, inheritance, scope and the planned reference/semantic/component scale.</p><details><summary>What still needs manual review?</summary><p>Native control popups, forced colors, zoom, text spacing and screen-reader behavior require platform testing. Changing theme tokens is not an automatic accessibility certification.</p></details></section>
+      </h-grid>
+    </h-stack></main>
+  <footer><p>Husk · <a href="../docs/README.md">Documentation</a> · <a href="../ROADMAP.md">Roadmap</a> · <a href="../tests/accessibility.html">Browser checks</a></p></footer>
+</body>
+</html>

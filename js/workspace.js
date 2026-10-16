@@ -5,15 +5,7 @@
   const tasks = [...document.querySelectorAll('input[name="task"]')];
   const storageKey = 'husk-fieldwork-project-v1';
   const stages = ['Planning', 'In progress', 'Ready for review'];
-  const errorSummary = document.querySelector('#project-errors');
-  const pageTitle = document.title;
-  const enhancedValidation = typeof errorSummary?.show === 'function';
-  const fields = [
-    { control: form.elements.name, missing: 'Enter a project name', long: 'Project name must be 100 characters or fewer' },
-    { control: form.elements.summary, missing: 'Enter a summary', long: 'Summary must be 500 characters or fewer' },
-    { control: form.elements.stage, missing: 'Select a project stage' },
-    { control: form.elements.date, missing: 'Enter a complete target date in the format shown' }
-  ];
+  const editor = document.querySelector('#project-editor');
   let dirty = false;
   function validDate(value) {
     if (value === '') return true;
@@ -78,50 +70,8 @@
     }
   }
 
-  function clearErrors() {
-    fields.forEach(({ control }) => {
-      const error = document.getElementById(`${control.id}-error`);
-      if (!error) return;
-      error.hidden = true;
-      control.removeAttribute('aria-invalid');
-      const descriptions = (control.getAttribute('aria-describedby') || '').split(/\s+/).filter((id) => id && id !== error.id);
-      if (descriptions.length) control.setAttribute('aria-describedby', descriptions.join(' '));
-      else control.removeAttribute('aria-describedby');
-    });
-    errorSummary?.clear?.();
-    document.title = pageTitle;
-  }
-
-  function validate() {
-    const errors = fields.flatMap(({ control, missing, long }) => {
-      if (!control.willValidate) return [];
-      const empty = control.required && !control.value.trim();
-      const tooLong = control.maxLength > -1 && control.value.length > control.maxLength;
-      if (!empty && !tooLong && control.validity.valid) return [];
-      const message = empty ? missing : tooLong ? long : control === form.elements.date ? missing : control.validationMessage;
-      return [{ control, message }];
-    });
-    clearErrors();
-    errors.forEach(({ control, message }) => {
-      const error = document.getElementById(`${control.id}-error`);
-      error.textContent = `Error: ${message}`;
-      error.hidden = false;
-      control.setAttribute('aria-invalid', 'true');
-      const descriptions = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
-      descriptions.add(error.id);
-      control.setAttribute('aria-describedby', [...descriptions].join(' '));
-    });
-    if (errors.length) {
-      status.textContent = '';
-      document.title = `Error: ${pageTitle}`;
-      errorSummary.show(errors);
-    }
-    return errors.length === 0;
-  }
-
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (enhancedValidation && !validate()) return;
     const name = form.elements.name.value.trim();
     const summary = form.elements.summary.value.trim();
     if (!name || !summary) {
@@ -138,7 +88,7 @@
     event.preventDefault();
     fillForm();
     dirty = false;
-    clearErrors();
+    editor.clear?.();
     status.textContent = 'Edits reverted to the last saved version.';
   });
   form.addEventListener('input', () => {
@@ -161,8 +111,6 @@
 
   fillForm();
   showProject();
-  // Leave native validation enabled until the summary behavior is available.
-  if (enhancedValidation) form.noValidate = true;
   document.querySelector('#save-actions').hidden = false;
   document.querySelector('#export-project').hidden = false;
 })();
