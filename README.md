@@ -10,6 +10,8 @@ Open [the examples](https://ocodia.github.io/Husk/) or [the complete form](https
 
 Husk ships as plain CSS. There is no required build step, JavaScript, or dependency.
 
+See the [roadmap](ROADMAP.md) for planned custom elements and interface conventions.
+
 ## HTML conventions
 
 Use elements for their meaning: links navigate, buttons perform actions, and labels identify controls. Husk styles headings, text, lists, tables, code, media, forms, `details`, `dialog`, and `[popover]`.
@@ -47,6 +49,44 @@ Most pages need no classes. Four optional helpers cover explicit arrangements:
 ```
 
 For a keyboard-scrollable table wrapper, add `tabindex="0"`, `role="region"`, and an accessible name through `aria-labelledby`. Articles and sections receive no automatic card treatment.
+
+## Layout elements
+
+`h-stack`, `h-cluster`, and `h-grid` provide the same layouts as their class alternatives. They are CSS-only, use light DOM, and require no registration or JavaScript. The provisional `h-` prefix identifies Husk layout elements.
+
+```html
+<h-stack>
+  <h2>Project details</h2>
+  <h-grid>
+    <p>First item.</p>
+    <p>Second item.</p>
+  </h-grid>
+  <h-cluster>
+    <button type="submit">Save changes</button>
+    <a href="/projects">Cancel</a>
+  </h-cluster>
+</h-stack>
+```
+
+- **Stack:** block layout with `--husk-space` between direct children. Their block margins reset so element defaults do not double the spacing.
+- **Cluster:** a wrapping flex row, centered on its cross axis, with `--husk-space` gaps. Long labels wrap within the available width.
+- **Grid:** equal flexible columns with a preferred minimum of 16rem. Columns collapse as space decreases; a single column can shrink below that minimum to fit its container.
+
+Use native elements inside the layouts for headings, lists, forms, and landmarks. Layout elements add no ARIA roles or keyboard behavior. Visual order follows DOM order in both left-to-right and right-to-left documents. Keep that reading order when customizing the CSS.
+
+Each layout has a trailing `--husk-space` margin; a parent layout resets child margins to prevent duplicate gaps. Set `--husk-space` on a container to change its rhythm. This variable inherits, so reset it within a nested layout if that group needs different spacing.
+
+Grid and cluster children can shrink within their tracks. Preformatted code and wide tables still need their own scrolling regions. A layout never hides page overflow to conceal content.
+
+The class alternatives remain supported: `<div class="stack">`, `<div class="cluster">`, and `<div class="grid">`. Both forms share the same CSS rules. No new configuration attributes are required. Application CSS can override the arrangement for a specific context.
+
+### Application example
+
+[Fieldwork](workspace.html) combines a sidebar, action group, project content, form, and detail panel without layout classes. Its sidebar is ordinary disclosure navigation, not a tree widget. Its action group is a wrapping cluster, not an ARIA toolbar.
+
+The example has a separate application stylesheet and an optional script. Project changes and task progress save to local browser storage; export downloads the saved data as JSON. Revert restores the saved project details. It has no backend. If storage is unavailable, edits remain usable for the current visit and the page reports the limitation.
+
+The layouts, content, disclosure navigation, and native form controls work without JavaScript. Save and export controls appear only after the optional script initializes. CSS choices for the application shell stay in `css/workspace.css`; they do not add sidebar or card rules to Husk's core.
 
 ## Themes and customization
 
@@ -89,6 +129,12 @@ A modal dialog can be opened with the browser's `showModal()` API. Close it with
 This upgrade changes layout, spacing, and the cascade. Review pages that depend on the old constrained body, full-width images, per-element bottom margins, or button colors shared with links. The obsolete `.button` selector and invalid nested `a button` pattern are no longer styled as an API.
 
 The stylesheet includes print styles and adds no decorative animation. Use current browsers with cascade layers and `:where()` support; `:has()`, `:user-invalid`, and popovers enhance supported browsers. Older browsers without cascade layers do not receive these layered styles.
+
+## Accessibility
+
+Husk learns from GOV.UK’s form, error-recovery, focus, and progressive-enhancement patterns. `h-field`, `h-hint`, and `h-error` wrap native form markup. Optional `h-error-summary` behavior links errors to their fields. `h-skip-link` preserves a native skip anchor.
+
+Read the [accessibility contract](ACCESSIBILITY.md) for markup, APIs, sources, and release checks. The target is WCAG 2.2 AA; a complete audit and assistive-technology testing remain outstanding. Run the [browser checks](tests/accessibility.html) through the local server.
 
 ## Checks
 

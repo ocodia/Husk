@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <h-skip-link><a href="#main">Skip to main content</a></h-skip-link>
     <header>
       <h1>Husk</h1>
       <p>Just enough CSS. Write HTML. Get useful defaults.</p>
@@ -21,17 +22,19 @@
         <li><a href="#embedded">Media</a></li>
         <li><a href="#forms">Forms</a></li>
         <li><a href="#form-states">States</a></li>
+        <li><a href="#accessible-forms">Accessibility</a></li>
         <li><a href="#interactions">Interactions</a></li>
         <li><a href="#layouts">Layouts</a></li>
+        <li><a href="workspace.html">Workspace</a></li>
         <li><a href="#themes">Themes</a></li>
       </ul>
     </nav>
-    <main id="main">
+    <main id="main" tabindex="-1">
       <section id="getting-started">
         <h2>HTML first</h2>
         <p>Readable documents, native controls, and responsive defaults from one stylesheet. No classes or JavaScript required for the basics.</p>
         <pre><code>&lt;link rel="stylesheet" href="css/husk.css"&gt;</code></pre>
-        <p>These element examples use plain HTML. The layout section adds a few optional classes where HTML leaves the arrangement up to you.</p>
+        <p>These element examples use plain HTML. The layout section adds optional elements where HTML leaves the arrangement up to you.</p>
         <p><a href="form.html">Try a complete form</a> · <a href="https://github.com/ocodia/Husk">View the source</a></p>
       </section>
       <section id="text">
@@ -100,20 +103,20 @@
             </caption>
             <thead>
               <tr>
-                <th>Heading 1</th>
-                <th>Heading 2</th>
-                <th>Heading 3</th>
-                <th>Heading 4</th>
-                <th>Heading 5</th>
+                <th scope="col">Heading 1</th>
+                <th scope="col">Heading 2</th>
+                <th scope="col">Heading 3</th>
+                <th scope="col">Heading 4</th>
+                <th scope="col">Heading 5</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th>Footer 1</th>
-                <th>Footer 2</th>
-                <th>Footer 3</th>
-                <th>Footer 4</th>
-                <th>Footer 5</th>
+                <td>Footer 1</td>
+                <td>Footer 2</td>
+                <td>Footer 3</td>
+                <td>Footer 4</td>
+                <td>Footer 5</td>
               </tr>
             </tfoot>
             <tbody>
@@ -225,6 +228,7 @@ p q r s t u v w x y z { | } ~
       <hr />
       <section id="embedded">
         <h2>Embedded content</h2>
+        <p>Production media needs verified captions, transcripts, and descriptions of meaningful visual content. These legacy samples are awaiting that review.</p>
         <article id="embedded-images">
           <header><h3>Images</h3></header>
           <h3>
@@ -444,11 +448,11 @@ p q r s t u v w x y z { | } ~
           <button type="submit">Check email</button>
           <output aria-live="polite"></output>
         </form>
-        <p>
+        <h-field>
           <label for="state-invalid">Application validation</label>
+          <h-error id="username-error">Error: This username is taken. Choose another one.</h-error>
           <input id="state-invalid" name="username" value="already-taken" aria-invalid="true" aria-describedby="username-error" />
-          <small id="username-error">This username is taken. Choose another one.</small>
-        </p>
+        </h-field>
         <p>
           <label for="state-readonly">Read-only reference</label>
           <input id="state-readonly" value="HUSK-2026" readonly name="state-readonly" />
@@ -462,6 +466,22 @@ p q r s t u v w x y z { | } ~
         </fieldset>
         <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
 &lt;input id="email" name="email" type="email" required&gt;</code></pre>
+      </section>
+      <section id="accessible-forms">
+        <h2>Accessible form conventions</h2>
+        <p>Native labels and controls stay in the HTML. Husk elements group the question, hint, and error. Keyboard focus stays visible across themes.</p>
+        <h-field>
+          <label for="accessible-name">Project name</label>
+          <h-hint id="accessible-name-hint">Use a short name that helps you recognise the project.</h-hint>
+          <input id="accessible-name" name="accessible-name" aria-describedby="accessible-name-hint" />
+        </h-field>
+        <pre><code>&lt;h-field&gt;
+  &lt;label for="name"&gt;Project name&lt;/label&gt;
+  &lt;h-hint id="name-hint"&gt;Use a short name.&lt;/h-hint&gt;
+  &lt;input id="name" aria-describedby="name-hint"&gt;
+&lt;/h-field&gt;</code></pre>
+        <p><a href="workspace.html#project-settings">Try submitting the workspace with an empty project name</a> to see linked errors and focus movement.</p>
+        <p><a href="ACCESSIBILITY.md">Read the accessibility contract</a> · <a href="tests/accessibility.html">Run browser checks</a></p>
       </section>
       <section id="interactions">
         <h2>Native interactions</h2>
@@ -495,29 +515,30 @@ p q r s t u v w x y z { | } ~
         </dialog>
       </section>
       <section id="layouts">
-        <h2>Optional layouts</h2>
-        <p>Elements describe meaning. These three classes describe arrangement. Each adapts without breakpoint classes.</p>
+        <h2>Layout elements</h2>
+        <p>Elements describe meaning. These layout elements describe arrangement. They work with CSS alone, without registration or JavaScript.</p>
+        <p><a href="workspace.html">Try the project workspace</a> to see layouts, navigation, forms, and a detail panel working together. The original class forms remain available.</p>
         <h3>Stack</h3>
-        <div class="stack">
+        <h-stack>
           <p>A vertical group with consistent spacing.</p>
           <p>Useful when mixed elements need the same rhythm.</p>
           <a href="#getting-started">Back to the start</a>
-        </div>
-        <pre><code>&lt;div class="stack"&gt;…&lt;/div&gt;</code></pre>
+        </h-stack>
+        <pre><code>&lt;h-stack&gt;…&lt;/h-stack&gt;</code></pre>
         <h3>Cluster</h3>
-        <div class="cluster">
+        <h-cluster>
           <button type="button" popovertarget="help-popover">Help</button>
           <a href="form.html">Form example</a>
           <span>Items wrap when space runs out.</span>
-        </div>
-        <pre><code>&lt;div class="cluster"&gt;…&lt;/div&gt;</code></pre>
+        </h-cluster>
+        <pre><code>&lt;h-cluster&gt;…&lt;/h-cluster&gt;</code></pre>
         <h3>Grid</h3>
-        <div class="grid">
+        <h-grid>
           <section><h4>Conventional HTML</h4><p>Use elements for their meaning.</p></section>
           <section><h4>Native behavior</h4><p>Keep browser controls and interactions.</p></section>
           <section><h4>Small surface</h4><p>Add a class only when you need a layout choice.</p></section>
-        </div>
-        <pre><code>&lt;div class="grid"&gt;…&lt;/div&gt;</code></pre>
+        </h-grid>
+        <pre><code>&lt;h-grid&gt;…&lt;/h-grid&gt;</code></pre>
         <h3>Wide tables</h3>
         <p>One optional wrapper contains wide data. Focus it with Tab, then scroll with the arrow keys.</p>
         <div class="table-scroll" tabindex="0" role="region" aria-labelledby="wide-table-caption">
