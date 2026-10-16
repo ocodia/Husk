@@ -5,6 +5,37 @@
   @layer tokens {
     :root {
       color-scheme: light;
+      /* Reference scales. Existing semantic aliases below keep their defaults. */
+      --husk-space-0: 0;
+      --husk-space-1: .25rem;
+      --husk-space-2: .5rem;
+      --husk-space-3: .75rem;
+      --husk-space-4: 1rem;
+      --husk-space-5: 1.5rem;
+      --husk-space-6: 2rem;
+      --husk-space-7: 3rem;
+      --husk-space-8: 4rem;
+      --husk-radius-none: 0;
+      --husk-radius-sm: .125rem;
+      --husk-radius-md: .375rem;
+      --husk-radius-lg: .75rem;
+      --husk-radius-pill: 999px;
+      --husk-font-size-xs: .75rem;
+      --husk-font-size-sm: .875rem;
+      --husk-font-size-md: 1rem;
+      --husk-font-size-lg: 1.2rem;
+      --husk-font-size-xl: 1.4rem;
+      --husk-font-size-2xl: 2.25rem;
+      --husk-font-size-3xl: 3rem;
+      --husk-font-size-body: clamp(var(--husk-font-size-md), .96rem + .2vw, 1.125rem);
+      --husk-font-size-heading-1: clamp(2rem, 1.5rem + 2vw, var(--husk-font-size-3xl));
+      --husk-font-size-heading-2: clamp(1.65rem, 1.35rem + 1vw, var(--husk-font-size-2xl));
+      --husk-line-height-body: 1.6;
+      --husk-line-height-heading: 1.2;
+      --husk-font-weight-normal: 400;
+      --husk-font-weight-medium: 600;
+      --husk-font-weight-bold: 700;
+      --husk-focus-width: 3px;
       --husk-font-sans: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
       --husk-font-mono: var(--font-mono, ui-monospace, Consolas, monospace);
       --husk-text: var(--text, #1a1a1a);
@@ -21,13 +52,34 @@
       --husk-focus: #ffdd00;
       --husk-focus-edge: #0b0c0c;
       --husk-control-border: #657387;
-      --husk-invalid: #b42318;
+      --husk-info-text: #123c69;
+      --husk-info-bg: #edf4ff;
+      --husk-info-border: #2161a6;
+      --husk-success-text: #14532d;
+      --husk-success-bg: #edf8f0;
+      --husk-success-border: #287a45;
+      --husk-warning-text: #6b3d00;
+      --husk-warning-bg: #fff5db;
+      --husk-warning-border: #9a6700;
+      --husk-danger-text: #8a1c13;
+      --husk-danger-bg: #fff0ee;
+      --husk-danger-border: #b42318;
+      --husk-selected-text: var(--husk-heading);
+      --husk-selected-bg: #e8f1fc;
+      --husk-selected-border: var(--husk-link);
+      --husk-disabled-text: #5b6675;
+      --husk-disabled-bg: #e8ecf0;
+      --husk-disabled-border: #8794a6;
+      --husk-busy-text: var(--husk-info-text);
+      --husk-busy-bg: var(--husk-info-bg);
+      --husk-busy-border: var(--husk-info-border);
+      --husk-invalid: var(--husk-danger-border);
       --husk-header-bg: var(--header-bg, #003285);
       --husk-header-border: var(--header-border, #3d74d2);
       --husk-mark-bg: var(--highlight-bg, #fff0a6);
       --husk-mark-text: var(--highlight-text, #1a1a1a);
-      --husk-space: 1rem;
-      --husk-radius: .375rem;
+      --husk-space: var(--husk-space-4);
+      --husk-radius: var(--husk-radius-md);
       --husk-content-width: 72rem;
       --husk-reading-width: 68ch;
       --husk-gutter: clamp(1rem, 3vw, 2rem);
@@ -48,7 +100,23 @@
         --husk-muted: #b3bfce;
         --husk-focus: #ffdd00;
         --husk-control-border: #8794a6;
-        --husk-invalid: #ffaaa3;
+        --husk-info-text: #c9e2ff;
+        --husk-info-bg: #162d48;
+        --husk-info-border: #80baff;
+        --husk-success-text: #b9edc9;
+        --husk-success-bg: #153522;
+        --husk-success-border: #78c995;
+        --husk-warning-text: #ffe1a3;
+        --husk-warning-bg: #3b2c10;
+        --husk-warning-border: #e6b95c;
+        --husk-danger-text: #ffd2cc;
+        --husk-danger-bg: #431e1b;
+        --husk-danger-border: #ffaaa3;
+        --husk-selected-bg: #1d3553;
+        --husk-disabled-text: #b3bfce;
+        --husk-disabled-bg: #26303d;
+        --husk-disabled-border: #8794a6;
+        --husk-invalid: var(--husk-danger-border);
         --husk-header-bg: var(--dark-header-bg, #071d3b);
         --husk-header-border: var(--dark-header-border, #406797);
         --husk-mark-bg: var(--dark-highlight-bg, #514000);
@@ -70,7 +138,23 @@
       --husk-muted: #b3bfce;
       --husk-focus: #ffdd00;
       --husk-control-border: #8794a6;
-      --husk-invalid: #ffaaa3;
+      --husk-info-text: #c9e2ff;
+      --husk-info-bg: #162d48;
+      --husk-info-border: #80baff;
+      --husk-success-text: #b9edc9;
+      --husk-success-bg: #153522;
+      --husk-success-border: #78c995;
+      --husk-warning-text: #ffe1a3;
+      --husk-warning-bg: #3b2c10;
+      --husk-warning-border: #e6b95c;
+      --husk-danger-text: #ffd2cc;
+      --husk-danger-bg: #431e1b;
+      --husk-danger-border: #ffaaa3;
+      --husk-selected-bg: #1d3553;
+      --husk-disabled-text: #b3bfce;
+      --husk-disabled-bg: #26303d;
+      --husk-disabled-border: #8794a6;
+      --husk-invalid: var(--husk-danger-border);
       --husk-header-bg: var(--dark-header-bg, #071d3b);
       --husk-header-border: var(--dark-header-border, #406797);
       --husk-mark-bg: var(--dark-highlight-bg, #514000);
@@ -80,21 +164,18 @@
 
   @layer base {
     *, *::before, *::after { box-sizing: border-box; }
-    :where(html) { font-family: var(--husk-font-sans); line-height: 1.6; overflow-wrap: anywhere; }
+    :where(html) { font-family: var(--husk-font-sans); font-weight: var(--husk-font-weight-normal); line-height: var(--husk-line-height-body); overflow-wrap: anywhere; }
     :where(body) {
       margin: 0;
       color: var(--husk-text);
       background: var(--husk-canvas);
-      font-size: clamp(1rem, .96rem + .2vw, 1.125rem);
+      font-size: var(--husk-font-size-body);
     }
     :where(button, input, select, textarea) { font: inherit; }
     :where(a) { color: var(--husk-link); text-underline-offset: .18em; }
     :where(a:hover) { color: var(--husk-link-hover); }
-    :where(:focus-visible) { outline: 3px solid var(--husk-focus); outline-offset: 0; box-shadow: 0 0 0 6px var(--husk-focus-edge); }
-    :where(a:focus-visible, summary:focus-visible) { color: #0b0c0c; background: #ffdd00; outline-color: #ffdd00; text-decoration: none; box-shadow: 0 4px 0 #0b0c0c; }
-    @media (forced-colors: active) {
-      :where(:focus-visible) { outline: 3px solid Highlight; outline-offset: 3px; box-shadow: none; }
-    }
+    :where(:focus-visible) { outline: var(--husk-focus-width) solid var(--husk-focus); outline-offset: 0; box-shadow: 0 0 0 calc(var(--husk-focus-width) * 2) var(--husk-focus-edge); }
+    :where(a:focus-visible, summary:focus-visible) { color: var(--husk-focus-edge); background: var(--husk-focus); outline-color: var(--husk-focus); text-decoration: none; box-shadow: 0 calc(var(--husk-focus-width) + 1px) 0 var(--husk-focus-edge); }
     :where([id]) { scroll-margin-block-start: 1rem; }
     ::selection { background: var(--husk-mark-bg); color: var(--husk-mark-text); }
     :where([hidden]:not([hidden="until-found"])) { display: none !important; }
@@ -103,23 +184,24 @@
   @layer content {
     :where(h1, h2, h3, h4, h5, h6) {
       color: var(--husk-heading);
-      line-height: 1.2;
+      font-weight: var(--husk-font-weight-bold);
+      line-height: var(--husk-line-height-heading);
       margin-block: 1.5em .6em;
       text-wrap: balance;
     }
-    :where(h1) { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); }
-    :where(h2) { font-size: clamp(1.65rem, 1.35rem + 1vw, 2.25rem); }
-    :where(h3) { font-size: 1.4rem; }
-    :where(h4) { font-size: 1.2rem; }
-    :where(h5) { font-size: 1rem; }
-    :where(h6) { font-size: .875rem; }
+    :where(h1) { font-size: var(--husk-font-size-heading-1); }
+    :where(h2) { font-size: var(--husk-font-size-heading-2); }
+    :where(h3) { font-size: var(--husk-font-size-xl); }
+    :where(h4) { font-size: var(--husk-font-size-lg); }
+    :where(h5) { font-size: var(--husk-font-size-md); }
+    :where(h6) { font-size: var(--husk-font-size-sm); }
     :where(p, ul, ol, dl, figure, blockquote, pre, details, table, fieldset) { margin-block: 0 var(--husk-space); }
     :where(article, section) { margin-block-end: calc(var(--husk-space) * 2); }
     :where(p) { max-inline-size: var(--husk-reading-width); }
     :where(ul, ol) { padding-inline-start: 1.75em; }
     :where(li + li) { margin-block-start: .25em; }
     :where(li > ul, li > ol) { margin-block: .25em 0; }
-    :where(dt) { font-weight: 700; }
+    :where(dt) { font-weight: var(--husk-font-weight-bold); }
     :where(dd) { margin-inline-start: 1.5em; margin-block-end: .75em; }
     :where(small, figcaption) { font-size: .875em; }
     :where(small) { color: var(--husk-muted); }
@@ -142,9 +224,9 @@
     :where(table) { inline-size: 100%; border-collapse: collapse; }
     :where(th, td) { padding: .65rem; border: 1px solid var(--husk-border); text-align: start; }
     :where(th, tbody tr:nth-child(even)) { background: var(--husk-surface); }
-    :where(caption) { margin-block-end: .5rem; text-align: start; font-weight: 700; }
+    :where(caption) { margin-block-end: .5rem; text-align: start; font-weight: var(--husk-font-weight-bold); }
     :where(details) { padding: .75rem 1rem; background: var(--husk-surface); border: 1px solid var(--husk-border); border-radius: var(--husk-radius); }
-    :where(summary) { cursor: pointer; font-weight: 700; }
+    :where(summary) { cursor: pointer; font-weight: var(--husk-font-weight-bold); }
     :where(details[open] > summary) { margin-block-end: .75rem; }
     :where(dialog, [popover]) {
       padding: 1.5rem;
@@ -165,17 +247,14 @@
     :where(h-form, h-field, h-hint, h-error, h-error-summary) { display: block; }
     :where(h-field) { margin-block-end: var(--husk-space); }
     :where(h-hint) { margin-block: 0 .5rem; color: var(--husk-muted); }
-    :where(h-error) { margin-block: 0 .5rem; color: var(--husk-invalid); font-weight: 700; }
+    :where(h-error) { margin-block: 0 .5rem; color: var(--husk-invalid); font-weight: var(--husk-font-weight-bold); }
     :where(h-field:has([aria-invalid="true"])) { border-inline-start: .25rem solid var(--husk-invalid); padding-inline-start: 1rem; }
     :where(h-error-summary) { padding: 1.25rem; margin-block-end: 2rem; border: .25rem solid var(--husk-invalid); }
-    :where(h-error-summary h2) { margin-block-start: 0; font-size: 1.4rem; }
+    :where(h-error-summary h2) { margin-block-start: 0; font-size: var(--husk-font-size-xl); }
     :where(h-error-summary > :last-child) { margin-block-end: 0; }
-    :where(h-error-summary:focus) { outline: 3px solid var(--husk-focus); outline-offset: 0; box-shadow: 0 0 0 6px var(--husk-focus-edge); }
-    @media (forced-colors: active) {
-      :where(h-error-summary:focus) { outline-color: Highlight; outline-offset: 3px; box-shadow: none; }
-    }
+    :where(h-error-summary:focus) { outline: var(--husk-focus-width) solid var(--husk-focus); outline-offset: 0; box-shadow: 0 0 0 calc(var(--husk-focus-width) * 2) var(--husk-focus-edge); }
     :where(form) { margin-block-end: var(--husk-space); }
-    :where(label) { display: block; margin-block-end: .35rem; font-weight: 600; }
+    :where(label) { display: block; margin-block-end: .35rem; font-weight: var(--husk-font-weight-medium); }
     :where(input, select, textarea, progress, meter) { accent-color: var(--husk-action-bg); }
     :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="submit"], [type="reset"], [type="button"]), select, textarea) {
       inline-size: 100%;
@@ -203,7 +282,7 @@
     :where(textarea) { display: block; resize: vertical; }
     :where(input::placeholder, textarea::placeholder) { color: var(--husk-muted); opacity: 1; }
     :where(input[type="checkbox"], input[type="radio"]) { margin: 0 .4em 0 0; inline-size: 1.1em; block-size: 1.1em; vertical-align: -.1em; }
-    :where(label:has(input[type="checkbox"], input[type="radio"])) { font-weight: 400; padding-block: .6rem; min-block-size: 2.75rem; }
+    :where(label:has(input[type="checkbox"], input[type="radio"])) { font-weight: var(--husk-font-weight-normal); padding-block: .6rem; min-block-size: 2.75rem; }
     :where(input[type="file"], input[type="range"]) { max-inline-size: 100%; }
     :where(input[type="color"]) { padding: .15rem; inline-size: 3rem; block-size: 2.75rem; border: 1px solid var(--husk-control-border); border-radius: var(--husk-radius); }
     :where(button, input[type="submit"], input[type="reset"], input[type="button"]) {
@@ -218,12 +297,12 @@
       cursor: pointer;
     }
     :where(button:enabled:hover, input[type="submit"]:enabled:hover, input[type="reset"]:enabled:hover, input[type="button"]:enabled:hover) { background: var(--husk-action-hover); }
-    :where(button:disabled, input:disabled, select:disabled, textarea:disabled) { opacity: .6; cursor: not-allowed; }
+    :where(button:disabled, input:disabled, select:disabled, textarea:disabled) { color: var(--husk-disabled-text); background-color: var(--husk-disabled-bg); border-color: var(--husk-disabled-border); accent-color: var(--husk-disabled-text); opacity: 1; cursor: not-allowed; }
     :where(input[readonly], textarea[readonly]) { background: var(--husk-surface); }
     :where(input:user-invalid, select:user-invalid, textarea:user-invalid, [aria-invalid="true"]) { border-color: var(--husk-invalid); border-width: 2px; }
     :where([aria-invalid="true"] + small) { color: var(--husk-invalid); }
     :where(fieldset) { min-inline-size: 0; padding: 1rem; border: 1px solid var(--husk-border); border-radius: var(--husk-radius); }
-    :where(legend) { padding-inline: .4rem; font-weight: 700; }
+    :where(legend) { padding-inline: .4rem; font-weight: var(--husk-font-weight-bold); }
   }
 
   @layer layout {
@@ -243,7 +322,6 @@
       border-block-end: .25rem solid var(--husk-header-border);
       --husk-link: #ffffff;
       --husk-link-hover: #dbeafe;
-      --husk-focus: #ffffff;
     }
     :where(body > header h1) { margin-block-start: 0; color: inherit; }
     :where(body > header > :last-child) { margin-block-end: 0; }
@@ -269,7 +347,14 @@
     :where(.table-scroll > table) { inline-size: max-content; min-inline-size: 100%; margin-block-end: 0; }
     :where(h-skip-link) { position: absolute; inset-block-start: 0; inset-inline-start: var(--husk-gutter); z-index: 10; inline-size: auto; margin: 0; }
     :where(h-skip-link > a) { position: absolute; inset-block-start: -10rem; inline-size: max-content; max-inline-size: calc(100vw - var(--husk-gutter) * 2); padding: .75rem; }
-    :where(h-skip-link > a:focus) { inset-block-start: .5rem; color: #0b0c0c; background: #ffdd00; outline: 3px solid #0b0c0c; box-shadow: none; }
+    :where(h-skip-link > a:focus) { inset-block-start: .5rem; color: var(--husk-focus-edge); background: var(--husk-focus); outline: var(--husk-focus-width) solid var(--husk-focus-edge); box-shadow: none; }
+  }
+
+
+  @media (forced-colors: active) {
+    :where(:focus-visible, h-error-summary:focus, h-skip-link > a:focus) { outline: var(--husk-focus-width) solid Highlight; outline-offset: 3px; box-shadow: none; }
+    :where(a:focus-visible, summary:focus-visible, h-skip-link > a:focus) { color: LinkText; background: Canvas; }
+    :where(button:disabled, input:disabled, select:disabled, textarea:disabled) { color: GrayText; border-color: GrayText; }
   }
 
   @media print {

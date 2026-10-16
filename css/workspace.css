@@ -9,8 +9,8 @@ body > header a { margin-inline-start: auto; }
 #workspace nav ul { display: block; padding: 0; list-style: none; }
 #workspace nav li + li { margin-block-start: .25rem; }
 #workspace nav a { display: block; padding: .5rem .75rem; border-inline-start: 3px solid transparent; border-radius: var(--husk-radius); }
-#workspace nav [aria-current] { color: var(--husk-text); background: var(--husk-surface); border-inline-start-color: var(--husk-link); font-weight: 700; }
-#workspace nav a:focus-visible { color: #0b0c0c; background: #ffdd00; }
+#workspace nav [aria-current] { color: var(--husk-selected-text); background: var(--husk-selected-bg); border-inline-start-color: var(--husk-selected-border); font-weight: var(--husk-font-weight-bold); }
+#workspace nav a:focus-visible { color: var(--husk-focus-edge); background: var(--husk-focus); }
 #workspace nav details { background: transparent; }
 #workspace h1 { margin-block-start: .25rem; }
 #workspace h2 { margin-block-start: 0; font-size: 1.4rem; }
@@ -35,4 +35,9 @@ body > header a { margin-inline-start: auto; }
   h-skip-link, #workspace > aside, #save-actions, #export-project { display: none; }
   #workspace, #project-layout { display: block; }
   #project-details h-panel, #milestones { background: transparent; }
+}
+
+@media (forced-colors: active) {
+  #workspace nav [aria-current] { border-inline-start-color: CanvasText; }
+  #workspace nav a:focus-visible { color: LinkText; background: Canvas; }
 }

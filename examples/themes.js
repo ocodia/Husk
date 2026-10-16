@@ -3,15 +3,24 @@
   const root = document.documentElement;
   const brand = document.querySelector('#brand');
   const mode = document.querySelector('#mode');
+  const focus = document.querySelector('#focus-palette');
   function update() {
     if (brand.value === 'default') delete root.dataset.brand;
     else root.dataset.brand = brand.value;
     if (mode.value === 'system') delete root.dataset.theme;
     else root.dataset.theme = mode.value;
-    document.querySelector('#theme-selection').textContent = `${brand.selectedOptions[0].textContent} · ${mode.selectedOptions[0].textContent}.`;
+    if (focus.value === 'blue') {
+      root.style.setProperty('--husk-focus', '#bde9ff');
+      root.style.setProperty('--husk-focus-edge', '#102a43');
+    } else {
+      root.style.removeProperty('--husk-focus');
+      root.style.removeProperty('--husk-focus-edge');
+    }
+    document.querySelector('#theme-selection').textContent = `${brand.selectedOptions[0].textContent} · ${mode.selectedOptions[0].textContent} · ${focus.selectedOptions[0].textContent}.`;
   }
   brand.addEventListener('change', update);
   mode.addEventListener('change', update);
+  focus.addEventListener('change', update);
   update();
   document.querySelector('#theme-controls').hidden = false;
   const form = document.querySelector('#theme-form');

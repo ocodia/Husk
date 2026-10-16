@@ -39,9 +39,9 @@ This phase begins now and runs ahead of higher-level widgets.
 - [x] Adopt initial server-rendered field errors without losing messages, answers or focus; clear their state after correction/reset with browser assertions and a real response example.
 - [x] Preserve explicit custom-validity messages when native constraints also fail; keep valid native submissions usable with an incomplete summary.
 - [ ] Finish the form audit for external/dynamic control ownership, field grouping, localization and async application integration; document limits and fix failures with browser assertions.
-- [ ] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and component aliases while preserving current variable fallbacks.
+- [x] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and existing geometry aliases while preserving current variable fallbacks.
 - [ ] Define shared action/feedback variants, control sizes and comfortable/compact density; verify target sizes, zoom and contrast before shipping selectors.
-- [ ] Make focus tokens consistent across links, summaries and skip links without weakening existing indicators.
+- [x] Make focus tokens consistent across controls, links, header/workspace navigation, summaries and skip links; add shared width and system-color overrides with rendered palette/contrast checks. Manual forced-colors and assistive-technology verification remains in the release gate.
 - [ ] Specify reusable lifecycle, event, focus, locale and overlay ownership rules. Extract helpers only as actual implementations need them.
 - [ ] Measure CSS/JS payload and choose regression budgets; retain the earlier 5 KB gzip CSS-foundation goal as a proposal, not a claimed current measurement. Optional features get separate budgets.
 - [ ] Establish per-component maturity (proposal/experimental/stable), dated evidence and migration notes before v1.

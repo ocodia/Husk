@@ -34,7 +34,7 @@ The native form owns submission. Husk adds linked errors and focus management. B
 | Composition | `h-stack`, `h-cluster`, `h-grid`, `h-sidebar`, `h-panel` |
 | Form structure | `h-field`, `h-hint`, `h-error`, `h-skip-link` |
 | Optional behavior | `h-form`, `h-error-summary` in `js/components.js` |
-| Themes | System/light/dark, semantic CSS variables, an optional forest theme |
+| Themes | System/light/dark, spacing/type/radius scales, semantic state/focus tokens, an optional forest brand |
 | Examples | Element gallery, complete form, Fieldwork workspace, recipes, server error recovery and theme workbench |
 
 Only the two behavior elements are registered with `customElements`. CSS-only elements need no registration. Existing `.stack`, `.cluster`, `.grid`, and `.table-scroll` helpers remain supported.

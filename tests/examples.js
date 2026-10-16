@@ -49,6 +49,7 @@ exampleButton.addEventListener('click', async () => {
     check(root.dataset.theme === 'dark' && win.getComputedStyle(root).getPropertyValue('--husk-action-bg') !== forestDark, 'Both brands have distinct dark-theme action tokens.');
     choose(mode, 'system');
     check(!root.hasAttribute('data-theme') && !root.hasAttribute('data-brand'), 'System/default selections restore native preference behavior.');
+    passed.push(...await runThemeTokenChecks(win));
     const themeForm = doc.querySelector('#theme-form');
     themeForm.requestSubmit();
     check(!doc.querySelector('h-error-summary').hidden && doc.activeElement === doc.querySelector('h-error-summary'), 'Theme preview demonstrates real invalid-form focus.');

@@ -17,6 +17,7 @@
         <h-grid id="theme-controls" hidden>
           <h-field><label for="brand">Brand</label><select id="brand"><option value="default">Husk default</option><option value="forest">Forest</option></select></h-field>
           <h-field><label for="mode">Mode</label><select id="mode"><option value="system">System preference</option><option value="light">Light</option><option value="dark">Dark</option></select></h-field>
+          <h-field><label for="focus-palette">Focus palette</label><select id="focus-palette"><option value="default">Yellow and dark</option><option value="blue">Blue and ink</option></select></h-field>
         </h-grid>
         <p id="theme-selection" role="status">Husk default · system preference.</p>
         <noscript><p>The default brand follows the system theme. Enable JavaScript to compare brands and modes.</p></noscript>
@@ -28,15 +29,42 @@
             <h-field><label for="theme-stage">Stage</label><select id="theme-stage" name="stage"><option>Planning</option><option>In progress</option></select></h-field>
             <h-field><label for="theme-notes">Notes (optional)</label><textarea id="theme-notes" name="notes" rows="3"></textarea></h-field>
             <label><input type="checkbox" name="updates" value="yes"> Send project updates</label>
+            <h-field><label for="theme-reference">Read-only reference</label><input id="theme-reference" value="HUSK-2026" readonly></h-field>
+            <h-field><label for="theme-disabled">Unavailable answer</label><input id="theme-disabled" value="Unavailable while access is pending" disabled></h-field>
+            <button type="button" disabled>Unavailable action</button>
             <h-cluster><button id="theme-submit" type="submit" hidden>Check project</button><a href="../workspace.html">Open workspace</a></h-cluster>
             <output id="theme-result" role="status"></output>
           </h-stack></form></h-form>
         </section></h-panel>
-        <section aria-labelledby="tokens-title"><h2 id="tokens-title">Semantic choices</h2><p>The forest brand overrides action, link and header colors for both light and dark modes. Shared surfaces, readable text and focus styles remain coordinated.</p><pre><code>&lt;html data-brand="forest" data-theme="dark"&gt;
+        <section aria-labelledby="tokens-title"><h2 id="tokens-title">Semantic choices</h2><p>The forest brand overrides action, link, selection and header colors for both light and dark modes. Shared surfaces, readable text and focus styles remain coordinated.</p><pre tabindex="0" role="region" aria-label="Forest theme markup"><code>&lt;html data-brand="forest" data-theme="dark"&gt;
 
 &lt;link rel="stylesheet" href="css/husk.css"&gt;
-&lt;link rel="stylesheet" href="themes/forest.css"&gt;</code></pre><p><a href="../docs/theming.md">Read the theme contract</a> for token names, inheritance, scope and the planned reference/semantic/component scale.</p><details><summary>What still needs manual review?</summary><p>Native control popups, forced colors, zoom, text spacing and screen-reader behavior require platform testing. Changing theme tokens is not an automatic accessibility certification.</p></details></section>
+&lt;link rel="stylesheet" href="themes/forest.css"&gt;</code></pre><p><a href="../docs/theming.md">Read the theme contract</a> for reference scales, semantic states, local geometry and token inheritance.</p><details><summary>What still needs manual review?</summary><p>Native control popups, forced colors, zoom, text spacing and screen-reader behavior require platform testing. Changing theme tokens is not an automatic accessibility certification.</p></details></section>
       </h-grid>
+      <section aria-labelledby="state-title">
+        <h2 id="state-title">Shared state colors</h2>
+        <p>Static color samples use semantic text, background and border tokens. Their headings explain the state without relying on color. These samples are application CSS; callout, badge and toast components remain planned.</p>
+        <h-grid id="state-tokens">
+          <article data-token-state="info"><h3>Information</h3><p>Your project stays on this device.</p></article>
+          <article data-token-state="success"><h3>Success</h3><p>The project details were saved.</p></article>
+          <article data-token-state="warning"><h3>Warning</h3><p>Review your changes before sharing.</p></article>
+          <article data-token-state="danger"><h3>Danger</h3><p>The export failed. Try again.</p></article>
+          <article data-token-state="selected"><h3>Selected</h3><p>Current project: Coastal field guide.</p></article>
+          <article data-token-state="disabled"><h3>Disabled</h3><p>This action is currently unavailable.</p></article>
+          <article data-token-state="busy"><h3>Busy</h3><p>The export is in progress. Keep its status near the task.</p></article>
+        </h-grid>
+      </section>
+      <section aria-labelledby="focus-title">
+        <h2 id="focus-title">Keyboard focus</h2>
+        <p>Choose a focus palette, then use Tab through links, inputs, buttons and this disclosure. Both colors also apply to the skip link, header links and error summary.</p>
+        <h-cluster><a href="#preview-title">Return to the form preview</a><a href="../workspace.html">Inspect current-page selection in the workspace</a></h-cluster>
+        <details><summary>Focus on a disclosure</summary><p>The focused text uses the same background and dark edge as focused links. Form controls and error summaries retain a two-color outline.</p></details>
+        <pre tabindex="0" role="region" aria-label="Focus palette CSS"><code>:root {
+  --husk-focus: #bde9ff;
+  --husk-focus-edge: #102a43;
+  --husk-focus-width: 3px;
+}</code></pre>
+      </section>
     </h-stack></main>
   <footer><p>Husk · <a href="../docs/README.md">Documentation</a> · <a href="../ROADMAP.md">Roadmap</a> · <a href="../tests/accessibility.html">Browser checks</a></p></footer>
 </body>

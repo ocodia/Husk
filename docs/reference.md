@@ -201,6 +201,12 @@ All defaults live inside the `husk` cascade layer. Normal unlayered application 
 
 Color variables include `--husk-text`, `--husk-heading`, `--husk-canvas`, `--husk-surface`, `--husk-muted`, `--husk-border`, `--husk-link`, `--husk-link-hover`, `--husk-focus`, and `--husk-invalid`. Fonts use `--husk-font-sans` and `--husk-font-mono`. Set readable foreground/background pairs for each theme, including hover states.
 
+Reference spacing (`--husk-space-0` through `-8`), radius, font-size, line-height and weight scales are available. `--husk-space` and `--husk-radius` now default to the reference aliases `--husk-space-4` and `--husk-radius-md`; their values and direct application overrides remain compatible. Native heading/body sizes consume the type tokens.
+
+Semantic info/success/warning/danger/selected/disabled/busy roles each provide `--husk-<role>-text`, `-bg` and `-border` triplets. Disabled native controls use opaque semantic colors; selection colors are used in the workspace. `--husk-invalid` defaults to the danger border but still accepts an independent override.
+
+Focus uses `--husk-focus`, `--husk-focus-edge` and `--husk-focus-width` (3px) throughout controls, links, disclosures, summaries, skip links and header/workspace navigation. Forced colors substitutes system colors. See [the full token contract](theming.md) for names, defaults, alias resolution and the supported scope. Variant, size and density attributes remain planned.
+
 The original `--text`, `--headings`, `--body-bg`, `--details`, `--borders`, font, header, highlight, and dark-theme variables remain supported as fallback values. `--interactive` and `--interactive-alt` now control links only. Use the separate `--husk-action-*` variables for buttons. This prevents bright dark-mode links from also setting an unsuitable button background.
 
 ## Native interactions

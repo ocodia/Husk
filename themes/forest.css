@@ -1,5 +1,6 @@
 /* Optional brand. Load after husk.css and set data-brand="forest" on html. */
 :root[data-brand="forest"] {
+  --husk-selected-bg: #e7f4eb;
   --husk-link: #146b45;
   --husk-link-hover: #0d5032;
   --husk-action-bg: #146b45;
@@ -10,6 +11,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root[data-brand="forest"]:not([data-theme="light"]) {
+    --husk-selected-bg: #183b2a;
     --husk-link: #8cdbb3;
     --husk-link-hover: #bbefd2;
     --husk-action-bg: #176b47;
@@ -20,6 +22,7 @@
   }
 }
 :root[data-brand="forest"][data-theme="dark"] {
+  --husk-selected-bg: #183b2a;
   --husk-link: #8cdbb3;
   --husk-link-hover: #bbefd2;
   --husk-action-bg: #176b47;

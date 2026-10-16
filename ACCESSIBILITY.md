@@ -60,7 +60,7 @@ Avoid combining focus movement with multiple assertive live announcements of the
 <main id="main" tabindex="-1">...</main>
 ```
 
-Husk uses a yellow-and-dark focus treatment to remain distinguishable across surfaces. Text links and summaries receive a contrasting focused background. Forced-colors mode uses a system outline. Form-control borders have a separate contrast token. Test customized themes independently. [GOV.UK focus guidance](https://design-system.service.gov.uk/get-started/focus-states/).
+Husk defaults to a yellow-and-dark focus pair across controls, links, disclosures, summaries, skip links and header/workspace navigation. Focused text uses the pair for fill/text/edge; controls and error summaries retain the two-color outline treatment. Both colors and the shared 3px width use documented tokens. Forced-colors mode uses a system outline and system text/background colors. Form-control borders have a separate contrast token. Test customized themes independently. [GOV.UK focus guidance](https://design-system.service.gov.uk/get-started/focus-states/).
 
 ## Complexity must earn its place
 
@@ -88,9 +88,9 @@ Use automated checks to find defects, then perform manual checks and user testin
 Serve the repository and open `tests/accessibility.html`.
 
 - **Run component checks** tests summary naming, focus, safe message rendering, error-link focus, disclosure opening, native submission, form validation and reset, server-error adoption, custom-validity precedence, incomplete-summary fallback, dynamic fields, reconnect behavior, and layout variables. It needs no network connection.
-- **Run example checks** tests catalogue filtering/reset, real brand/mode changes, form values and errors, parsed server-response recovery, native dialog focus, and all five newer example pages at 320px in LTR/RTL with scripts blocked. It needs no network connection.
+- **Run example checks** tests catalogue filtering/reset, real brand/mode changes, token aliases and legacy overrides, state contrast, focus palettes, checkbox sizing, form values/errors, parsed server-response recovery, native dialog focus, and all five newer example pages at 320px in LTR/RTL with scripts blocked. It needs no network connection.
 - **Check without JavaScript** loads the workspace with scripts blocked and checks native labels, hints, validation, and 320px LTR/RTL layout.
-- **Audit examples with axe-core** loads pinned axe-core 4.14.0 from jsDelivr inside a test iframe. It checks all eight example pages in light/dark themes, both brands on the theme workbench, and the workspace's error state. This is a test-only dependency. Results include incomplete checks for manual review.
+- **Audit examples with axe-core** loads pinned axe-core 4.14.0 from jsDelivr inside a test iframe. It checks all eight example pages in light/dark themes, both brands/focus palettes on the theme workbench (with header-link focus), and the workspace's error state. This is a test-only dependency. Results include incomplete checks for manual review.
 
 Manual checks still required include full keyboard traversal, actual screen-reader announcements, zoom/text-spacing behavior, forced colors, RTL, native control differences, and testing with disabled people. A passing automated run is not an accessibility certification.
 
@@ -142,3 +142,16 @@ The 16 added component checks cover initial server markup, preserved focus/answe
 The response page had no incomplete axe findings in light or dark mode. Existing native select contrast and legacy video-caption manual findings remain. HTML parsing, JavaScript syntax and documentation/catalogue integrity checks passed. Chrome's response page was also visually reviewed.
 
 This adds partial browser evidence; it does not complete Firefox/Edge/mobile, screen-reader, zoom/text-spacing, forced-colors or disabled-user testing. External ownership changes, complex grouping, localization and async integration remain explicit Phase 0 work.
+
+## Token and focus checks: 17 October 2026
+
+Chrome 155.0.8059.80 on macOS, served locally:
+
+- All 53 component checks and 93 example checks passed. The 55 new token checks cover rendered spacing/radius/type aliases, direct and legacy overrides, seven semantic state triplets across two brands/modes, disabled text, checkbox sizing and both focus palettes on inputs, text links, header links, error summaries and skip links.
+- Sample text met 4.5:1 and applicable state markers met 3:1 against their own backgrounds in the checked default/forest light/dark combinations. Disabled text met the same text target by design; no inactive-marker contrast claim is made.
+- Axe-core 4.14.0 reported zero violations in 22 page/brand/mode/focus combinations plus the workspace invalid state. The workbench audit focuses a real header link in each palette. An initially reported scrolling code-region issue was fixed with explicit keyboard focus and accessible names, then the audit was rerun successfully.
+- The no-JavaScript workspace check passed. The expanded example suite also checked 320px LTR/RTL pages with scripts blocked. State samples were visually reviewed in Chrome.
+- Existing native select contrast and legacy media-caption manual findings remain. Safari/Firefox/Edge/mobile and manual forced-colors, zoom/text-spacing and screen-reader checks were not rerun for this token change.
+- HTML/CSS parsing, changed JavaScript syntax, documentation links and generated catalogue checks passed. Foundation CSS measured 21,230 bytes raw / 4,682 bytes gzip at level 9 without minification (previously 3,983 bytes gzip); optional brand/example styles are separate. This is a measurement, not a regression-budget enforcement tool.
+
+The scales and shared colors are implemented; variants, control sizes, density and the remaining accessibility release evidence are still Phase 0 work.

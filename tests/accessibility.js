@@ -143,19 +143,30 @@ auditButton.addEventListener('click', async () => {
         else win.document.documentElement.dataset.brand = brand;
         for (const theme of ['light', 'dark']) {
           win.document.documentElement.dataset.theme = theme;
-          const audit = await win.axe.run(win.document, {
-            runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
-          });
-          report.push(`${route} (${brand}, ${theme}): ${audit.violations.length} violations; ${audit.incomplete.length} need manual review`);
-          for (const violation of audit.violations) {
-            report.push(`  ${violation.id}: ${violation.help}`);
-            for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+          for (const palette of route.endsWith('/themes.html') ? ['default', 'blue'] : ['default']) {
+            if (route.endsWith('/themes.html')) {
+              win.document.querySelector('#brand').value = brand;
+              win.document.querySelector('#mode').value = theme;
+              const focusPalette = win.document.querySelector('#focus-palette');
+              focusPalette.value = palette;
+              focusPalette.dispatchEvent(new win.Event('change', { bubbles: true }));
+              win.document.querySelector('#theme-name').focus();
+              win.document.querySelector('body > header a').focus();
+            }
+            const audit = await win.axe.run(win.document, {
+              runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
+            });
+            report.push(`${route} (${brand}, ${theme}, focus ${palette}): ${audit.violations.length} violations; ${audit.incomplete.length} need manual review`);
+            for (const violation of audit.violations) {
+              report.push(`  ${violation.id}: ${violation.help}`);
+              for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+            }
+            for (const review of audit.incomplete) {
+              report.push(`  REVIEW ${review.id}: ${review.help}`);
+              for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+            }
+            reportResults(report.join('\n'));
           }
-          for (const review of audit.incomplete) {
-            report.push(`  REVIEW ${review.id}: ${review.help}`);
-            for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
-          }
-          reportResults(report.join('\n'));
         }
       }
       if (route.endsWith('workspace.html')) {
