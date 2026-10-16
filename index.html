@@ -3,59 +3,42 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/husk.css" media="screen" />
-    <title>Husk</title>
+    <link rel="stylesheet" href="css/husk.css" />
+    <meta name="description" content="A small CSS foundation for conventional HTML. Explore native elements, accessible forms, themes, and optional layouts." />
+    <script src="js/examples.js" defer></script>
+    <title>Husk — HTML first</title>
   </head>
 
   <body>
     <header>
       <h1>Husk</h1>
-      <p>Just enough CSS</p>
+      <p>Just enough CSS. Write HTML. Get useful defaults.</p>
     </header>
-    <h2>Elements</h2>
-    <nav role="navigation">
-      <ol>
+    <nav aria-label="Examples">
+      <ul>
+        <li><a href="#getting-started">Start</a></li>
         <li><a href="#text">Text</a></li>
-        <ol>
-          <li><a href="#text-headings">Headings</a></li>
-          <li><a href="#text-paragraphs">Paragraphs</a></li>
-          <li><a href="#text-blockquotes">Blockquotes</a></li>
-          <li><a href="#text-lists">Lists</a></li>
-          <li><a href="#text-tables">Tables</a></li>
-          <li><a href="#text-code">Code</a></li>
-          <li><a href="#text-inline">Inline elements</a></li>
-          <li><a href="#text-address">Address</a></li>
-          <li><a href="#text-details">Details</a></li>
-        </ol>
-        <li><a href="#embedded">Embedded content</a></li>
-        <ol>
-          <li><a href="#embedded-images">Images</a></li>
-          <li><a href="#embedded-audio">Audio</a></li>
-          <li><a href="#embedded-video">Video</a></li>
-          <li><a href="#embedded-canvas">Canvas</a></li>
-          <li><a href="#embedded-meter">Meter</a></li>
-          <li><a href="#embedded-progress">Progress</a></li>
-          <li><a href="#embedded-svg">Inline SVG</a></li>
-          <li><a href="#embedded-iframes">IFrames</a></li>
-        </ol>
+        <li><a href="#embedded">Media</a></li>
         <li><a href="#forms">Forms</a></li>
-        <ol>
-          <li><a href="#forms-inputs">Input fields</a></li>
-          <li><a href="#forms-selects">Select menus</a></li>
-          <li><a href="#forms-checkboxes">Checkboxes</a></li>
-          <li><a href="#forms-radio">Radio buttons</a></li>
-          <li><a href="#forms-textareas">Textareas</a></li>
-          <li><a href="#forms-html5">HTML5 inputs</a></li>
-          <li><a href="#forms-buttons">Buttons</a></li>
-        </ol>
-      </ol>
+        <li><a href="#form-states">States</a></li>
+        <li><a href="#interactions">Interactions</a></li>
+        <li><a href="#layouts">Layouts</a></li>
+        <li><a href="#themes">Themes</a></li>
+      </ul>
     </nav>
-    <main>
+    <main id="main">
+      <section id="getting-started">
+        <h2>HTML first</h2>
+        <p>Readable documents, native controls, and responsive defaults from one stylesheet. No classes or JavaScript required for the basics.</p>
+        <pre><code>&lt;link rel="stylesheet" href="css/husk.css"&gt;</code></pre>
+        <p>These element examples use plain HTML. The layout section adds a few optional classes where HTML leaves the arrangement up to you.</p>
+        <p><a href="form.html">Try a complete form</a> · <a href="https://github.com/ocodia/Husk">View the source</a></p>
+      </section>
       <section id="text">
-        <h1>Text</h1>
+        <h2>Text</h2>
 
         <article id="text-headings">
-          <header><h1>Headings</h1></header>
+          <header><h3>Headings</h3></header>
           <h1>Heading 1</h1>
           <h2>Heading 2</h2>
           <h3>Heading 3</h3>
@@ -65,7 +48,7 @@
         </article>
         <hr />
         <article id="text-paragraphs">
-          <header><h1>Paragraphs</h1></header>
+          <header><h3>Paragraphs</h3></header>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ex orci, a rhoncus arcu bibendum at. Proin euismod ligula eget accumsan. Sed egestas libero leo, non blandit
             nisl placerat id. Pellentesque eget auctor ante. Fusce nec leo CSS, porta leo in, dignissim purus. Etiam justo risus, congue vel mauris id, accumsan imperdiet quam. Vestibulum ante ipsum
@@ -74,7 +57,7 @@
         </article>
         <hr />
         <article id="text-blockquotes">
-          <header><h1>Blockquotes</h1></header>
+          <header><h3>Blockquotes</h3></header>
 
           <blockquote>
             <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
@@ -83,20 +66,20 @@
         </article>
         <hr />
         <article id="text-lists">
-          <header><h1>Lists</h1></header>
-          <h2>Ordered list</h2>
+          <header><h3>Lists</h3></header>
+          <h4>Ordered list</h4>
           <ol>
             <li>Item 1</li>
             <li>Item 2</li>
             <li>Item 3</li>
           </ol>
-          <h2>Unordered list</h2>
+          <h4>Unordered list</h4>
           <ul>
             <li>Item 1</li>
             <li>Item 2</li>
             <li>Item 3</li>
           </ul>
-          <h2>Definition list</h2>
+          <h4>Definition list</h4>
           <dl>
             <dt>Beast of Bodmin</dt>
             <dd>A large feline inhabiting Bodmin Moor.</dd>
@@ -109,7 +92,7 @@
         </article>
         <hr />
         <article id="text-tables">
-          <header><h1>Tables</h1></header>
+          <header><h3>Tables</h3></header>
 
           <table>
             <caption>
@@ -167,7 +150,7 @@
         </article>
         <hr />
         <article id="text-code">
-          <header><h1>Code</h1></header>
+          <header><h3>Code</h3></header>
           <p>Keyboard input: <kbd>Ctrl-F4</kbd></p>
           <p>
             Sample output:
@@ -188,7 +171,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="text-inline">
-          <header><h1>Inline elements</h1></header>
+          <header><h3>Inline elements</h3></header>
           <p><a href="#!">This is a text link</a></p>
           <p><strong>Strong is used to indicate strong importance!</strong></p>
           <p><em>This text has added emphasis.</em></p>
@@ -215,7 +198,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="text-address">
-          <header><h1>Address</h1></header>
+          <header><h3>Address</h3></header>
           <address>
             <strong>Business Name</strong><br />
             Street Address<br />
@@ -228,7 +211,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="text-details">
-          <header><h1>Details</h1></header>
+          <header><h3>Details</h3></header>
           <details>
             <summary>Some details</summary>
             <p>More info about the details.</p>
@@ -241,24 +224,24 @@ p q r s t u v w x y z { | } ~
       </section>
       <hr />
       <section id="embedded">
-        <h1>Embedded content</h1>
+        <h2>Embedded content</h2>
         <article id="embedded-images">
-          <header><h1>Images</h1></header>
-          <h2>
+          <header><h3>Images</h3></header>
+          <h3>
             img
-          </h2>
-          <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
-          <h2>
+          </h3>
+          <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" loading="lazy" />
+          <h3>
             Figure
-          </h2>
+          </h3>
           <figure>
-            <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" />
+            <img src="img/image.jpg" alt="Photo of Glencoe Valley, Scotland" loading="lazy" />
             <figcaption>Glencoe Valley, Scotland</figcaption>
           </figure>
         </article>
         <hr />
         <article id="embedded-audio">
-          <h2>Audio</h2>
+          <h3>Audio</h3>
           <audio controls src="audio/audio.mp3">
             Your browser does not support the
             <code>audio</code> element.
@@ -266,7 +249,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="embedded-video">
-          <h2>Video</h2>
+          <h3>Video</h3>
           <video controls>
             <source src="video/video.mp4" type="video/mp4" />
             Sorry, your browser doesn't support embedded videos.
@@ -274,73 +257,73 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="embedded-canvas">
-          <h2>Canvas</h2>
-          <canvas height="50px">canvas</canvas>
+          <h3>Canvas</h3>
+          <canvas height="50">canvas</canvas>
         </article>
         <hr />
         <article id="embedded-meter">
-          <h2>Meter</h2>
-          <meter value="2" min="0" max="10">2 out of 10</meter>
+          <h3>Meter</h3>
+          <meter aria-label="Storage used" value="2" min="0" max="10">2 out of 10</meter>
         </article>
         <hr />
         <article id="embedded-progress">
-          <h2>Progress</h2>
-          <progress id="file" max="100" value="70">70%</progress>
+          <h3>Progress</h3>
+          <progress aria-label="Upload progress" id="file" max="100" value="70">70%</progress>
         </article>
         <hr />
         <article id="embedded-svg">
-          <h2>Inline SVG</h2>
-          <svg width="100px" height="100px">
-            <circle cx="100" cy="100" r="100" fill="#1fa3ec"></circle>
+          <h3>Inline SVG</h3>
+          <svg width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="Blue circle">
+            <circle cx="50" cy="50" r="45" fill="#1fa3ec"></circle>
           </svg>
         </article>
         <hr />
         <article id="embedded-iframes">
-          <h2>IFrame</h2>
-          <iframe src="index.html" height="300px"></iframe>
+          <h3>IFrame</h3>
+          <iframe src="form.html" title="Husk form preview" height="300" loading="lazy"></iframe>
         </article>
         <hr />
       </section>
 
       <section id="forms">
-        <h1>Form elements</h1>
+        <h2>Form elements</h2>
         <p><a href="form.html">Form example</a></p>
         <article id="forms-inputs">
-          <header><h1>Input fields</h1></header>
+          <header><h3>Input fields</h3></header>
           <form>
             <p>
               <label for="input-text">Text input</label>
-              <input id="input-text" type="text" placeholder="Text Input" />
+              <input id="input-text" type="text" placeholder="Text Input" name="input-text" />
             </p>
             <p>
               <label for="input-password">Password input</label>
-              <input id="input-password" type="password" placeholder="Type your Password" />
+              <input id="input-password" type="password" placeholder="Type your Password" name="input-password" />
             </p>
             <p>
               <label for="input-url">URL input</label>
-              <input id="input-url" type="url" placeholder="http://yoursite.com" />
+              <input id="input-url" type="url" placeholder="http://yoursite.com" name="input-url" />
             </p>
             <p>
               <label for="input-email">Email input</label>
-              <input id="input-email" type="email" placeholder="name@email.com" />
+              <input id="input-email" type="email" placeholder="name@email.com" name="input-email" />
             </p>
             <p>
               <label for="input-tel">Telephone input</label>
-              <input id="input-tel" type="tel" placeholder="(999) 999-9999" />
+              <input id="input-tel" type="tel" placeholder="(999) 999-9999" name="input-tel" />
             </p>
             <p>
               <label for="input-search">Search input</label>
-              <input id="input-search" type="search" placeholder="Enter Search Term" />
+              <input id="input-search" type="search" placeholder="Enter Search Term" name="input-search" />
             </p>
             <p>
               <label for="input-number">Number Input</label>
-              <input id="input-number" type="number" placeholder="Enter a Number" />
+              <input id="input-number" type="number" placeholder="Enter a Number" name="input-number" />
             </p>
           </form>
         </article>
         <hr />
         <article id="forms-selects">
-          <header><h1>Select menus</h1></header>
+          <header><h3>Select menus</h3></header>
           <form>
             <label for="pet-select">Select</label>
             <select name="pets" id="pet-select">
@@ -356,7 +339,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="forms-checkboxes">
-          <header><h1>Checkboxes</h1></header>
+          <header><h3>Checkboxes</h3></header>
           <form>
             <label for="checkbox1">
               <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" />
@@ -368,7 +351,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="forms-radio">
-          <header><h1>Radio buttons</h1></header>
+          <header><h3>Radio buttons</h3></header>
           <form>
             <label for="radio1">
               <input id="radio1" name="radio" type="radio" checked="checked" />
@@ -386,7 +369,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="forms-textareas">
-          <header><h1>Textareas</h1></header>
+          <header><h3>Textareas</h3></header>
           <form>
             <label for="textarea">Textarea</label>
             <textarea id="textarea" rows="8" cols="100" placeholder="Enter your message here"></textarea>
@@ -394,39 +377,35 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="forms-html5">
-          <header><h1>HTML5 inputs</h1></header>
+          <header><h3>HTML5 inputs</h3></header>
           <form>
             <p>
               <label for="input-colour">Color input</label>
-              <input type="color" id="input-colour" value="#000000" />
+              <input type="color" id="input-colour" value="#000000" name="input-colour" />
             </p>
             <p>
-              <label for="input-number">Number input</label>
-              <input type="number" id="input-number" min="0" max="10" value="5" />
+              <label for="input-number-limited">Number input</label>
+              <input type="number" id="input-number-limited" min="0" max="10" value="5" name="input-number-limited" />
             </p>
             <p>
               <label for="input-range">Range input</label>
-              <input type="range" id="input-range" value="10" />
+              <input type="range" id="input-range" value="10" name="input-range" />
             </p>
             <p>
               <label for="input-date">Date input</label>
-              <input type="date" id="input-date" value="1970-01-01" />
+              <input type="date" id="input-date" value="1970-01-01" name="input-date" />
             </p>
             <p>
               <label for="input-datetime-month">Month input</label>
-              <input type="month" id="input-datetime-month" value="1970-01" />
+              <input type="month" id="input-datetime-month" value="1970-01" name="input-datetime-month" />
             </p>
             <p>
               <label for="input-datetime-week">Week input</label>
-              <input type="week" id="input-datetime-week" value="1970-W01" />
-            </p>
-            <p>
-              <label for="input-datetime">Datetime input</label>
-              <input type="datetime" id="input-datetime" value="1970-01-01T00:00:00Z" />
+              <input type="week" id="input-datetime-week" value="1970-W01" name="input-datetime-week" />
             </p>
             <p>
               <label for="input-datetime-local">Datetime-local input</label>
-              <input type="datetime-local" id="input-datetime-local" value="1970-01-01T00:00" />
+              <input type="datetime-local" id="input-datetime-local" value="1970-01-01T00:00" name="input-datetime-local" />
             </p>
             <p>
               <label for="input-file">Choose a profile picture:</label>
@@ -436,7 +415,7 @@ p q r s t u v w x y z { | } ~
         </article>
         <hr />
         <article id="forms-buttons">
-          <header><h1>Buttons</h1></header>
+          <header><h3>Buttons</h3></header>
           <form>
             <p>
               <input type="button" value="Input button" />
@@ -452,6 +431,121 @@ p q r s t u v w x y z { | } ~
             </p>
           </form>
         </article>
+      </section>
+      <section id="form-states">
+        <h2>Form states</h2>
+        <p>Native attributes describe the state. Tab through these controls to see keyboard focus. Submit the email form to try browser validation.</p>
+        <form>
+          <p>
+            <label for="state-email">Email address</label>
+            <input id="state-email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint" />
+            <small id="email-hint">Enter a complete email address. Validation starts after interaction.</small>
+          </p>
+          <button type="submit">Check email</button>
+          <output aria-live="polite"></output>
+        </form>
+        <p>
+          <label for="state-invalid">Application validation</label>
+          <input id="state-invalid" name="username" value="already-taken" aria-invalid="true" aria-describedby="username-error" />
+          <small id="username-error">This username is taken. Choose another one.</small>
+        </p>
+        <p>
+          <label for="state-readonly">Read-only reference</label>
+          <input id="state-readonly" value="HUSK-2026" readonly name="state-readonly" />
+        </p>
+        <fieldset disabled>
+          <legend>Disabled controls</legend>
+          <label for="state-disabled">Unavailable field</label>
+          <input id="state-disabled" value="Not editable" name="state-disabled" />
+          <label><input type="checkbox" checked /> Unavailable option</label>
+          <button type="button">Unavailable action</button>
+        </fieldset>
+        <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" name="email" type="email" required&gt;</code></pre>
+      </section>
+      <section id="interactions">
+        <h2>Native interactions</h2>
+        <h3>Disclosure</h3>
+        <details>
+          <summary>Does this need JavaScript?</summary>
+          <p>No. The browser manages this disclosure.</p>
+          <details>
+            <summary>A nested disclosure</summary>
+            <p>Nested content keeps its own spacing and open state.</p>
+          </details>
+        </details>
+        <h3>Popover</h3>
+        <p>A native popover closes with Escape or a click outside. Its toggle needs no JavaScript in supporting browsers.</p>
+        <button type="button" popovertarget="help-popover">Show help</button>
+        <div id="help-popover" popover>
+          <h3>A little help</h3>
+          <p>Husk styles the HTML you already know.</p>
+          <button type="button" popovertarget="help-popover" popovertargetaction="hide">Close help</button>
+        </div>
+        <pre><code>&lt;button popovertarget="help"&gt;Help&lt;/button&gt;
+&lt;div id="help" popover&gt;Helpful content.&lt;/div&gt;</code></pre>
+        <h3>Modal dialog</h3>
+        <p>This example uses a small script to call the native dialog API. The close button uses a normal dialog form.</p>
+        <button type="button" id="open-dialog" hidden>Open dialog</button>
+        <noscript><p>Enable JavaScript to open this modal example. The rest of Husk works without it.</p></noscript>
+        <dialog id="example-dialog" aria-labelledby="dialog-title">
+          <h3 id="dialog-title">A native dialog</h3>
+          <p>The browser manages modal focus and Escape. Closing returns focus to the opener.</p>
+          <form method="dialog"><button autofocus>Close dialog</button></form>
+        </dialog>
+      </section>
+      <section id="layouts">
+        <h2>Optional layouts</h2>
+        <p>Elements describe meaning. These three classes describe arrangement. Each adapts without breakpoint classes.</p>
+        <h3>Stack</h3>
+        <div class="stack">
+          <p>A vertical group with consistent spacing.</p>
+          <p>Useful when mixed elements need the same rhythm.</p>
+          <a href="#getting-started">Back to the start</a>
+        </div>
+        <pre><code>&lt;div class="stack"&gt;…&lt;/div&gt;</code></pre>
+        <h3>Cluster</h3>
+        <div class="cluster">
+          <button type="button" popovertarget="help-popover">Help</button>
+          <a href="form.html">Form example</a>
+          <span>Items wrap when space runs out.</span>
+        </div>
+        <pre><code>&lt;div class="cluster"&gt;…&lt;/div&gt;</code></pre>
+        <h3>Grid</h3>
+        <div class="grid">
+          <section><h4>Conventional HTML</h4><p>Use elements for their meaning.</p></section>
+          <section><h4>Native behavior</h4><p>Keep browser controls and interactions.</p></section>
+          <section><h4>Small surface</h4><p>Add a class only when you need a layout choice.</p></section>
+        </div>
+        <pre><code>&lt;div class="grid"&gt;…&lt;/div&gt;</code></pre>
+        <h3>Wide tables</h3>
+        <p>One optional wrapper contains wide data. Focus it with Tab, then scroll with the arrow keys.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-labelledby="wide-table-caption">
+          <table>
+            <caption id="wide-table-caption">Release checks</caption>
+            <thead><tr><th scope="col">Example</th><th scope="col">Keyboard</th><th scope="col">Small screens</th><th scope="col">Light theme</th><th scope="col">Dark theme</th><th scope="col">Native behavior</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Forms</th><td>Visible focus</td><td>Flexible fields</td><td>Readable text</td><td>Separate action colors</td><td>Browser validation</td></tr>
+              <tr><th scope="row">Dialogs</th><td>Return focus</td><td>Bounded width</td><td>Canvas surface</td><td>Canvas surface</td><td>Escape to close</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section id="themes">
+        <h2>Themes and customization</h2>
+        <p>Husk follows your system theme automatically. This page can also preview a forced light or dark theme.</p>
+        <p id="theme-control" hidden>
+          <label for="theme">Preview theme</label>
+          <select id="theme"><option value="auto">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+        </p>
+        <p>Override a few CSS variables in your own stylesheet to set your brand and spacing.</p>
+        <pre><code>:root {
+  --husk-action-bg: #005cc5;
+  --husk-action-text: #fff;
+  --husk-radius: .5rem;
+  --husk-content-width: 72rem;
+}</code></pre>
+        <p>Use your browser’s print preview to see the print styles. Husk adds no decorative motion.</p>
       </section>
     </main>
     <footer>

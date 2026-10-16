@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/husk.css" media="screen" />
+    <link rel="stylesheet" href="css/husk.css" />
     <title>Husk - Form</title>
   </head>
 
@@ -15,10 +15,10 @@
     <main>
       <section>
         <header>
-          <h1>Form example</h1>
+          <h2>Form example</h2>
         </header>
-        <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <form>
+        <p>A complete form using conventional HTML. No classes required.</p>
+        <form action="form.html" method="get">
           <p>
             <label for="name">Name (4 to 8 characters):</label>
             <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="20" value="Hello!" />
@@ -26,7 +26,7 @@
 
           <p>
             <label for="address">Address:</label>
-            <textarea id="address" cols="100" rows="10"></textarea>
+            <textarea name="address" id="address" cols="100" rows="10"></textarea>
           </p>
           <fieldset>
             <legend>About your monster</legend>
@@ -36,9 +36,9 @@
 
             <hr />
             <label for="checkbox1">
-              <input id="checkbox1" name="checkbox" type="checkbox" checked="checked" /> Choice A</label>
-              <label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label>
-              <label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label>
+              <input id="checkbox1" name="interests" type="checkbox" value="a" checked="checked" /> Choice A</label>
+              <label for="checkbox2"><input id="checkbox2" name="interests" type="checkbox" value="b" /> Choice B</label>
+              <label for="checkbox3"><input id="checkbox3" name="interests" type="checkbox" value="c" /> Choice C</label>
           </fieldset>
         
           <p>
@@ -62,7 +62,7 @@
 
           <p>
             <label for="start">Start date:</label>
-            <input type="date" id="start" />
+            <input type="date" name="start" id="start" />
           </p>
 
           <p>
@@ -74,12 +74,12 @@
             <label for="terms"><input type="checkbox" id="terms" name="terms" /> Agree to terms and conditions</label>
           </p>
 
-          <input type="submit" value="Submit" /> <input type="button" value="Cancel" />
+          <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
         </form>
       </section>
     </main>
     <footer>
-      <p>Husk - <a href="https://github.com/ocodia/Husk/">Github</a></p>
+      <p><a href="index.html">All examples</a> · Husk - <a href="https://github.com/ocodia/Husk/">Github</a></p>
     </footer>
   </body>
 </html>
