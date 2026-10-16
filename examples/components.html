@@ -32,9 +32,11 @@
       <section aria-label="Component contracts"><details id="button" data-component data-category="Actions" data-status="native">
   <summary>Button — Native recipe · Phase 1</summary>
   <p><strong>Actions</strong> · <code>button; a[href]</code></p>
-  <p>Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names.</p>
+  <p>Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names. Native buttons support data-variant primary/secondary/quiet/danger and data-size small/default/large; anchors keep link styling.</p>
   <p><strong>Acceptance work:</strong> Enter/Space, focus, submitter, loading feedback, and disabled behavior.</p>
   <pre><code>&lt;button type=&quot;submit&quot;&gt;Save project&lt;/button&gt;
+&lt;button type=&quot;reset&quot; data-variant=&quot;secondary&quot;&gt;Reset answers&lt;/button&gt;
+&lt;button type=&quot;button&quot; data-variant=&quot;quiet&quot; data-size=&quot;small&quot;&gt;Clear filters&lt;/button&gt;
 &lt;a href=&quot;/projects&quot;&gt;View projects&lt;/a&gt;</code></pre>
   <p><a href="https://webawesome.com/docs/components/button/">Reference component</a> · <a href="../docs/component-template.md">Specification template</a></p>
 </details><details id="button-group" data-component data-category="Actions" data-status="foundation">
@@ -126,7 +128,7 @@
 </details><details id="input" data-component data-category="Forms" data-status="native">
   <summary>Input — Native recipe · Phase 1</summary>
   <p><strong>Forms</strong> · <code>input inside h-field</code></p>
-  <p>Use the correct native type, autocomplete, inputmode, label, and name.</p>
+  <p>Use the correct native type, autocomplete, inputmode, label, and name. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.</p>
   <p><strong>Acceptance work:</strong> Autofill, native validation, descriptions, read-only/disabled, reset, and mobile keyboard.</p>
   <pre><code>&lt;h-field&gt;
   &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
@@ -183,7 +185,7 @@
 </details><details id="select" data-component data-category="Forms" data-status="native">
   <summary>Select — Native recipe · Phase 1</summary>
   <p><strong>Forms</strong> · <code>select</code></p>
-  <p>Native options remain the default; searchable choices belong to the separate combobox contract.</p>
+  <p>Native options remain the default; searchable choices belong to the separate combobox contract. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.</p>
   <p><strong>Acceptance work:</strong> Arrow/typing behavior, multiple selection, placeholder validity, padding, zoom, and forced colors.</p>
   <pre><code>&lt;label for=&quot;stage&quot;&gt;Stage&lt;/label&gt;
 &lt;select id=&quot;stage&quot; name=&quot;stage&quot;&gt;
@@ -225,7 +227,7 @@
 </details><details id="textarea" data-component data-category="Forms" data-status="native">
   <summary>Textarea — Native recipe · Phase 1</summary>
   <p><strong>Forms</strong> · <code>textarea inside h-field</code></p>
-  <p>Preserve native multiline editing, resize, name, maxlength, and associated descriptions.</p>
+  <p>Preserve native multiline editing, resize, name, maxlength, and associated descriptions. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.</p>
   <p><strong>Acceptance work:</strong> Newlines, paste, zoom, error recovery, read-only, disabled, and reset.</p>
   <pre><code>&lt;label for=&quot;notes&quot;&gt;Notes&lt;/label&gt;
 &lt;textarea id=&quot;notes&quot; name=&quot;notes&quot; rows=&quot;4&quot;&gt;&lt;/textarea&gt;</code></pre>

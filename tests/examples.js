@@ -50,6 +50,7 @@ exampleButton.addEventListener('click', async () => {
     choose(mode, 'system');
     check(!root.hasAttribute('data-theme') && !root.hasAttribute('data-brand'), 'System/default selections restore native preference behavior.');
     passed.push(...await runThemeTokenChecks(win));
+    passed.push(...await runControlChecks(win));
     const themeForm = doc.querySelector('#theme-form');
     themeForm.requestSubmit();
     check(!doc.querySelector('h-error-summary').hidden && doc.activeElement === doc.querySelector('h-error-summary'), 'Theme preview demonstrates real invalid-form focus.');

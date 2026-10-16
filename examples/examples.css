@@ -34,3 +34,7 @@ h-panel > :is(article, section) > :first-child { margin-block-start: 0; }
 @media print {
   #state-tokens > article { color: #000; background: #fff; border-color: #666; }
 }
+
+#variant-result, #size-result { display: block; }
+#variant-result:empty, #size-result:empty { display: none; }
+#control-sizes { --husk-grid-min: 18rem; }

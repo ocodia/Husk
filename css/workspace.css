@@ -20,8 +20,6 @@ body > header a { margin-inline-start: auto; }
 #project-details dd { margin-inline: 0; }
 #project-details details { background: var(--husk-canvas); }
 #project-form :is(input, select, textarea) { max-inline-size: 100%; }
-#project-form button[type="reset"] { color: var(--husk-text); background: var(--husk-canvas); border-color: var(--husk-border); }
-#project-form button[type="reset"]:hover { background: var(--husk-surface); }
 #task-progress { inline-size: 100%; }
 #save-status { display: block; }
 #save-status:empty { display: none; }

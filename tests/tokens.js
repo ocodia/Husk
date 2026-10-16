@@ -1,3 +1,10 @@
+function tokenLuminance(color) {
+    const values = color.match(/[\d.]+/g)?.map(Number);
+    if (!values || values.length < 3 || (values.length === 4 && values[3] !== 1)) throw new Error(`Expected opaque computed color: ${color}`);
+    return values.slice(0, 3).map((value) => { value /= 255; return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4; }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+  }
+function colorContrast(first, second) { const a = tokenLuminance(first), b = tokenLuminance(second); return (Math.max(a, b) + .05) / (Math.min(a, b) + .05); }
+
 // Test rendered token consumers and contrast, including application/legacy overrides.
 async function runThemeTokenChecks(win) {
   const doc = win.document;
@@ -14,12 +21,7 @@ async function runThemeTokenChecks(win) {
   const style = (element) => win.getComputedStyle(element);
   const probe = fixture.querySelector('span');
   const resolve = (token) => { probe.style.color = `var(${token})`; return style(probe).color; };
-  function luminance(color) {
-    const values = color.match(/[\d.]+/g)?.map(Number);
-    if (!values || values.length < 3 || (values.length === 4 && values[3] !== 1)) throw new Error(`Expected opaque computed color: ${color}`);
-    return values.slice(0, 3).map((value) => { value /= 255; return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4; }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
-  }
-  const contrast = (first, second) => { const a = luminance(first), b = luminance(second); return (Math.max(a, b) + .05) / (Math.min(a, b) + .05); };
+  const contrast = colorContrast;
   try {
     choose(controls[0], 'default');
     choose(controls[1], 'light');

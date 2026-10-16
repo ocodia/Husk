@@ -37,7 +37,7 @@
                 <h-field><label for="recipe-stage">Stage</label><select id="recipe-stage" name="stage"><option value="planning">Planning</option><option value="active">In progress</option></select></h-field>
                 <fieldset><legend>Visibility</legend><label><input type="radio" name="visibility" value="private" checked> Private</label><label><input type="radio" name="visibility" value="team"> Team</label></fieldset>
                 <fieldset><legend>Optional exports</legend><label><input type="checkbox" name="format" value="html"> HTML</label><label><input type="checkbox" name="format" value="pdf"> PDF</label></fieldset>
-                <h-cluster><button id="recipe-submit" type="submit" hidden>Check project</button><button type="reset">Reset answers</button></h-cluster>
+                <h-cluster><button id="recipe-submit" type="submit" hidden>Check project</button><button type="reset" data-variant="secondary">Reset answers</button></h-cluster>
                 <output id="recipe-output" role="status"></output>
                 <noscript><p>Controls remain native. Enable JavaScript to run this local form demonstration.</p></noscript>
               </h-stack>

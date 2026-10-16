@@ -41,6 +41,55 @@
 &lt;link rel="stylesheet" href="css/husk.css"&gt;
 &lt;link rel="stylesheet" href="themes/forest.css"&gt;</code></pre><p><a href="../docs/theming.md">Read the theme contract</a> for reference scales, semantic states, local geometry and token inheritance.</p><details><summary>What still needs manual review?</summary><p>Native control popups, forced colors, zoom, text spacing and screen-reader behavior require platform testing. Changing theme tokens is not an automatic accessibility certification.</p></details></section>
       </h-grid>
+      <section id="action-variants" aria-labelledby="actions-title">
+        <h2 id="actions-title">Action variants</h2>
+        <p>Buttons keep their native behavior. These appearance previews change no project data. Use one primary action per task group and label destructive actions clearly.</p>
+        <h-cluster>
+          <button type="button" data-variant="primary">Save draft</button>
+          <button type="button" data-variant="secondary">Cancel edits</button>
+          <button type="button" data-variant="quiet">Clear filters</button>
+          <button type="button" data-variant="danger">Delete draft</button>
+        </h-cluster>
+        <h-cluster aria-label="Disabled appearance examples" role="group">
+          <button type="button" data-variant="primary" disabled>Save unavailable</button>
+          <button type="button" data-variant="secondary" disabled>Cancel unavailable</button>
+          <button type="button" data-variant="quiet" disabled>Clear unavailable</button>
+          <button type="button" data-variant="danger" disabled>Delete unavailable</button>
+        </h-cluster>
+        <output id="variant-result" role="status"></output>
+        <noscript><p>Appearance previews work without JavaScript; action feedback needs the demo script.</p></noscript>
+        <pre tabindex="0" role="region" aria-label="Native button variant markup"><code>&lt;button type="submit"&gt;Save project&lt;/button&gt;
+&lt;button type="reset" data-variant="secondary"&gt;Reset answers&lt;/button&gt;
+&lt;button type="button" data-variant="quiet"&gt;Clear filters&lt;/button&gt;
+&lt;button type="button" data-variant="danger"&gt;Delete draft&lt;/button&gt;</code></pre>
+      </section>
+      <section aria-labelledby="sizes-title">
+        <h2 id="sizes-title">Shared control sizes</h2>
+        <p>Size is an opt-in on the native control. Small keeps 1rem text and a 2.5rem minimum target; default preserves the existing comfortable sizing; large has a 3.5rem minimum. Content can grow without being clipped.</p>
+        <h-grid id="control-sizes">
+          <h-panel><section aria-labelledby="size-small-title"><h3 id="size-small-title">Small</h3><h-stack>
+            <h-field><label for="size-small-name">Project name (small)</label><input id="size-small-name" data-size="small" value="Field guide"></h-field>
+            <h-field><label for="size-small-stage">Stage (small)</label><select id="size-small-stage" data-size="small"><option>Planning</option><option>In progress</option></select></h-field>
+            <h-field><label for="size-small-notes">Notes (small)</label><textarea id="size-small-notes" data-size="small" rows="2"></textarea></h-field>
+            <button type="button" data-size="small">Preview small action</button>
+          </h-stack></section></h-panel>
+          <h-panel><section aria-labelledby="size-default-title"><h3 id="size-default-title">Default</h3><h-stack>
+            <h-field><label for="size-default-name">Project name (default)</label><input id="size-default-name" data-size="default" value="Field guide"></h-field>
+            <h-field><label for="size-default-stage">Stage (default)</label><select id="size-default-stage" data-size="default"><option>Planning</option><option>In progress</option></select></h-field>
+            <h-field><label for="size-default-notes">Notes (default)</label><textarea id="size-default-notes" data-size="default" rows="2"></textarea></h-field>
+            <button type="button" data-size="default">Preview default action</button>
+          </h-stack></section></h-panel>
+          <h-panel><section aria-labelledby="size-large-title"><h3 id="size-large-title">Large</h3><h-stack>
+            <h-field><label for="size-large-name">Project name (large)</label><input id="size-large-name" data-size="large" value="Field guide"></h-field>
+            <h-field><label for="size-large-stage">Stage (large)</label><select id="size-large-stage" data-size="large"><option>Planning</option><option>In progress</option></select></h-field>
+            <h-field><label for="size-large-notes">Notes (large)</label><textarea id="size-large-notes" data-size="large" rows="2"></textarea></h-field>
+            <button type="button" data-size="large">Preview large action</button>
+          </h-stack></section></h-panel>
+        </h-grid>
+        <output id="size-result" role="status"></output>
+        <p>Checkboxes, radios and their labels retain their native sizing conventions. Size attributes do not create a compact-density scope.</p>
+        <p><a href="../docs/controls.md">Read the control contract</a> for supported types, geometry tokens, native form behavior and target-size guidance.</p>
+      </section>
       <section aria-labelledby="state-title">
         <h2 id="state-title">Shared state colors</h2>
         <p>Static color samples use semantic text, background and border tokens. Their headings explain the state without relying on color. These samples are application CSS; callout, badge and toast components remain planned.</p>

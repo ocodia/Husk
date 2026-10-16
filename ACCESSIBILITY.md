@@ -155,3 +155,17 @@ Chrome 155.0.8059.80 on macOS, served locally:
 - HTML/CSS parsing, changed JavaScript syntax, documentation links and generated catalogue checks passed. Foundation CSS measured 21,230 bytes raw / 4,682 bytes gzip at level 9 without minification (previously 3,983 bytes gzip); optional brand/example styles are separate. This is a measurement, not a regression-budget enforcement tool.
 
 The scales and shared colors are implemented; variants, control sizes, density and the remaining accessibility release evidence are still Phase 0 work.
+
+
+## Native action and size checks: 17 October 2026
+
+Chrome 155.0.8059.80 on macOS, served locally:
+
+- All 53 component checks and 168 example checks passed, including 75 new control checks. The new assertions cover four action variants in both brands/light-dark modes, normal/hover-token text contrast, shared disabled/focus styles, unknown-value fallback, native submitters/name-value/reset behavior and unchanged link semantics.
+- Small/default/large controls met their configured minimum dimensions, small text stayed at least 1rem, selects retained arrow clearance in LTR/RTL, wrapper attributes did not resize descendants, checkboxes stayed square and native select rows remained usable. Long button labels wrapped without clipping in a 280px fixture with the root font doubled. This is a text-resize simulation, not a manual browser-zoom test.
+- The no-JavaScript workspace check passed, including 320px LTR/RTL overflow checks. Dark-mode action and size examples were visually reviewed.
+- Axe-core 4.14.0 completed all 23 states (22 page/brand/mode/focus combinations plus the workspace invalid state) with zero violations.
+- Native select contrast remains a manual review finding, including the three new size examples. The legacy gallery video-caption finding remains unresolved. Safari/Firefox/Edge/mobile, screen readers, actual zoom/text-spacing, touch and forced colors were not verified for this change.
+- HTML/CSS parsing, changed JavaScript syntax, documentation links and generated catalogue checks passed. Foundation CSS measures 25,525 bytes raw / 5,172 bytes gzip at level 9 without minification; optional brand/example styles are separate. The provisional 5 KB gzip goal remains an unconfirmed budget, and these measurements are not enforced automatically.
+
+Action variants and individual control sizes are implemented. Shared density and feedback variants remain Phase 0 work; this evidence does not establish WCAG conformance or stable component status.

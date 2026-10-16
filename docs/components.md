@@ -128,12 +128,14 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 **Native recipe · Phase 1.** Husk route: `button; a[href]`.
 
-Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names.
+Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names. Native buttons support data-variant primary/secondary/quiet/danger and data-size small/default/large; anchors keep link styling.
 
 **Acceptance work:** Enter/Space, focus, submitter, loading feedback, and disabled behavior.
 
 ```html
 <button type="submit">Save project</button>
+<button type="reset" data-variant="secondary">Reset answers</button>
+<button type="button" data-variant="quiet" data-size="small">Clear filters</button>
 <a href="/projects">View projects</a>
 ```
 
@@ -284,7 +286,7 @@ Keep the native picker, label, multiple/accept hints, and application upload lif
 
 **Native recipe · Phase 1.** Husk route: `input inside h-field`.
 
-Use the correct native type, autocomplete, inputmode, label, and name.
+Use the correct native type, autocomplete, inputmode, label, and name. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.
 
 **Acceptance work:** Autofill, native validation, descriptions, read-only/disabled, reset, and mobile keyboard.
 
@@ -378,7 +380,7 @@ Use a labelled radio scale for input and readable text for a display-only rating
 
 **Native recipe · Phase 1.** Husk route: `select`.
 
-Native options remain the default; searchable choices belong to the separate combobox contract.
+Native options remain the default; searchable choices belong to the separate combobox contract. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.
 
 **Acceptance work:** Arrow/typing behavior, multiple selection, placeholder validity, padding, zoom, and forced colors.
 
@@ -447,7 +449,7 @@ Define repeated native form values and removable tokens; baseline accepts a docu
 
 **Native recipe · Phase 1.** Husk route: `textarea inside h-field`.
 
-Preserve native multiline editing, resize, name, maxlength, and associated descriptions.
+Preserve native multiline editing, resize, name, maxlength, and associated descriptions. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.
 
 **Acceptance work:** Newlines, paste, zoom, error recovery, read-only, disabled, and reset.
 

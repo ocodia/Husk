@@ -10,6 +10,8 @@ Husk is a complete UI system in development, built around native HTML and option
 4. [UI conventions](conventions.md): navigation, commands, content, choices and feedback.
 5. [Component catalogue](components.md): every reference component, Husk approach, phase and acceptance work.
 
+[Buttons and control sizes](controls.md) documents the implemented `data-variant` and `data-size` attributes, native semantics and theme variables.
+
 ## Build Husk
 
 Read [architecture](architecture.md) before implementation. Use the [component template](component-template.md) to define behavior before adding code. Follow [contributing](../CONTRIBUTING.md) and the [accessibility contract](../ACCESSIBILITY.md). The [roadmap](../ROADMAP.md) defines sequence and dependencies, not release dates.

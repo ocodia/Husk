@@ -40,7 +40,8 @@ This phase begins now and runs ahead of higher-level widgets.
 - [x] Preserve explicit custom-validity messages when native constraints also fail; keep valid native submissions usable with an incomplete summary.
 - [ ] Finish the form audit for external/dynamic control ownership, field grouping, localization and async application integration; document limits and fix failures with browser assertions.
 - [x] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and existing geometry aliases while preserving current variable fallbacks.
-- [ ] Define shared action/feedback variants, control sizes and comfortable/compact density; verify target sizes, zoom and contrast before shipping selectors.
+- [x] Implement native action variants and per-control small/default/large sizes, with theme, submit/reset, target-size, RTL, focus and text-resize browser assertions; document the [controls contract](docs/controls.md).
+- [ ] Define shared feedback variants and comfortable/compact density. Complete manual zoom, touch/target and platform verification before a stable release.
 - [x] Make focus tokens consistent across controls, links, header/workspace navigation, summaries and skip links; add shared width and system-color overrides with rendered palette/contrast checks. Manual forced-colors and assistive-technology verification remains in the release gate.
 - [ ] Specify reusable lifecycle, event, focus, locale and overlay ownership rules. Extract helpers only as actual implementations need them.
 - [ ] Measure CSS/JS payload and choose regression budgets; retain the earlier 5 KB gzip CSS-foundation goal as a proposal, not a claimed current measurement. Optional features get separate budgets.

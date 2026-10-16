@@ -30,7 +30,7 @@ Distinguish default, hover, focus, active/pressed, selected, current, expanded, 
 
 Comfortable controls are the default. A future compact density must preserve WCAG target requirements or their valid exceptions, text resizing and focus. Responsive layout follows content and container space; arbitrary breakpoint utility classes should not be required.
 
-For future shared appearances, reserve the vocabulary **primary**, **secondary**, **quiet**, **danger** for action emphasis; **neutral**, **info**, **success**, **warning**, **danger** for feedback. Prefer existing native state attributes. A shared `data-variant` presentation API and `data-density` scope are proposed foundation work, not currently implemented selectors. Do not invent `size`, `variant` or responsive attributes on current components.
+Native buttons use `data-variant="primary|secondary|quiet|danger"` for action emphasis. Supported native controls use `data-size="small|default|large"`; apply it to each control. See [buttons and control sizes](controls.md). Prefer native state attributes and keep native `size` semantics. Feedback vocabulary **neutral**, **info**, **success**, **warning**, **danger** and a shared `data-density` scope remain proposals. Do not invent `variant`, custom `size` or responsive attributes.
 
 ## Feedback and data
 

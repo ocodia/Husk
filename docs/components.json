@@ -12,9 +12,9 @@
       "husk": "button; a[href]",
       "status": "native",
       "phase": 1,
-      "contract": "Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names.",
+      "contract": "Use buttons for actions and anchors for navigation; preserve submit, disabled, and accessible names. Native buttons support data-variant primary/secondary/quiet/danger and data-size small/default/large; anchors keep link styling.",
       "acceptance": "Enter/Space, focus, submitter, loading feedback, and disabled behavior.",
-      "example": "<button type=\"submit\">Save project</button>\n<a href=\"/projects\">View projects</a>"
+      "example": "<button type=\"submit\">Save project</button>\n<button type=\"reset\" data-variant=\"secondary\">Reset answers</button>\n<button type=\"button\" data-variant=\"quiet\" data-size=\"small\">Clear filters</button>\n<a href=\"/projects\">View projects</a>"
     },
     {
       "id": "button-group",
@@ -150,7 +150,7 @@
       "husk": "input inside h-field",
       "status": "native",
       "phase": 1,
-      "contract": "Use the correct native type, autocomplete, inputmode, label, and name.",
+      "contract": "Use the correct native type, autocomplete, inputmode, label, and name. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.",
       "acceptance": "Autofill, native validation, descriptions, read-only/disabled, reset, and mobile keyboard.",
       "example": "<h-field>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n</h-field>"
     },
@@ -231,7 +231,7 @@
       "husk": "select",
       "status": "native",
       "phase": 1,
-      "contract": "Native options remain the default; searchable choices belong to the separate combobox contract.",
+      "contract": "Native options remain the default; searchable choices belong to the separate combobox contract. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.",
       "acceptance": "Arrow/typing behavior, multiple selection, placeholder validity, padding, zoom, and forced colors.",
       "example": "<label for=\"stage\">Stage</label>\n<select id=\"stage\" name=\"stage\">\n  <option value=\"planning\">Planning</option>\n  <option value=\"active\">Active</option>\n</select>"
     },
@@ -289,7 +289,7 @@
       "husk": "textarea inside h-field",
       "status": "native",
       "phase": 1,
-      "contract": "Preserve native multiline editing, resize, name, maxlength, and associated descriptions.",
+      "contract": "Preserve native multiline editing, resize, name, maxlength, and associated descriptions. Optional data-size small/default/large selects CSS geometry; native size semantics and form ownership remain unchanged.",
       "acceptance": "Newlines, paste, zoom, error recovery, read-only, disabled, and reset.",
       "example": "<label for=\"notes\">Notes</label>\n<textarea id=\"notes\" name=\"notes\" rows=\"4\"></textarea>"
     },

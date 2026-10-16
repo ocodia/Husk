@@ -83,6 +83,31 @@
       --husk-content-width: 72rem;
       --husk-reading-width: 68ch;
       --husk-gutter: clamp(1rem, 3vw, 2rem);
+      --husk-action-secondary-bg: var(--husk-surface);
+      --husk-action-secondary-hover: var(--husk-selected-bg);
+      --husk-action-secondary-text: var(--husk-text);
+      --husk-action-secondary-border: var(--husk-control-border);
+      --husk-action-quiet-bg: transparent;
+      --husk-action-quiet-hover: var(--husk-surface);
+      --husk-action-quiet-text: var(--husk-link);
+      --husk-action-quiet-border: transparent;
+      --husk-action-danger-bg: #b42318;
+      --husk-action-danger-hover: #8a1c13;
+      --husk-action-danger-text: #ffffff;
+      --husk-action-danger-border: transparent;
+      --husk-control-min-size: 2.75rem;
+      --husk-control-padding-block: .6rem;
+      --husk-control-padding-inline: .75rem;
+      --husk-button-padding-block: .55rem;
+      --husk-button-padding-inline: 1rem;
+      --husk-control-small-min-size: 2.5rem;
+      --husk-control-small-padding-block: .375rem;
+      --husk-control-small-padding-inline: .625rem;
+      --husk-control-small-font-size: var(--husk-font-size-md);
+      --husk-control-large-min-size: 3.5rem;
+      --husk-control-large-padding-block: .75rem;
+      --husk-control-large-padding-inline: 1.25rem;
+      --husk-control-large-font-size: var(--husk-font-size-lg);
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
@@ -256,11 +281,17 @@
     :where(form) { margin-block-end: var(--husk-space); }
     :where(label) { display: block; margin-block-end: .35rem; font-weight: var(--husk-font-weight-medium); }
     :where(input, select, textarea, progress, meter) { accent-color: var(--husk-action-bg); }
-    :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="submit"], [type="reset"], [type="button"]), select, textarea) {
+    :where(:is(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"]), select, textarea)) {
+      --_husk-control-min: var(--husk-control-min-size);
+      --_husk-control-block: var(--husk-control-padding-block);
+      --_husk-control-inline: var(--husk-control-padding-inline);
+    }
+    :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"], [type="submit"], [type="reset"], [type="button"]), select, textarea) {
       inline-size: 100%;
       max-inline-size: 36rem;
       min-inline-size: 0;
-      padding: .6rem .75rem;
+      min-block-size: var(--_husk-control-min);
+      padding: var(--_husk-control-block) var(--_husk-control-inline);
       color: var(--husk-text);
       background: var(--husk-canvas);
       border: 1px solid var(--husk-control-border);
@@ -269,7 +300,7 @@
     /* Native menu appearance can ignore padding, especially in Safari. */
     :where(select:not([multiple]):not([size]), select[size="1"]:not([multiple])) {
       appearance: none;
-      min-block-size: 2.75rem;
+      min-block-size: var(--_husk-control-min);
       padding-inline-end: 2.5rem;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23657387' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -286,17 +317,56 @@
     :where(input[type="file"], input[type="range"]) { max-inline-size: 100%; }
     :where(input[type="color"]) { padding: .15rem; inline-size: 3rem; block-size: 2.75rem; border: 1px solid var(--husk-control-border); border-radius: var(--husk-radius); }
     :where(button, input[type="submit"], input[type="reset"], input[type="button"]) {
+      --_husk-control-block: var(--husk-button-padding-block);
+      --_husk-control-inline: var(--husk-button-padding-inline);
+      --_husk-button-bg: var(--husk-action-bg);
+      --_husk-button-hover: var(--husk-action-hover);
+      --_husk-button-text: var(--husk-action-text);
+      --_husk-button-border: transparent;
       display: inline-block;
-      min-block-size: 2.75rem;
-      padding: .55rem 1rem;
-      border: 1px solid transparent;
+      max-inline-size: 100%;
+      min-inline-size: var(--_husk-control-min);
+      min-block-size: var(--_husk-control-min);
+      padding: var(--_husk-control-block) var(--_husk-control-inline);
+      border: 1px solid var(--_husk-button-border);
       border-radius: var(--husk-radius);
-      color: var(--husk-action-text);
-      background: var(--husk-action-bg);
+      color: var(--_husk-button-text);
+      background: var(--_husk-button-bg);
       text-align: center;
       cursor: pointer;
     }
-    :where(button:enabled:hover, input[type="submit"]:enabled:hover, input[type="reset"]:enabled:hover, input[type="button"]:enabled:hover) { background: var(--husk-action-hover); }
+
+    :where(:is(button, input[type="submit"], input[type="reset"], input[type="button"])[data-variant="secondary"]) {
+      --_husk-button-bg: var(--husk-action-secondary-bg);
+      --_husk-button-hover: var(--husk-action-secondary-hover);
+      --_husk-button-text: var(--husk-action-secondary-text);
+      --_husk-button-border: var(--husk-action-secondary-border);
+    }
+    :where(:is(button, input[type="submit"], input[type="reset"], input[type="button"])[data-variant="quiet"]) {
+      --_husk-button-bg: var(--husk-action-quiet-bg);
+      --_husk-button-hover: var(--husk-action-quiet-hover);
+      --_husk-button-text: var(--husk-action-quiet-text);
+      --_husk-button-border: var(--husk-action-quiet-border);
+    }
+    :where(:is(button, input[type="submit"], input[type="reset"], input[type="button"])[data-variant="danger"]) {
+      --_husk-button-bg: var(--husk-action-danger-bg);
+      --_husk-button-hover: var(--husk-action-danger-hover);
+      --_husk-button-text: var(--husk-action-danger-text);
+      --_husk-button-border: var(--husk-action-danger-border);
+    }
+    :where(:is(button, input[type="submit"], input[type="reset"], input[type="button"]):enabled:is(:hover, :active)) { background: var(--_husk-button-hover); }
+    :where(:is(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"]), select, textarea)[data-size="small"]) {
+      --_husk-control-min: var(--husk-control-small-min-size);
+      --_husk-control-block: var(--husk-control-small-padding-block);
+      --_husk-control-inline: var(--husk-control-small-padding-inline);
+      font-size: var(--husk-control-small-font-size);
+    }
+    :where(:is(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"]), select, textarea)[data-size="large"]) {
+      --_husk-control-min: var(--husk-control-large-min-size);
+      --_husk-control-block: var(--husk-control-large-padding-block);
+      --_husk-control-inline: var(--husk-control-large-padding-inline);
+      font-size: var(--husk-control-large-font-size);
+    }
     :where(button:disabled, input:disabled, select:disabled, textarea:disabled) { color: var(--husk-disabled-text); background-color: var(--husk-disabled-bg); border-color: var(--husk-disabled-border); accent-color: var(--husk-disabled-text); opacity: 1; cursor: not-allowed; }
     :where(input[readonly], textarea[readonly]) { background: var(--husk-surface); }
     :where(input:user-invalid, select:user-invalid, textarea:user-invalid, [aria-invalid="true"]) { border-color: var(--husk-invalid); border-width: 2px; }
@@ -352,6 +422,7 @@
 
 
   @media (forced-colors: active) {
+    :where(:is(button, input[type="submit"], input[type="reset"], input[type="button"])) { border-color: ButtonText; }
     :where(:focus-visible, h-error-summary:focus, h-skip-link > a:focus) { outline: var(--husk-focus-width) solid Highlight; outline-offset: 3px; box-shadow: none; }
     :where(a:focus-visible, summary:focus-visible, h-skip-link > a:focus) { color: LinkText; background: Canvas; }
     :where(button:disabled, input:disabled, select:disabled, textarea:disabled) { color: GrayText; border-color: GrayText; }

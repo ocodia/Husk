@@ -25,7 +25,7 @@ Use native buttons, links, inputs, selects, options, details and dialogs whereve
 
 Native/foundation catalogue status describes available building blocks, not full Web Awesome parity or an accessibility certification. For planned names, write a specification before implementation. Follow `docs/component-template.md` and link the specification from the catalogue.
 
-Keep ordinary markup class-free where practical. Prefer `h-` wrappers for composition and CSS variables for geometry/themes. Use meaningful defaults; no JSON configuration for ordinary content. Existing class alternatives remain compatible. Reference spacing/type/radius scales and semantic state/focus tokens exist; use `docs/theming.md` for their names and alias rules. Shared variant, size and density APIs remain proposals.
+Keep ordinary markup class-free where practical. Prefer `h-` wrappers for composition and CSS variables for geometry/themes. Use meaningful defaults; no JSON configuration for ordinary content. Existing class alternatives remain compatible. Reference spacing/type/radius scales and semantic state/focus tokens exist; use `docs/theming.md` for their names and alias rules. Native button `data-variant` and supported native control `data-size` are implemented; see `docs/controls.md` for scope, defaults and tokens. Shared density and feedback APIs remain proposals.
 
 Install behavior before hiding content or applying compound-widget ARIA roles. Own only the attributes/listeners/DOM changes required; preserve authored relationships. Handle disconnect/reconnect, late children and nested event ownership. Applications own persistence, routing, async data and business rules.
 

@@ -30,4 +30,11 @@
   });
   form.addEventListener('input', () => { document.querySelector('#theme-result').textContent = ''; });
   document.querySelector('#theme-submit').hidden = false;
+  for (const [section, result] of [['#action-variants', '#variant-result'], ['#control-sizes', '#size-result']]) {
+    document.querySelector(section).addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button || button.disabled) return;
+      document.querySelector(result).textContent = `${button.textContent.trim()}: appearance preview only. No project data was changed.`;
+    });
+  }
 })();

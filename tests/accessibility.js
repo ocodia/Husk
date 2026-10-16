@@ -191,7 +191,9 @@ auditButton.addEventListener('click', async () => {
         report.push('PASS: Workspace summary focus, linked errors, preserved hints, field focus, and reset cleanup.');
       }
     }
-    reportResults(report.join('\n'));
+    const states = report.filter((line) => /: \d+ violations;/.test(line));
+    const violations = states.reduce((total, line) => total + Number(line.match(/: (\d+) violations;/)[1]), 0);
+    reportResults([`AUDIT COMPLETE: ${states.length} states; ${violations} violations. Review incomplete findings below.`, ...report].join('\n'));
   } catch (error) {
     reportResults([...report, `AUDIT INCOMPLETE: ${error.message}`].join('\n'));
   } finally {
