@@ -1027,35 +1027,35 @@
       "id": "h-stack",
       "mode": "CSS-only",
       "status": "foundation",
-      "contract": "Vertical rhythm for direct children.",
+      "contract": "Vertical rhythm for direct children. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.",
       "example": "<h-stack><h2>Projects</h2><p>Your current work.</p></h-stack>"
     },
     {
       "id": "h-cluster",
       "mode": "CSS-only",
       "status": "foundation",
-      "contract": "Wrapping row of native controls or content.",
+      "contract": "Wrapping row of native controls or content. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.",
       "example": "<h-cluster><button type=\"button\">Save</button><a href=\"/projects\">Cancel</a></h-cluster>"
     },
     {
       "id": "h-grid",
       "mode": "CSS-only",
       "status": "foundation",
-      "contract": "Responsive equal tracks without grid semantics.",
+      "contract": "Responsive equal tracks without grid semantics. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.",
       "example": "<h-grid><section><h2>First</h2></section><section><h2>Second</h2></section></h-grid>"
     },
     {
       "id": "h-sidebar",
       "mode": "CSS-only",
       "status": "foundation",
-      "contract": "Two direct children: sidebar first, content second.",
+      "contract": "Two direct children: sidebar first, content second. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.",
       "example": "<h-sidebar><aside>Related content</aside><section><h2>Main content</h2></section></h-sidebar>"
     },
     {
       "id": "h-panel",
       "mode": "CSS-only",
       "status": "foundation",
-      "contract": "Surface/padding without a landmark or interactive role.",
+      "contract": "Surface/padding without a landmark or interactive role. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.",
       "example": "<h-panel><article><h2>Project</h2><p>Summary.</p></article></h-panel>"
     },
     {

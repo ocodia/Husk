@@ -166,6 +166,27 @@ auditButton.addEventListener('click', async () => {
               report.push(`  REVIEW ${review.id}: ${review.help}`);
               for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
             }
+            if (route.endsWith('/themes.html')) {
+              const densityEditor = win.document.querySelector('#density-compact-editor');
+              const densityForm = densityEditor.form;
+              densityForm.elements.project.value = '';
+              densityForm.requestSubmit();
+              assert(win.document.activeElement === densityEditor.querySelector('h-error-summary'), 'Compact form errors must focus their summary');
+              const densityAudit = await win.axe.run(win.document, {
+                runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
+              });
+              report.push(`Compact density error (${brand}, ${theme}, focus ${palette}): ${densityAudit.violations.length} violations; ${densityAudit.incomplete.length} need manual review`);
+              for (const violation of densityAudit.violations) {
+                report.push(`  ${violation.id}: ${violation.help}`);
+                for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+              }
+              for (const review of densityAudit.incomplete) {
+                report.push(`  REVIEW ${review.id}: ${review.help}`);
+                for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+              }
+              densityForm.reset();
+              await new Promise((resolve) => win.setTimeout(resolve, 0));
+            }
             reportResults(report.join('\n'));
           }
         }

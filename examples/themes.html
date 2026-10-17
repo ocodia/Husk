@@ -90,6 +90,46 @@
         <p>Checkboxes, radios and their labels retain their native sizing conventions. Size attributes do not create a compact-density scope.</p>
         <p><a href="../docs/controls.md">Read the control contract</a> for supported types, geometry tokens, native form behavior and target-size guidance.</p>
       </section>
+      <section id="density-examples" aria-labelledby="density-title">
+        <h2 id="density-title">Comfortable and compact composition</h2>
+        <p>Compare the same native form in two spacing profiles. Compact reduces gaps and panel padding while keeping control sizes, readable text, choice-label targets and focus styles. You can edit the answers and try validation.</p>
+        <h-grid id="density-comparison">
+          <h-panel data-density="comfortable"><section aria-labelledby="density-comfortable-title">
+            <h3 id="density-comfortable-title">Comfortable</h3>
+            <h-form id="density-comfortable-editor"><form id="density-comfortable-form">
+              <h-field><label for="density-comfortable-name">Project name (comfortable)</label><h-hint id="density-comfortable-hint">Use a short, recognisable name.</h-hint><h-error hidden>Error: Enter a project name</h-error><input id="density-comfortable-name" name="project" value="Field guide" required aria-describedby="density-comfortable-hint"></h-field>
+              <h-field><label for="density-comfortable-stage">Stage (comfortable)</label><select id="density-comfortable-stage" name="stage"><option>Planning</option><option>In progress</option></select></h-field>
+              <fieldset><legend>Updates (comfortable)</legend><label><input name="updates" type="checkbox" value="yes" checked> Send project updates</label></fieldset>
+              <h-cluster><button type="submit" hidden>Check comfortable project</button><button type="reset" data-variant="secondary">Reset answers</button></h-cluster>
+              <output id="density-comfortable-result" role="status"></output>
+            </form></h-form>
+          </section></h-panel>
+          <h-panel data-density="compact"><section aria-labelledby="density-compact-title">
+            <h3 id="density-compact-title">Compact</h3>
+            <h-form id="density-compact-editor"><form id="density-compact-form">
+              <h-field><label for="density-compact-name">Project name (compact)</label><h-hint id="density-compact-hint">Use a short, recognisable name.</h-hint><h-error hidden>Error: Enter a project name</h-error><input id="density-compact-name" name="project" value="Field guide" required aria-describedby="density-compact-hint"></h-field>
+              <h-field><label for="density-compact-stage">Stage (compact)</label><select id="density-compact-stage" name="stage"><option>Planning</option><option>In progress</option></select></h-field>
+              <fieldset><legend>Updates (compact)</legend><label><input name="updates" type="checkbox" value="yes" checked> Send project updates</label></fieldset>
+              <h-cluster><button type="submit" hidden>Check compact project</button><button type="reset" data-variant="secondary">Reset answers</button></h-cluster>
+              <output id="density-compact-result" role="status"></output>
+            </form></h-form>
+          </section></h-panel>
+        </h-grid>
+        <h-panel data-density="compact"><section aria-labelledby="density-nested-title">
+          <h3 id="density-nested-title">Restore comfortable spacing inside a compact panel</h3>
+          <h-stack><p>The outer panel has compact padding and layout spacing.</p>
+            <h-panel data-density="comfortable"><h-stack><p>This nested panel restores normal padding and gaps.</p><h-cluster><button type="button" data-size="small">Small action</button><button type="button">Default action</button><button type="button" data-size="large">Large action</button></h-cluster></h-stack></h-panel>
+          </h-stack>
+        </section></h-panel>
+        <noscript><p>Both spacing profiles work without JavaScript. The form checks and feedback need the demo script; native reset remains available.</p></noscript>
+        <pre tabindex="0" role="region" aria-label="Density scope markup"><code>&lt;h-panel data-density="compact"&gt;
+  &lt;h-stack&gt;
+    &lt;p&gt;Compact layout, normal text and control sizes.&lt;/p&gt;
+    &lt;h-panel data-density="comfortable"&gt;Comfortable again&lt;/h-panel&gt;
+  &lt;/h-stack&gt;
+&lt;/h-panel&gt;</code></pre>
+        <p><a href="../docs/density.md">Read the density contract</a> for scope, tokens, nesting and accessibility checks.</p>
+      </section>
       <section aria-labelledby="state-title">
         <h2 id="state-title">Shared state colors</h2>
         <p>Static color samples use semantic text, background and border tokens. Their headings explain the state without relying on color. These samples are application CSS; callout, badge and toast components remain planned.</p>

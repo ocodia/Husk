@@ -69,7 +69,7 @@ Geometry variables:
 | `--husk-control-small-min-size`, `--husk-control-small-padding-block`, `--husk-control-small-padding-inline`, `--husk-control-small-font-size` | `2.5rem`, `.375rem`, `.625rem`, `var(--husk-font-size-md)` |
 | `--husk-control-large-min-size`, `--husk-control-large-padding-block`, `--husk-control-large-padding-inline`, `--husk-control-large-font-size` | `3.5rem`, `.75rem`, `1.25rem`, `var(--husk-font-size-lg)` |
 
-Normal geometry variables affect the default profile. Small/large read their corresponding profile variables. Set global values on `:root`, or override the appropriate profile variable on one control. Names beginning `--_husk-` are implementation details, not a public API. Shared density scopes remain planned.
+Normal geometry variables affect the default profile. Small/large read their corresponding profile variables. Set global values on `:root`, or override the appropriate profile variable on one control. Names beginning `--_husk-` are implementation details, not a public API. Shared `data-density="comfortable|compact"` scopes are implemented separately; they adjust composition spacing and preserve these control-size profiles. See [density](density.md).
 
 In forced colors, buttons have a system-color boundary, disabled controls use system disabled colors, and focus uses the existing system outline. Print uses plain dark text/borders on white regardless of variant. Manual platform verification remains part of the release gate.
 

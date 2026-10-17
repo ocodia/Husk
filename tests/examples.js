@@ -51,6 +51,7 @@ exampleButton.addEventListener('click', async () => {
     check(!root.hasAttribute('data-theme') && !root.hasAttribute('data-brand'), 'System/default selections restore native preference behavior.');
     passed.push(...await runThemeTokenChecks(win));
     passed.push(...await runControlChecks(win));
+    passed.push(...await runDensityChecks(win));
     const themeForm = doc.querySelector('#theme-form');
     themeForm.requestSubmit();
     check(!doc.querySelector('h-error-summary').hidden && doc.activeElement === doc.querySelector('h-error-summary'), 'Theme preview demonstrates real invalid-form focus.');
@@ -103,6 +104,12 @@ exampleButton.addEventListener('click', async () => {
         check(doc.documentElement.scrollWidth <= doc.documentElement.clientWidth + 1, `${route} remains within 320px in ${dir} without JavaScript.`);
       }
       check(!doc.querySelector('main').hidden, `${route} keeps baseline content without JavaScript.`);
+      if (route === 'themes') {
+        const normal = doc.querySelector('#density-comparison > [data-density="comfortable"]');
+        const compact = doc.querySelector('#density-comparison > [data-density="compact"]');
+        check(parseFloat(win.getComputedStyle(compact).paddingBlockStart) < parseFloat(win.getComputedStyle(normal).paddingBlockStart), 'Density profiles retain distinct panel spacing with JavaScript blocked.');
+        check(!doc.querySelector('#density-compact-form').noValidate && doc.querySelector('#density-compact-form [type="submit"]').hidden && doc.querySelector('#density-compact-name').value === 'Field guide', 'Density examples keep native validation and answers while script-only submit actions stay hidden.');
+      }
       if (route === 'server-errors') {
         check(!doc.querySelector('h-error-summary').hidden && !doc.querySelector('h-error').hidden, 'Server messages remain visible without JavaScript.');
         check(!doc.querySelector('#server-form').noValidate && doc.querySelector('#server-project').value === 'Coastal field guide', 'Server responses preserve native validation and answers without JavaScript.');

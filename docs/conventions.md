@@ -28,9 +28,9 @@ Tooltips add non-interactive supplemental descriptions; essential instructions s
 
 Distinguish default, hover, focus, active/pressed, selected, current, expanded, disabled, invalid and busy. Use persistent text/markers plus color for meaning. Never suppress the shared focus indicator to make a theme look cleaner.
 
-Comfortable controls are the default. A future compact density must preserve WCAG target requirements or their valid exceptions, text resizing and focus. Responsive layout follows content and container space; arbitrary breakpoint utility classes should not be required.
+Comfortable composition is the default. Opt into `data-density="compact"` where reduced surrounding spacing helps repeated tasks; restore comfortable spacing with a nested `data-density="comfortable"` scope. [Density](density.md) preserves native control sizes and readable text. Check actual target sizes, text resizing and focus after application overrides. Responsive layout follows content and container space; arbitrary breakpoint utility classes should not be required.
 
-Native buttons use `data-variant="primary|secondary|quiet|danger"` for action emphasis. Supported native controls use `data-size="small|default|large"`; apply it to each control. See [buttons and control sizes](controls.md). Prefer native state attributes and keep native `size` semantics. Feedback vocabulary **neutral**, **info**, **success**, **warning**, **danger** and a shared `data-density` scope remain proposals. Do not invent `variant`, custom `size` or responsive attributes.
+Native buttons use `data-variant="primary|secondary|quiet|danger"` for action emphasis. Supported native controls use `data-size="small|default|large"`; apply it to each control. See [buttons and control sizes](controls.md). Prefer native state attributes and keep native `size` semantics. Feedback component vocabulary **neutral**, **info**, **success**, **warning**, **danger** remains planned. Do not invent `variant`, custom `size` or responsive attributes.
 
 ## Feedback and data
 

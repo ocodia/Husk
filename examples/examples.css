@@ -38,3 +38,7 @@ h-panel > :is(article, section) > :first-child { margin-block-start: 0; }
 #variant-result, #size-result { display: block; }
 #variant-result:empty, #size-result:empty { display: none; }
 #control-sizes { --husk-grid-min: 18rem; }
+
+#density-comparison { --husk-grid-min: 22rem; align-items: start; }
+#density-comparison output { display: block; }
+#density-comparison output:empty { display: none; }

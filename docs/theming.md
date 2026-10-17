@@ -46,7 +46,7 @@ Each of **info**, **success**, **warning**, **danger**, **selected**, **disabled
 
 `--husk-invalid` defaults to `var(--husk-danger-border)`, preserving its previous colors and independent override. Selection text defaults to the heading color; its marker defaults to the link color. Busy colors default to the information triplet. Disabled native controls now use the disabled colors at full opacity so text remains legible. Native disabled behavior is unchanged.
 
-State colors alone do not implement widgets or semantics. Use visible state wording, a marker, and the appropriate native/ARIA state. The workspace uses selection colors with `aria-current`; workbench samples use explicit headings. Native button variants and control sizes are implemented in [the controls contract](controls.md). Callout, badge, toast and density APIs remain planned.
+State colors alone do not implement widgets or semantics. Use visible state wording, a marker, and the appropriate native/ARIA state. The workspace uses selection colors with `aria-current`; workbench samples use explicit headings. Native button variants and control sizes are implemented in [the controls contract](controls.md). Comfortable/compact composition is implemented in [the density contract](density.md). Callout, badge and toast APIs remain planned.
 
 ```css
 :root {
@@ -115,4 +115,4 @@ Test forced colors, text resizing/spacing, zoom, reflow, print and actual screen
 
 ## Still planned
 
-Full palette ramps, elevation/motion scales, shared density, feedback variants, nested theme switching and token JSON export remain roadmap work. Native action variants and control-size profiles are available; their tokens and scope are documented in [buttons and control sizes](controls.md).
+Full palette ramps, elevation/motion scales, feedback variants, nested theme switching and token JSON export remain roadmap work. Comfortable/compact density scopes and their four profile variables are documented in [density](density.md). Native action variants and control-size profiles are available; their tokens and scope are documented in [buttons and control sizes](controls.md).

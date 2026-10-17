@@ -31,7 +31,7 @@ The native form owns submission. Husk adds linked errors and focus management. B
 | Layer | Available now |
 | --- | --- |
 | Native HTML | Typography, lists, tables, media, form controls, disclosures, dialog and popover styling |
-| Control presentation | Native button variants and small/default/large control sizes; [contract](docs/controls.md) |
+| Control presentation | Native button variants and control sizes; [contract](docs/controls.md). Comfortable/compact composition; [density](docs/density.md) |
 | Composition | `h-stack`, `h-cluster`, `h-grid`, `h-sidebar`, `h-panel` |
 | Form structure | `h-field`, `h-hint`, `h-error`, `h-skip-link` |
 | Optional behavior | `h-form`, `h-error-summary` in `js/components.js`; [application integration](docs/forms.md) |

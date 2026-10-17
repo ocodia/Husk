@@ -11,7 +11,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-stack
 
-**Foundation · CSS-only.** Vertical rhythm for direct children.
+**Foundation · CSS-only.** Vertical rhythm for direct children. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.
 
 ```html
 <h-stack><h2>Projects</h2><p>Your current work.</p></h-stack>
@@ -21,7 +21,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-cluster
 
-**Foundation · CSS-only.** Wrapping row of native controls or content.
+**Foundation · CSS-only.** Wrapping row of native controls or content. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.
 
 ```html
 <h-cluster><button type="button">Save</button><a href="/projects">Cancel</a></h-cluster>
@@ -31,7 +31,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-grid
 
-**Foundation · CSS-only.** Responsive equal tracks without grid semantics.
+**Foundation · CSS-only.** Responsive equal tracks without grid semantics. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.
 
 ```html
 <h-grid><section><h2>First</h2></section><section><h2>Second</h2></section></h-grid>
@@ -41,7 +41,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-sidebar
 
-**Foundation · CSS-only.** Two direct children: sidebar first, content second.
+**Foundation · CSS-only.** Two direct children: sidebar first, content second. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.
 
 ```html
 <h-sidebar><aside>Related content</aside><section><h2>Main content</h2></section></h-sidebar>
@@ -51,7 +51,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-panel
 
-**Foundation · CSS-only.** Surface/padding without a landmark or interactive role.
+**Foundation · CSS-only.** Surface/padding without a landmark or interactive role. Default geometry follows comfortable/compact data-density scopes; local component overrides still win. See docs/density.md.
 
 ```html
 <h-panel><article><h2>Project</h2><p>Summary.</p></article></h-panel>

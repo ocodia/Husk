@@ -108,6 +108,24 @@
       --husk-control-large-padding-block: .75rem;
       --husk-control-large-padding-inline: 1.25rem;
       --husk-control-large-font-size: var(--husk-font-size-lg);
+      --husk-density-compact-space: var(--husk-space-3);
+      --husk-density-compact-label-gap: var(--husk-space-1);
+      --husk-density-compact-message-gap: .375rem;
+      --husk-density-compact-fieldset-padding: var(--husk-space-3);
+    }
+    /* Density changes composition, never native control or text sizing. */
+    :where([data-density="compact"]) {
+      --_husk-density-space: var(--husk-density-compact-space);
+      --_husk-density-label-gap: var(--husk-density-compact-label-gap);
+      --_husk-density-message-gap: var(--husk-density-compact-message-gap);
+      --_husk-density-fieldset-padding: var(--husk-density-compact-fieldset-padding);
+    }
+    :where([data-density="comfortable"]) {
+      /* Clear inherited compact values; consumers recover their local defaults. */
+      --_husk-density-space: initial;
+      --_husk-density-label-gap: initial;
+      --_husk-density-message-gap: initial;
+      --_husk-density-fieldset-padding: initial;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
@@ -270,16 +288,16 @@
 
   @layer forms {
     :where(h-form, h-field, h-hint, h-error, h-error-summary) { display: block; }
-    :where(h-field) { margin-block-end: var(--husk-space); }
-    :where(h-hint) { margin-block: 0 .5rem; color: var(--husk-muted); }
-    :where(h-error) { margin-block: 0 .5rem; color: var(--husk-invalid); font-weight: var(--husk-font-weight-bold); }
+    :where(h-field) { margin-block-end: var(--_husk-density-space, var(--husk-space)); }
+    :where(h-hint) { margin-block: 0 var(--_husk-density-message-gap, .5rem); color: var(--husk-muted); }
+    :where(h-error) { margin-block: 0 var(--_husk-density-message-gap, .5rem); color: var(--husk-invalid); font-weight: var(--husk-font-weight-bold); }
     :where(h-field:has([aria-invalid="true"])) { border-inline-start: .25rem solid var(--husk-invalid); padding-inline-start: 1rem; }
     :where(h-error-summary) { padding: 1.25rem; margin-block-end: 2rem; border: .25rem solid var(--husk-invalid); }
     :where(h-error-summary h2) { margin-block-start: 0; font-size: var(--husk-font-size-xl); }
     :where(h-error-summary > :last-child) { margin-block-end: 0; }
     :where(h-error-summary:focus) { outline: var(--husk-focus-width) solid var(--husk-focus); outline-offset: 0; box-shadow: 0 0 0 calc(var(--husk-focus-width) * 2) var(--husk-focus-edge); }
-    :where(form) { margin-block-end: var(--husk-space); }
-    :where(label) { display: block; margin-block-end: .35rem; font-weight: var(--husk-font-weight-medium); }
+    :where(form) { margin-block-end: var(--_husk-density-space, var(--husk-space)); }
+    :where(label) { display: block; margin-block-end: var(--_husk-density-label-gap, .35rem); font-weight: var(--husk-font-weight-medium); }
     :where(input, select, textarea, progress, meter) { accent-color: var(--husk-action-bg); }
     :where(:is(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"], [type="image"]), select, textarea)) {
       --_husk-control-min: var(--husk-control-min-size);
@@ -371,7 +389,7 @@
     :where(input[readonly], textarea[readonly]) { background: var(--husk-surface); }
     :where(input:user-invalid, select:user-invalid, textarea:user-invalid, [aria-invalid="true"]) { border-color: var(--husk-invalid); border-width: 2px; }
     :where([aria-invalid="true"] + small) { color: var(--husk-invalid); }
-    :where(fieldset) { min-inline-size: 0; padding: 1rem; border: 1px solid var(--husk-border); border-radius: var(--husk-radius); }
+    :where(fieldset) { min-inline-size: 0; padding: var(--_husk-density-fieldset-padding, 1rem); border: 1px solid var(--husk-border); border-radius: var(--husk-radius); }
     :where(legend) { padding-inline: .4rem; font-weight: var(--husk-font-weight-bold); }
   }
 
@@ -398,19 +416,19 @@
     :where(nav > ul, nav > ol) { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding-inline-start: 0; list-style: none; }
     :where(nav > ul > li, nav > ol > li) { margin-block: 0; }
     :where(body > footer) { padding-block-start: 1rem; border-block-start: 1px solid var(--husk-border); }
-    :where(h-stack, h-cluster, h-grid, h-sidebar, h-panel, .stack, .cluster, .grid) { margin-block-end: var(--husk-space); }
-    :where(h-stack, .stack) { --husk-stack-gap: var(--husk-space); display: block; }
+    :where(h-stack, h-cluster, h-grid, h-sidebar, h-panel, .stack, .cluster, .grid) { margin-block-end: var(--_husk-density-space, var(--husk-space)); }
+    :where(h-stack, .stack) { --husk-stack-gap: var(--_husk-density-space, var(--husk-space)); display: block; }
     :where(h-stack > *, .stack > *) { margin-block: 0; }
     :where(h-stack > * + *, .stack > * + *) { margin-block-start: var(--husk-stack-gap); }
-    :where(h-cluster, .cluster) { --husk-cluster-gap: var(--husk-space); --husk-cluster-align: center; display: flex; flex-wrap: wrap; align-items: var(--husk-cluster-align); gap: var(--husk-cluster-gap); }
+    :where(h-cluster, .cluster) { --husk-cluster-gap: var(--_husk-density-space, var(--husk-space)); --husk-cluster-align: center; display: flex; flex-wrap: wrap; align-items: var(--husk-cluster-align); gap: var(--husk-cluster-gap); }
     :where(h-cluster > *, .cluster > *) { min-inline-size: 0; max-inline-size: 100%; margin-block: 0; }
-    :where(h-grid, .grid) { --husk-grid-min: 16rem; --husk-grid-gap: var(--husk-space); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--husk-grid-min)), 1fr)); gap: var(--husk-grid-gap); }
+    :where(h-grid, .grid) { --husk-grid-min: 16rem; --husk-grid-gap: var(--_husk-density-space, var(--husk-space)); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--husk-grid-min)), 1fr)); gap: var(--husk-grid-gap); }
     :where(h-grid > *, .grid > *) { min-inline-size: 0; margin-block: 0; }
-    :where(h-sidebar) { --husk-sidebar-width: 13rem; --husk-sidebar-content-min: 36rem; --husk-sidebar-gap: var(--husk-space); display: flex; flex-wrap: wrap; align-items: start; gap: var(--husk-sidebar-gap); }
+    :where(h-sidebar) { --husk-sidebar-width: 13rem; --husk-sidebar-content-min: 36rem; --husk-sidebar-gap: var(--_husk-density-space, var(--husk-space)); display: flex; flex-wrap: wrap; align-items: start; gap: var(--husk-sidebar-gap); }
     :where(h-sidebar > *) { min-inline-size: 0; margin-block: 0; }
     :where(h-sidebar > :first-child) { flex: 1 1 var(--husk-sidebar-width); }
     :where(h-sidebar > :last-child) { flex: 999 1 0; min-inline-size: min(100%, var(--husk-sidebar-content-min)); }
-    :where(h-panel) { --husk-panel-padding: var(--husk-space); display: block; padding: var(--husk-panel-padding); border: 1px solid var(--husk-border); border-radius: var(--husk-radius); background: var(--husk-surface); }
+    :where(h-panel) { --husk-panel-padding: var(--_husk-density-space, var(--husk-space)); display: block; padding: var(--husk-panel-padding); border: 1px solid var(--husk-border); border-radius: var(--husk-radius); background: var(--husk-surface); }
     :where(h-panel > :first-child) { margin-block-start: 0; }
     :where(h-panel > :last-child) { margin-block-end: 0; }
     :where(.table-scroll) { overflow-x: auto; margin-block-end: var(--husk-space); }

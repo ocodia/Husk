@@ -182,3 +182,16 @@ Safari 27.0.1 on macOS, served locally:
 - Changed JavaScript syntax, repository HTML parsing, local documentation links, generated catalogue consistency and whitespace checks passed. Optional component JavaScript measures 20,141 bytes raw / 5,212 bytes gzip at level 9 without minification (previously 13,954 / 3,846); CSS is unchanged. Payload regression budgets remain roadmap work.
 
 The implementation/integration portion of the Phase 0 form audit is complete. Async transport remains application-owned, and the example uses a local timer with no server request. Cross-browser, assistive-technology and manual release evidence remains open. See [the integration contract](docs/forms.md) for native ownership, grouping, localization, response ordering and lifecycle limits.
+
+
+## Composition density checks: 17 October 2026
+
+Safari 27.0.1 on macOS, served locally:
+
+- All 85 component checks and 225 example checks passed. The 37 new density checks cover unchanged defaults/control geometry/prose, compact layout/form spacing, choice-label targets, nested resets/reapplication, empty/unknown attributes, root/local/reference token overrides, class alternatives, both brands/light-dark modes, keyboard focus, RTL select-arrow clearance and native form validation/submission/reset. Two additional checks verify distinct spacing and native form fallback with scripts blocked.
+- A 280px compact fixture reflowed in LTR/RTL with doubled root text, 1.5 line height, .12em letter spacing, .16em word spacing and 2em paragraph spacing. Long labels/actions remained visible without horizontal overflow or clipped button text. The harness waits for rendered frames after the preceding root-text-resize test; these are automated simulations, not manual browser zoom or full text-spacing conformance evidence.
+- Axe-core 4.14.0 reported zero violations across 43 states: the previous 35 page/theme/form states and eight compact-form error states across both brands, light/dark and both focus palettes. Compact errors focused their summary. Native select contrast, including the new density selects, remains incomplete and requires manual review; the legacy gallery's video-caption finding remains unresolved.
+- The no-JavaScript workspace check passed. Comfortable/compact comparison and nested density examples were visually reviewed in dark-mode Safari. Chrome/Firefox/Edge/mobile, actual zoom, forced colors, touch, screen readers and disabled-user task testing were not completed for this change.
+- HTML/CSS parsing, changed JavaScript syntax, local documentation links, generated catalogue consistency and whitespace checks passed. Foundation CSS measures 26,850 bytes raw / 5,405 bytes gzip at level 9 without minification (previously 25,525 / 5,172); library JavaScript is unchanged. Payload budgets remain unconfirmed roadmap work.
+
+Density is an implemented composition contract for layouts and forms, independent of control sizes. It does not certify every interface placed within a scope. See [density](docs/density.md) for exact consumers, inheritance, override rules and remaining verification obligations.

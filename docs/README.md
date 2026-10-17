@@ -14,6 +14,8 @@ Husk is a complete UI system in development, built around native HTML and option
 
 [Form integration](forms.md) covers external/dynamic ownership, checkbox/radio questions, localization and application-owned asynchronous submission.
 
+[Density](density.md) documents comfortable/compact composition, nested scopes and independent control sizes.
+
 ## Build Husk
 
 Read [architecture](architecture.md) before implementation. Use the [component template](component-template.md) to define behavior before adding code. Follow [contributing](../CONTRIBUTING.md) and the [accessibility contract](../ACCESSIBILITY.md). The [roadmap](../ROADMAP.md) defines sequence and dependencies, not release dates.

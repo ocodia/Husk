@@ -30,6 +30,17 @@
   });
   form.addEventListener('input', () => { document.querySelector('#theme-result').textContent = ''; });
   document.querySelector('#theme-submit').hidden = false;
+  for (const density of ['comfortable', 'compact']) {
+    const form = document.querySelector(`#density-${density}-form`);
+    const result = document.querySelector(`#density-${density}-result`);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      result.textContent = `${new FormData(form).get('project')}: valid native answers. Nothing was sent.`;
+    });
+    form.addEventListener('input', () => { result.textContent = ''; });
+    form.addEventListener('reset', (event) => queueMicrotask(() => { if (!event.defaultPrevented) result.textContent = ''; }));
+    form.querySelector('[type="submit"]').hidden = false;
+  }
   for (const [section, result] of [['#action-variants', '#variant-result'], ['#control-sizes', '#size-result']]) {
     document.querySelector(section).addEventListener('click', (event) => {
       const button = event.target.closest('button');

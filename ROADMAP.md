@@ -41,7 +41,8 @@ This phase begins now and runs ahead of higher-level widgets.
 - [x] Audit external/dynamic native form ownership, shared radio/checkbox feedback, localization and async application integration; implement ownership cleanup and translation hooks, document limits and add browser assertions plus a working cancellation/retry recipe. Manual browser/assistive-technology evidence remains in the release gate.
 - [x] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and existing geometry aliases while preserving current variable fallbacks.
 - [x] Implement native action variants and per-control small/default/large sizes, with theme, submit/reset, target-size, RTL, focus and text-resize browser assertions; document the [controls contract](docs/controls.md).
-- [ ] Define shared feedback variants and comfortable/compact density. Complete manual zoom, touch/target and platform verification before a stable release.
+- [x] Implement comfortable/compact density scopes for composed layouts and forms, with nested reset, local token precedence and independent control sizes; document the [density contract](docs/density.md) and browser evidence.
+- [ ] Define shared feedback component variants. Complete manual zoom, touch/target and platform verification before a stable release.
 - [x] Make focus tokens consistent across controls, links, header/workspace navigation, summaries and skip links; add shared width and system-color overrides with rendered palette/contrast checks. Manual forced-colors and assistive-technology verification remains in the release gate.
 - [ ] Specify reusable lifecycle, event, focus, locale and overlay ownership rules. Extract helpers only as actual implementations need them.
 - [ ] Measure CSS/JS payload and choose regression budgets; retain the earlier 5 KB gzip CSS-foundation goal as a proposal, not a claimed current measurement. Optional features get separate budgets.
@@ -149,4 +150,4 @@ The target is [WCAG 2.2 AA](https://www.w3.org/WAI/WCAG22/quickref/). [APG](http
 
 ## Next implementation slice
 
-Complete Phase 0 form/server-error and token gaps, then specify and implement the tabs family against readable linked sections. This gives the system its first general compound widget while exercising focus, state, themes, progressive enhancement and lifecycle rules together. Command menus and overlay primitives follow; the explorer tree comes after those interaction foundations.
+Form integration, token/focus contracts, action variants, control sizes and composed-interface density are implemented. Specify and implement the tabs family against readable linked sections while continuing the remaining Phase 0 evidence, lifecycle and payload work. This gives the system its first general compound widget while exercising focus, state, themes, progressive enhancement and lifecycle rules together. Command menus and overlay primitives follow; the explorer tree comes after those interaction foundations.
