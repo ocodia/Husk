@@ -50,6 +50,7 @@ componentButton.addEventListener('click', async () => {
     passed.push('Empty error lists stay hidden.');
     passed.push(...await runFormChecks(fixture));
     passed.push(...await runServerErrorChecks(fixture));
+    passed.push(...await runFormIntegrationChecks(fixture));
     reportResults(`PASS: ${passed.length} checks\n\n${passed.join('\n')}`);
   } catch (error) {
     reportResults(`FAIL after ${passed.length} checks: ${error.message}`);
@@ -136,7 +137,7 @@ auditButton.addEventListener('click', async () => {
   const report = [];
   frame.hidden = false;
   try {
-    for (const route of ['../index.html', '../form.html', '../workspace.html', '../examples/index.html', '../examples/components.html', '../examples/patterns.html', '../examples/themes.html', '../examples/server-errors.html']) {
+    for (const route of ['../index.html', '../form.html', '../workspace.html', '../examples/index.html', '../examples/components.html', '../examples/patterns.html', '../examples/themes.html', '../examples/server-errors.html', '../examples/form-integration.html']) {
       const win = await loadExample(frame, route);
       for (const brand of route.endsWith('/themes.html') ? ['default', 'forest'] : ['default']) {
         if (brand === 'default') delete win.document.documentElement.dataset.brand;
@@ -167,6 +168,55 @@ auditButton.addEventListener('click', async () => {
             }
             reportResults(report.join('\n'));
           }
+        }
+      }
+      if (route.endsWith('/form-integration.html')) {
+        const doc = win.document;
+        const editor = doc.querySelector('#delivery-editor');
+        const form = editor.form;
+        const french = doc.querySelector('#french-editor');
+        const response = doc.querySelector('#delivery-outcome');
+        const settle = () => new Promise((resolve) => win.setTimeout(resolve, 0));
+        const complete = () => new Promise((resolve) => win.setTimeout(resolve, 850));
+        async function recordState(label) {
+          const audit = await win.axe.run(doc, {
+            runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] }
+          });
+          report.push(`Form integration ${label}: ${audit.violations.length} violations; ${audit.incomplete.length} need manual review`);
+          for (const violation of audit.violations) {
+            report.push(`  ${violation.id}: ${violation.help}`);
+            for (const node of violation.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+          }
+          for (const review of audit.incomplete) {
+            report.push(`  REVIEW ${review.id}: ${review.help}`);
+            for (const node of review.nodes) report.push(`    ${JSON.stringify(node.target)}`);
+          }
+          reportResults(report.join('\n'));
+        }
+        for (const theme of ['light', 'dark']) {
+          doc.documentElement.dataset.theme = theme;
+          [...form.elements.updates].forEach((control) => { control.checked = false; });
+          form.requestSubmit();
+          assert(!editor.querySelector('h-error-summary').hidden, 'Group error state must be visible');
+          await recordState(`group error (${theme})`);
+          form.reset(); await settle();
+          french.form.requestSubmit();
+          assert(!french.querySelector('h-error-summary').hidden, 'Localized error state must be visible');
+          await recordState(`localized error (${theme})`);
+          french.clear();
+          response.value = 'failure';
+          form.requestSubmit();
+          assert(form.getAttribute('aria-busy') === 'true', 'Pending state must be exposed');
+          await recordState(`pending (${theme})`);
+          await complete();
+          assert(!doc.querySelector('#delivery-failure').hidden, 'Service failure must be visible');
+          await recordState(`service failure (${theme})`);
+          form.reset(); await settle();
+          response.value = 'field';
+          form.requestSubmit(); await complete();
+          assert(!editor.querySelector('h-error-summary').hidden, 'Async field rejection must be visible');
+          await recordState(`async field error (${theme})`);
+          form.reset(); await settle();
         }
       }
       if (route.endsWith('workspace.html')) {

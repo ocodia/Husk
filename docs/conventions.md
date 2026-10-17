@@ -14,7 +14,7 @@ Tabs switch panels within one context; they are not page navigation or a step-by
 
 Ask one question per `h-field`. Use a fieldset/legend for related choices. Labels remain visible. State which answers are optional; keep hints concise and associate them with `aria-describedby`. Prefer meaningful autocomplete and input types. Use text rather than number inputs for identifiers, phone numbers and codes.
 
-Validate on submission by default. Preserve values, show inline text and a linked summary, focus the summary, and identify errors in the page title. Do not announce every keystroke as an error. Applications own server rules, authorization, persistence and async validation. Describe required formats before the user makes a mistake.
+Validate on submission by default. Preserve values, show inline text and a linked summary, focus the summary, and identify errors in the page title. Do not announce every keystroke as an error. Applications own server rules, authorization, persistence and async validation. Follow the [form integration contract](forms.md) for external ownership, grouped feedback, localization and stale async responses. Describe required formats before the user makes a mistake.
 
 Checkboxes collect choices, radios choose one from a set, selects conserve space, and a combobox adds search when a long list justifies it. Switches apply binary settings immediately and need pending/failure behavior. Use the simplest control that solves the task.
 

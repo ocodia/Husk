@@ -38,7 +38,7 @@ This phase begins now and runs ahead of higher-level widgets.
 - [ ] Complete browser/assistive-technology matrix and manual foundation testing. Resolve legacy media captions/transcripts before presenting them as complete examples.
 - [x] Adopt initial server-rendered field errors without losing messages, answers or focus; clear their state after correction/reset with browser assertions and a real response example.
 - [x] Preserve explicit custom-validity messages when native constraints also fail; keep valid native submissions usable with an incomplete summary.
-- [ ] Finish the form audit for external/dynamic control ownership, field grouping, localization and async application integration; document limits and fix failures with browser assertions.
+- [x] Audit external/dynamic native form ownership, shared radio/checkbox feedback, localization and async application integration; implement ownership cleanup and translation hooks, document limits and add browser assertions plus a working cancellation/retry recipe. Manual browser/assistive-technology evidence remains in the release gate.
 - [x] Add reference spacing/type/radius scales, semantic status/selection/disabled/busy tokens and existing geometry aliases while preserving current variable fallbacks.
 - [x] Implement native action variants and per-control small/default/large sizes, with theme, submit/reset, target-size, RTL, focus and text-resize browser assertions; document the [controls contract](docs/controls.md).
 - [ ] Define shared feedback variants and comfortable/compact density. Complete manual zoom, touch/target and platform verification before a stable release.

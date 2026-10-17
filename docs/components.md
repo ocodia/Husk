@@ -103,7 +103,7 @@ Delivery phases and the stable-release gate are in [ROADMAP.md](../ROADMAP.md). 
 
 ### h-form
 
-**Foundation · Optional JS.** Wrap exactly one native form; coordinate validation and recovery. Adopt visible server field errors without moving focus.
+**Foundation · Optional JS.** Wrap exactly one native form; coordinate validation and recovery. Adopt visible server field errors without moving focus. Observe native external/dynamic ownership; support grouped feedback and application-supplied prefixes/message translations. Async transport remains application-owned; see docs/forms.md.
 
 ```html
 <h-form><form action="/projects" method="post"><label for="title">Title</label><input id="title" name="title" required><button>Save</button></form></h-form>

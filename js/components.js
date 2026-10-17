@@ -3,6 +3,8 @@
   let nextId = 0;
   const documentErrors = new WeakMap();
   const authoredMessages = new WeakMap();
+  const errorOwners = new WeakMap();
+  const hintOwners = new WeakMap();
 
   function identify(element, prefix) {
     if (!element.id) {
@@ -15,8 +17,9 @@
   function describe(control, id, add = true) {
     const ids = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
     if (add) ids.add(id); else ids.delete(id);
-    if (ids.size) control.setAttribute('aria-describedby', [...ids].join(' '));
-    else control.removeAttribute('aria-describedby');
+    const value = [...ids].join(' ');
+    if (value && control.getAttribute('aria-describedby') !== value) control.setAttribute('aria-describedby', value);
+    else if (!value && control.hasAttribute('aria-describedby')) control.removeAttribute('aria-describedby');
   }
 
   class HErrorSummary extends HTMLElement {
@@ -79,8 +82,16 @@
       this._managed = new Map();
       this._errorElements = new WeakMap();
       this._errors = [];
-      this._observer = new MutationObserver(() => this.refresh());
-      this._observer.observe(this, { childList: true, subtree: true });
+      this._hints = new Map();
+      this._knownControls = new Set();
+      // Form ownership is document-wide. Filter records before rediscovery.
+      this._observer = new MutationObserver((records) => {
+        if (records.some((record) => this._affectsForm(record))) this.refresh();
+      });
+      this._observer.observe(this.ownerDocument.documentElement, {
+        childList: true, subtree: true, attributes: true,
+        attributeFilter: ['form', 'id', 'name', 'type', 'disabled', 'readonly', 'aria-describedby']
+      });
       this.refresh();
       // Child custom elements may upgrade after their parent's connected callback.
       queueMicrotask(() => { if (this.isConnected) this.refresh(); });
@@ -89,6 +100,7 @@
     disconnectedCallback() {
       this._observer?.disconnect();
       this.clear();
+      for (const control of this._hints.keys()) this._removeHints(control);
       this._unbind();
     }
 
@@ -107,6 +119,8 @@
       if (form !== this._form) {
         this.clear();
         this._unbind();
+        for (const control of this._hints.keys()) this._removeHints(control);
+        this._knownControls.clear();
         if (!form) return;
         this._form = form;
         this._nativeNoValidate = form.noValidate;
@@ -140,19 +154,64 @@
       // Do not turn off the browser's UI unless the replacement can render errors.
       this._ready = typeof summary.show === 'function' && !!summary.querySelector('h2') && !!summary.querySelector('ul');
       form.noValidate = this._ready ? true : this._nativeNoValidate;
+      this._syncHints();
       for (const control of this._controls()) {
-        const field = control.closest('h-field');
-        if (!field) continue;
-        for (const hint of field.querySelectorAll('h-hint')) {
-          if (hint.closest('h-field') === field) describe(control, identify(hint, 'hint'));
-        }
+        const previous = errorOwners.get(control);
+        if (previous && previous !== this) previous._release(control);
       }
       this._adoptErrors();
-      if (this._errors.length && summary.hidden && this._ready) {
+      const retained = this._errors.map(({ control, message }) => {
+        if (control.form === form && control.isConnected && control.willValidate) return { control, message };
+        const error = this._managed.get(control)?.error;
+        const replacement = [...this._managed].find(([other, state]) => state.error === error && other.form === form && other.isConnected && other.willValidate)?.[0];
+        return replacement ? { control: replacement, message } : null;
+      }).filter(Boolean);
+      const expected = new Set(retained.flatMap(({ control }) => this._members(control)));
+      const changed = [...expected].some((control) => {
+        const state = this._managed.get(control);
+        return !state || state.target !== this._errorTarget(control) || state.id !== state.error.id || state.controlId !== control.id;
+      });
+      if (retained.length !== this._errors.length || retained.some((item, index) => item.control !== this._errors[index].control)
+          || expected.size !== this._managed.size || changed) {
+        if (this._ready) this.showErrors(retained, { focus: false });
+      } else if (this._errors.length && summary.hidden && this._ready) {
         summary.show(this._errors, { focus: false });
       }
-      if (this._errors.some(({ control }) => control.form !== form || !control.isConnected)) {
-        this.showErrors(this._errors.filter(({ control }) => control.form === form && control.isConnected), { focus: false });
+      this._knownControls = new Set(this._controls());
+    }
+
+    _affectsForm(record) {
+      if (this.contains(record.target) || [...this._managed.values()].some((state) => state.error === record.target || state.target === record.target)) return true;
+      const relevant = (node) => node.nodeType === 1 && (
+        this._knownControls.has(node) || node.form === this._form && !!this._form
+        || [...node.querySelectorAll('input, select, textarea')].some((control) => this._knownControls.has(control) || control.form === this._form && !!this._form));
+      const field = record.target.closest?.('h-field, fieldset');
+      return relevant(field || record.target) || [...record.addedNodes, ...record.removedNodes].some(relevant);
+    }
+
+    _removeHints(control) {
+      if (hintOwners.get(control) === this) {
+        for (const id of this._hints.get(control) || []) describe(control, id, false);
+        hintOwners.delete(control);
+      }
+      this._hints.delete(control);
+    }
+
+    _syncHints() {
+      const controls = this._controls();
+      for (const control of this._hints.keys()) if (!controls.includes(control)) this._removeHints(control);
+      for (const control of controls) {
+        const previous = hintOwners.get(control);
+        if (previous && previous !== this) previous._removeHints(control);
+        const field = control.closest('h-field');
+        const wanted = new Set(field ? [...field.querySelectorAll('h-hint')]
+          .filter((hint) => hint.closest('h-field') === field).map((hint) => identify(hint, 'hint')) : []);
+        const owned = this._hints.get(control) || new Set();
+        for (const id of owned) if (!wanted.has(id)) { describe(control, id, false); owned.delete(id); }
+        const existing = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/));
+        for (const id of wanted) if (!existing.has(id)) { describe(control, id); owned.add(id); }
+        this._hints.set(control, owned);
+        hintOwners.set(control, this);
       }
     }
 
@@ -160,8 +219,25 @@
       return [...(this._form?.elements || [])].filter((control) => ['input', 'select', 'textarea'].includes(control.localName));
     }
 
+    _members(control) {
+      return control.type === 'radio' && control.name
+        ? this._controls().filter((other) => other.type === 'radio' && other.name === control.name && other.willValidate)
+        : [control];
+    }
+
     _errorTarget(control) {
-      return control.type === 'radio' ? control.closest('fieldset') || control : control;
+      const group = control.closest('fieldset');
+      if (!group) return control;
+      if (control.type === 'radio' && this._members(control).every((member) => group.contains(member))) return group;
+      // An explicit direct group error opts checkbox questions into shared feedback.
+      if (control.type === 'checkbox' && !control.closest('h-field') && [...group.children].some((child) => child.localName === 'h-error')) return group;
+      return control;
+    }
+
+    _prefix() { return this.getAttribute('error-prefix') ?? 'Error: '; }
+    _stripPrefix(message) {
+      const prefix = this._prefix().trim();
+      return prefix && message.toLowerCase().startsWith(prefix.toLowerCase()) ? message.slice(prefix.length).trim() : message;
     }
 
     _findError(control) {
@@ -173,7 +249,9 @@
       const container = field || (target !== control ? target : null);
       const error = container && [...container.querySelectorAll('h-error')].find((item) =>
         field ? item.closest('h-field') === field : !item.closest('h-field') && item.closest('fieldset') === container);
-      return error || (this._errorElements.get(control)?.isConnected ? this._errorElements.get(control) : null);
+      const cached = this._errorElements.get(control);
+      const reusable = cached?.isConnected && (container ? container.contains(cached) : cached.previousElementSibling === control);
+      return error || (reusable ? cached : null);
     }
 
     _adoptErrors() {
@@ -182,6 +260,7 @@
         if (this._managed.has(control) || !control.willValidate || control.getAttribute('aria-invalid') !== 'true') continue;
         const error = this._findError(control);
         if (!error || error.hidden || !error.textContent.trim()) continue;
+        this._claim(control);
         identify(control, 'control');
         identify(error, 'error');
         // A server's domain error is not a reusable required-field message.
@@ -189,9 +268,9 @@
         this._errorElements.set(control, error);
         const target = this._errorTarget(control);
         describe(target, error.id);
-        this._managed.set(control, { error, target });
+        this._managed.set(control, { error, target, id: error.id, controlId: control.id });
         if (!control.name || control.type !== 'radio' || !this._errors.some(({ control: other }) => other.type === 'radio' && other.name === control.name)) {
-          this._errors.push({ control, message: error.textContent.trim().replace(/^Error:\s*/i, '') });
+          this._errors.push({ control, message: this._stripPrefix(error.textContent.trim()) });
         }
         adopted = true;
       }
@@ -199,7 +278,8 @@
     }
 
     _errorElement(control) {
-      const field = control.closest('h-field') || (control.type === 'radio' ? control.closest('fieldset') : null);
+      const target = this._errorTarget(control);
+      const field = control.closest('h-field') || (target !== control ? target : null);
       let error = this._findError(control);
       if (!error) {
         error = this.ownerDocument.createElement('h-error');
@@ -208,7 +288,7 @@
       }
       identify(error, 'error');
       this._errorElements.set(control, error);
-      if (!authoredMessages.has(error)) authoredMessages.set(error, error.hidden ? error.textContent.trim().replace(/^Error:\s*/i, '') : '');
+      if (!authoredMessages.has(error)) authoredMessages.set(error, error.hidden ? this._stripPrefix(error.textContent.trim()) : '');
       return error;
     }
 
@@ -216,12 +296,14 @@
       const doc = this.ownerDocument;
       let state = documentErrors.get(doc);
       if (invalid && !state) {
-        state = { base: fromMarkup ? doc.title.replace(/^Error: /, '') : doc.title, owners: new Set() };
+        const prefix = (this.getAttribute('error-title-prefix') ?? 'Error:').trim();
+        const base = fromMarkup && prefix && doc.title.startsWith(`${prefix} `) ? doc.title.slice(prefix.length + 1) : doc.title;
+        state = { base, prefix, owners: new Set() };
         documentErrors.set(doc, state);
       }
       if (!state) return;
       if (invalid) state.owners.add(this); else state.owners.delete(this);
-      const errorTitle = state.base.startsWith('Error: ') ? state.base : `Error: ${state.base}`;
+      const errorTitle = !state.prefix || state.base.startsWith(`${state.prefix} `) ? state.base : `${state.prefix} ${state.base}`;
       if (state.owners.size) doc.title = errorTitle;
       else {
         if (doc.title === errorTitle) doc.title = state.base;
@@ -229,14 +311,26 @@
       }
     }
 
+    _claim(control) {
+      const previous = errorOwners.get(control);
+      if (previous && previous !== this) previous._release(control);
+      errorOwners.set(control, this);
+    }
+
+    _release(control) {
+      const state = this._managed.get(control);
+      this._managed.delete(control);
+      if (!state || errorOwners.get(control) !== this) return;
+      errorOwners.delete(control);
+      const { error, target, id } = state;
+      control.removeAttribute('aria-invalid');
+      if (target !== control) describe(control, id, false);
+      if (![...this._managed.values()].some((other) => other.error === error && other.target === target)) describe(target, id, false);
+      if (![...this._managed.values()].some((other) => other.error === error)) error.hidden = true;
+    }
+
     clear() {
-      for (const [control, { error, target }] of this._managed || []) {
-        control.removeAttribute('aria-invalid');
-        if (target !== control) describe(control, error.id, false);
-        describe(target, error.id, false);
-        error.hidden = true;
-      }
-      this._managed?.clear();
+      for (const control of this._managed?.keys() || []) this._release(control);
       this._errors = [];
       this._summary?.clear?.();
       this._title(false);
@@ -251,18 +345,23 @@
           throw new Error('Each error needs a validating control in this form and a message.');
         }
         identify(control, 'control');
-        unique.set(control, { control, message });
+        const key = control.type === 'radio' && control.name ? this._members(control)[0] : control;
+        unique.set(key, { control, message });
       }
       this.clear();
       this._errors = [...unique.values()];
       for (const { control, message } of this._errors) {
+        const members = this._members(control);
+        for (const member of members) this._claim(member);
         const error = this._errorElement(control);
-        error.textContent = `Error: ${message}`;
+        error.textContent = `${this._prefix()}${message}`;
         error.hidden = false;
-        control.setAttribute('aria-invalid', 'true');
-        const target = this._errorTarget(control);
-        describe(target, error.id);
-        this._managed.set(control, { error, target });
+        for (const member of members) {
+          member.setAttribute('aria-invalid', 'true');
+          const target = this._errorTarget(member);
+          describe(target, error.id);
+          this._managed.set(member, { error, target, id: error.id, controlId: member.id });
+        }
       }
       this._title(this._errors.length > 0);
       this._summary.show(this._errors, { focus });
@@ -298,6 +397,11 @@
         }
         else if (tooLong) message = `${label} must be ${control.maxLength} characters or fewer`;
         else if (tooShort) message = `${label} must be ${control.minLength} characters or more`;
+        if (this.message) {
+          const reason = control.validity.customError ? 'customError' : empty || control.validity.valueMissing ? 'valueMissing' : tooLong ? 'tooLong' : tooShort ? 'tooShort' : 'native';
+          message = this.message(control, { reason, label, defaultMessage: message });
+          if (typeof message !== 'string' || !message.trim()) throw new TypeError('h-form message must return a non-empty string synchronously.');
+        }
         errors.push({ control, message });
       }
       if (this.validator) {

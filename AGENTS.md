@@ -27,7 +27,7 @@ Native/foundation catalogue status describes available building blocks, not full
 
 Keep ordinary markup class-free where practical. Prefer `h-` wrappers for composition and CSS variables for geometry/themes. Use meaningful defaults; no JSON configuration for ordinary content. Existing class alternatives remain compatible. Reference spacing/type/radius scales and semantic state/focus tokens exist; use `docs/theming.md` for their names and alias rules. Native button `data-variant` and supported native control `data-size` are implemented; see `docs/controls.md` for scope, defaults and tokens. Shared density and feedback APIs remain proposals.
 
-Install behavior before hiding content or applying compound-widget ARIA roles. Own only the attributes/listeners/DOM changes required; preserve authored relationships. Handle disconnect/reconnect, late children and nested event ownership. Applications own persistence, routing, async data and business rules.
+Install behavior before hiding content or applying compound-widget ARIA roles. Own only the attributes/listeners/DOM changes required; preserve authored relationships. Handle disconnect/reconnect, late children and nested event ownership. Applications own persistence, routing, async data and business rules. Use `docs/forms.md` for external ownership, grouped errors, localization callbacks/prefixes and async cancellation/response ordering; async work stays outside synchronous form callbacks.
 
 ## Validation and generated files
 

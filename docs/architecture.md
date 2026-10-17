@@ -30,6 +30,8 @@ Do not wrap native elements in custom elements where HTML's content model forbid
 6. Disconnect listeners, observers and timers; restore enhancement-owned changes. Reconnect must not duplicate work.
 7. Define nested-component event ownership and child insertion/removal before calling a widget complete.
 
+The form observes relevant document mutations because native `form` associations can cross wrapper boundaries. Ownership and enhancement-added hint/error cleanup follow the native control’s current form; see [the integration contract](forms.md). Async request lifecycle stays in the application.
+
 The existing form implementation is the first behavior module, not a universal base class. Extract shared ID, focus, keyboard, locale and positioning helpers only after a second implementation establishes a real need. Keep low-level popup geometry separate from modal/dialog/menu semantics.
 
 ## Public API conventions for new components

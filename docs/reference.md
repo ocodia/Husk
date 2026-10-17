@@ -122,7 +122,7 @@ Load `js/components.js` and wrap exactly one native form in `h-form`. An optiona
 
 The element validates on submission and leaves valid native `submit` events intact. Invalid submissions stop before ordinary application submit handlers. It manages inline errors, descriptions, summary focus, the error title, and native reset cleanup. Your application still owns persistence and server validation. Explicit hints and native labels remain usable without JavaScript; missing hint/control/error IDs can be generated during enhancement.
 
-Use one control per `h-field`, or a native fieldset for a radio group. Missing error elements are generated. Existing hint descriptions are preserved. Required messages use initially hidden authored `h-error` text when available; visible server messages are not reused as required-field defaults. Other constraints use native messages or label-based length messages. Explicit `setCustomValidity()` messages take precedence when more than one constraint fails. Applications can supply translated messages with custom validity or a synchronous validator; generated inline/title prefixes and fallback messages currently use English.
+Use one control per `h-field`, or a native fieldset for a radio group. Missing error elements are generated. Existing hint descriptions are preserved. Required messages use initially hidden authored `h-error` text when available; visible server messages are not reused as required-field defaults. Other constraints use native messages or label-based length messages. Explicit `setCustomValidity()` messages take precedence when more than one constraint fails. Applications can supply translated messages with custom validity or a synchronous validator; use `error-prefix`, `error-title-prefix` and the synchronous `message` callback for generated feedback. Defaults remain English. See [form integration](forms.md) for localization and grouped-field contracts.
 
 ```js
 const editor = document.querySelector('h-form');
@@ -140,10 +140,12 @@ editor.validator = (form) => {
 | `editor.validate({ focus: false })` | Validate and render errors; return a boolean; focus defaults to true |
 | `editor.showErrors([{ control, message }], { focus: false })` | Display application/server errors without replacing answers |
 | `editor.clear()` | Clear managed errors and restore the title; preserve values |
-| `editor.refresh()` | Rediscover markup and hints; child insertion/removal also triggers this automatically |
+| `editor.refresh()` | Rediscover markup/hints immediately; relevant document mutations and form association changes also trigger this automatically |
+| `editor.message(control, { reason, label, defaultMessage })` | Optional synchronous callback returning a non-empty translated constraint message; see [localization](forms.md#localization) |
+| `error-prefix`, `error-title-prefix` | Optional attributes on `h-form` for inline/title prefixes; defaults `Error: ` and `Error:` |
 | `editor.validator` | Optional synchronous callback returning additional error objects; no network validation is implied |
 
-Use `form.requestSubmit()` for programmatic submissions. Native `form.submit()` bypasses submission events and therefore this enhancement. `formnovalidate` is respected. For asynchronous checks, prevent native submission in the application and later use `showErrors()` or continue the application workflow.
+Use `form.requestSubmit()` for programmatic submissions. Native `form.submit()` bypasses submission events and therefore this enhancement. `formnovalidate` is respected. For asynchronous checks, prevent native submission in the application and later use `showErrors()` or continue the application workflow. Follow [the async integration recipe](forms.md#asynchronous-submission) for pending feedback, snapshots, cancellation, retry and stale responses.
 
 A cancelled reset keeps its errors. If your application cancels reset to implement a custom revert action, call `editor.clear()` after restoring the values. Disconnect restores the form's original `noValidate` value and removes listeners. Dynamic controls and reconnects are supported. Multiple forms coordinate the document error title.
 
@@ -178,7 +180,7 @@ For radios, use a shared fieldset error and mark the affected radio control(s) i
 
 Adopted messages are presentation state, not persistent native validity rules. Successful client validation permits another submission; it does not prove a server rule now passes. Recheck on the server, or retain an applicable application validator/custom-validity rule. The [response example](../examples/server-errors.html) demonstrates this using an explicitly local rule.
 
-Controls associated through `form="…"` can use explicitly described `h-error` nodes outside the wrapper. The observer watches markup inside `h-form`; call `refresh()` after changes outside it or after changing associations via attributes. Dynamic external ownership and richer grouped-field behavior remain under audit. Server text must be escaped by the application before writing HTML.
+Controls associated through `form="…"` can use explicitly described `h-error` nodes outside the wrapper. Relevant document mutations and ownership attributes are observed automatically; `refresh()` supports immediate rediscovery. See [form integration](forms.md) for external controls, grouped questions, localization, lifecycle limits and async response ordering. Server text must be escaped by the application before writing HTML.
 
 ## Themes and customization
 

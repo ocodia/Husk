@@ -169,3 +169,16 @@ Chrome 155.0.8059.80 on macOS, served locally:
 - HTML/CSS parsing, changed JavaScript syntax, documentation links and generated catalogue checks passed. Foundation CSS measures 25,525 bytes raw / 5,172 bytes gzip at level 9 without minification; optional brand/example styles are separate. The provisional 5 KB gzip goal remains an unconfirmed budget, and these measurements are not enforced automatically.
 
 Action variants and individual control sizes are implemented. Shared density and feedback variants remain Phase 0 work; this evidence does not establish WCAG conformance or stable component status.
+
+
+## Form integration audit: 17 October 2026
+
+Safari 27.0.1 on macOS, served locally:
+
+- All 85 component checks and 186 example checks passed. The 32 new component checks exercise external native ownership/submitters, late fields, `form` and form-ID reassignment, external control/error ID changes, removal, disabled/read-only fields and fieldsets, hint cleanup, radio-group membership/targets, shared checkbox rules, localized authored/server/constraint messages, invalid async message callbacks and title restoration.
+- The example suite adds 15 application checks for pending/success/field rejection/service failure, preserved external answers and hints, retry, duplicate pending submission, cancellation/focus return, edit invalidation, cancelled/native reset, checkbox validation before transport, editor removal and French recovery. Three additional checks cover the new page's 320px LTR/RTL and readable-content fallback with scripts blocked. The separate no-JavaScript workspace check passed too.
+- Axe-core 4.14.0 reported zero violations across 35 states: 24 page/brand/mode/focus combinations, the workspace invalid state, and 10 form-integration states covering grouped errors, French errors, pending work, service failure and async field rejection in both light/dark modes. The new page's native response select remains an incomplete contrast finding requiring manual review; existing native select and legacy video-caption findings remain unresolved.
+- The new integration page was visually reviewed in dark-mode Safari. These checks do not establish screen-reader announcement quality, native autofill behavior, actual zoom/text-spacing, forced colors, mobile or disabled-user task success. The final expanded suite was not rerun in Chrome/Firefox/Edge; an earlier Chrome run passed the initial 80 component checks before the last five ID/fieldset regressions were added.
+- Changed JavaScript syntax, repository HTML parsing, local documentation links, generated catalogue consistency and whitespace checks passed. Optional component JavaScript measures 20,141 bytes raw / 5,212 bytes gzip at level 9 without minification (previously 13,954 / 3,846); CSS is unchanged. Payload regression budgets remain roadmap work.
+
+The implementation/integration portion of the Phase 0 form audit is complete. Async transport remains application-owned, and the example uses a local timer with no server request. Cross-browser, assistive-technology and manual release evidence remains open. See [the integration contract](docs/forms.md) for native ownership, grouping, localization, response ordering and lifecycle limits.

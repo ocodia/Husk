@@ -92,8 +92,10 @@ exampleButton.addEventListener('click', async () => {
     check(serverName.value === 'Coastal field guide' && serverSummary.hidden && doc.querySelector('#server-result').textContent === '', 'Reset restores the original response value and clears feedback.');
     serverForm.requestSubmit();
     check(!serverSummary.hidden && serverSummary.textContent.includes('already in use'), 'Reset does not bypass the next domain validation.');
+    win = await load('../examples/form-integration.html');
+    passed.push(...await runAsyncFormChecks(win));
     frame.style.inlineSize = '320px';
-    for (const route of ['index', 'components', 'patterns', 'themes', 'server-errors']) {
+    for (const route of ['index', 'components', 'patterns', 'themes', 'server-errors', 'form-integration']) {
       win = await load(`../examples/${route}.html`, true);
       doc = win.document;
       for (const dir of ['ltr', 'rtl']) {

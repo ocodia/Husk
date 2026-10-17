@@ -8,6 +8,7 @@
 - [Current API](docs/reference.md): implemented layouts, form and summary behavior, tokens.
 - [Machine-readable catalogue](docs/components.json): native/foundation/planned statuses; proposed names are not available APIs.
 - [Architecture](docs/architecture.md): native ownership, lifecycle, light DOM and future packaging.
+- [Form integration](docs/forms.md): external ownership, shared questions, translated feedback and application-owned async submission.
 - [Theming](docs/theming.md): implemented reference scales, semantic states/focus, local aliases and planned density.
 - [Controls](docs/controls.md): native button variants, control sizes, supported targets and token names.
 - [Conventions](docs/conventions.md): UI/keyboard/focus/form rules.
